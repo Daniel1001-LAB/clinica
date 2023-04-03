@@ -12,6 +12,7 @@ Route::get('/',function(){
 
 
 Route::resource('/roles',RoleController::class)->names('roles');
+Route::resource('/users',UserController::class)->names('users');
 
 
 

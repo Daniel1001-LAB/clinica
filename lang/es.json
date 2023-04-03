@@ -248,8 +248,11 @@
     "cancel": "Cancelar",
     "patient": "paciente",
     "user": "usuario",
-
-
+    "notification": "Notificación",
+    "users": "Usuario",
+    "List of users": "Lista de usuarios",
+    "User Administration": "Administracion de usuarios",
+    "add user": "Agregar usuario",
 
 
     "Your email address is unverified.": "Su dirección de correo electrónico no está verificada."

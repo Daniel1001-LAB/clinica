@@ -26,10 +26,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
+    public function Oldindex()
+    {
+        $users = ModelsUser::all();
+        return view('admin.users.index', compact('users')) ;
+    }
+
     public function index()
     {
-        return view('admin.users.index');
+        $users = ModelsUser::all();
+        return view('admin.users.index') ;
     }
 
 
