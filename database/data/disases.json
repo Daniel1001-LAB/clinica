@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "name": "brinquitis aguda",
+        "symptoms": "bronquitis aguda (resfriado de pecho) tos, mucosidad.\nresfriado com\u00fan. estornudos, moqueo o congesti\u00f3n nasal, dolor de garganta, tos.\ninfecci\u00f3n de o\u00eddo. dolor de o\u00eddo, fiebre.\ninfluenza (gripe) ...\nsinusitis (infecci\u00f3n de los senos paranasales) ...\ninfecciones de la piel. ...\ndolor de garganta. ...\ninfecci\u00f3n urinaria.",
+        "created_at": "2021-12-19 14:17:30",
+        "updated_at": "2021-12-19 14:17:30"
+    },
+    {
+        "id": 2,
+        "name": "resfirado com\u00fan",
+        "symptoms": "bronquitis aguda (resfriado de pecho) tos, mucosidad.\nresfriado com\u00fan. estornudos, moqueo o congesti\u00f3n nasal, dolor de garganta, tos.\ninfecci\u00f3n de o\u00eddo. dolor de o\u00eddo, fiebre.\ninfluenza (gripe) ...\nsinusitis (infecci\u00f3n de los senos paranasales) ...\ninfecciones de la piel. ...\ndolor de garganta. ...\ninfecci\u00f3n urinaria.",
+        "created_at": "2021-12-19 14:18:05",
+        "updated_at": "2021-12-19 14:18:05"
+    },
+    {
+        "id": 3,
+        "name": "infecci\u00f3n de o\u00eddo",
+        "symptoms": "",
+        "created_at": "2021-12-19 14:18:23",
+        "updated_at": "2021-12-19 14:18:23"
+    },
+    {
+        "id": 4,
+        "name": "influenza",
+        "symptoms": "bronquitis aguda (resfriado de pecho) tos, mucosidad.\nresfriado com\u00fan. estornudos, moqueo o congesti\u00f3n nasal, dolor de garganta, tos.\ninfecci\u00f3n de o\u00eddo. dolor de o\u00eddo, fiebre.\ninfluenza (gripe) ...\nsinusitis (infecci\u00f3n de los senos paranasales) ...\ninfecciones de la piel. ...\ndolor de garganta. ...\ninfecci\u00f3n urinaria.",
+        "created_at": "2021-12-19 14:18:42",
+        "updated_at": "2021-12-19 14:18:42"
+    },
+    {
+        "id": 5,
+        "name": "sinusitis",
+        "symptoms": "",
+        "created_at": "2021-12-19 14:19:20",
+        "updated_at": "2021-12-19 14:19:20"
+    },
+    {
+        "id": 6,
+        "name": "infecciones de la piel",
+        "symptoms": "",
+        "created_at": "2021-12-19 14:19:50",
+        "updated_at": "2021-12-19 14:19:50"
+    },
+    {
+        "id": 7,
+        "name": "dolor de garganta",
+        "symptoms": "",
+        "created_at": "2021-12-19 14:20:11",
+        "updated_at": "2021-12-19 14:20:11"
+    },
+    {
+        "id": 8,
+        "name": "infecci\u00f3n urinaria",
+        "symptoms": "",
+        "created_at": "2021-12-19 14:20:27",
+        "updated_at": "2021-12-19 14:20:27"
+    }
+]
