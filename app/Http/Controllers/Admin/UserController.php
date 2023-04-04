@@ -11,7 +11,8 @@ use Spatie\Permission\Models\Role;
 class UserController extends Controller
 {
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('can:users.index')->only('index');
         $this->middleware('can:users.create')->only('create');
         $this->middleware('can:users.store')->only('store');
@@ -30,13 +31,13 @@ class UserController extends Controller
     public function Oldindex()
     {
         $users = ModelsUser::all();
-        return view('admin.users.index', compact('users')) ;
+        return view('admin.users.index', compact('users'));
     }
 
     public function index()
     {
         $users = ModelsUser::all();
-        return view('admin.users.index') ;
+        return view('admin.users.index');
     }
 
 
@@ -47,7 +48,6 @@ class UserController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -81,11 +81,15 @@ class UserController extends Controller
     public function edit(user $user)
     {
         $userRole = $user->roles()->first();
-        if($userRole){$userRoleId = $userRole->id;}else{$userRoleId = 0;}
-        $roles = Role::where('id', '>=',3)->get();
+        if ($userRole) {
+            $userRoleId = $userRole->id;
+        } else {
+            $userRoleId = 0;
+        }
+        $roles = Role::where('id', '>=', 3)->get();
         $title = "edit user";
         $btn = "update";
-        return view('admin.users.edit',compact('user','title','btn','roles','userRoleId'));
+        return view('admin.users.edit', compact('user', 'title', 'btn', 'roles', 'userRoleId'));
     }
 
     /**
@@ -99,7 +103,7 @@ class UserController extends Controller
     {
         $role = $request->input('role');
         $user->roles()->sync($role);
-        return redirect()->route('users.index')->with('success','Registro actualizado correctamente');;
+        return redirect()->route('users.index')->with('success', 'Registro actualizado correctamente');;
     }
 
     /**

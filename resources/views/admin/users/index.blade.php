@@ -89,12 +89,13 @@
                     ],
 
                     "columnDefs": [{
-                            "targets":[4],
-                            "orderable":false,
-                            "searchable":false,
+                            "targets": [4],
+                            "orderable": false,
+                            "searchable": false,
                             "targets": 4, // el índice de la columna "Estado" en base 0 es 6
                             "render": function(data, type, row) {
-                                var badgeClass = '';
+                                var badgeClass =
+                                'text-bg-secondary'; // asignar la clase "text-bg-secondary" por defecto
                                 var text = '';
                                 switch (data) {
                                     case 'super-admin':
@@ -110,10 +111,14 @@
                                         badgeClass = 'text-bg-success';
                                         break;
                                     case 'user':
+                                        badgeClass = 'text-bg-info';
+                                        break;
+                                    case '':
                                         badgeClass = 'text-bg-secondary';
                                         break;
                                 }
-                                return '<span class="text-capitalize badge strong ' + badgeClass + '">' + data +'</span>';
+                                return '<span class="text-capitalize badge strong ' + badgeClass +
+                                    '">' + data + '</span>';
                             }
                         },
 

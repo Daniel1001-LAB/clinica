@@ -2,12 +2,13 @@
 
 
 
-    <div class="container-sm callout callout-primary  pt-4 ">
-        <div class="card mb-3 text-dark  mb-3 shadow-lg" >
+    <div class="container-sm   pt-4 ">
+        <div class="card mb-3 text-dark border-secondary  mb-3 shadow-lg" >
             <div class="card-header font-bold text-2xl capitalize"><strong>{{ __($title) }}</div>
             <div class="card-body">
 
-                <form action="{{route('users.store')}}" method="POST">
+                <form action="{{route('users.update', $user->id)}}" method="POST">
+                    @method('PUT')
                     @include('admin.users.partials.form')
 
                 </form>
