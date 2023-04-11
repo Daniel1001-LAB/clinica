@@ -10,14 +10,14 @@
         <div class="col-md-5">
             <div class="mb-4 ">
                 <x-label  for="name" class=" my-2 capitalize form-label" value="{{ __('name of user') }}"></x-label>
-                <x-input class="form-control" type="text" name="name"  placeholder="{{__('input name of user')}}" value="{{ old('name', $user->name) }}"></x-input>
+                <x-input readonly class="form-control" type="text" name="name"  placeholder="{{__('input name of user')}}" value="{{ old('name', $user->name) }}"></x-input>
                 <x-input-error for="name"></x-input-error>
             </div>
         </div>
         <div class="col-md-5">
             <div class="mb-4 ">
                 <x-label  for="email" class="my-2 capitalize form-label" value="{{ __('email') }}"></x-label>
-                <x-input class="form-control" type="email" name="email"  placeholder="{{__('input email of user')}}" value="{{ old('name', $user->email) }}"></x-input>
+                <x-input readonly class="form-control" type="email" name="email"  placeholder="{{__('input email of user')}}" value="{{ old('name', $user->email) }}"></x-input>
                 <x-input-error for="email"></x-input-error>
             </div>
         </div>
@@ -25,21 +25,21 @@
         <div class="col-md-3">
             <div class="mb-4 ">
                 <x-label  for="phone" class=" my-2 capitalize form-label" value="{{ __('phone') }}"></x-label>
-                <x-input class="form-control" type="text" name="phone"  placeholder="{{__('input phone of user')}}" value="{{ old('name', $user->phone) }}"></x-input>
+                <x-input readonly class="form-control" type="text" name="phone"  placeholder="{{__('input phone of user')}}" value="{{ old('name', $user->phone) }}"></x-input>
                 <x-input-error for="phone"></x-input-error>
             </div>
         </div>
         <div class="col-md-3">
             <div class="mb-4 ">
                 <x-label  for="gender" class=" my-2 capitalize form-label" value="{{ __('gender') }}"></x-label>
-                <x-input class="form-control" type="text" name="gender"  placeholder="{{__('input gender of user')}}" value="{{ old('name', $user->gender) }}"></x-input>
+                <x-input readonly class="form-control" type="text" name="gender"  placeholder="{{__('input gender of user')}}" value="{{ old('name', $user->gender) }}"></x-input>
                 <x-input-error for="gender"></x-input-error>
             </div>
         </div>
         <div class="col-md-3">
             <div class="mb-4 ">
                 <x-label  for="birthdate" class=" my-2 capitalize form-label" value="{{ __('birthdate') }}"></x-label>
-                <x-input class="form-control" type="text" name="birthdate"  placeholder="{{__('input birthdate of user')}}" value="{{ old('name', $user->birthdate) }}"></x-input>
+                <x-input readonly class="form-control" type="text" name="birthdate"  placeholder="{{__('input birthdate of user')}}" value="{{ old('name', $user->birthdate) }}"></x-input>
                 <x-input-error for="birthdate"></x-input-error>
             </div>
         </div>
@@ -62,7 +62,7 @@
         <div class="col-md-12">
             <div class="mb-4 ">
                 <x-label  for="address" class=" my-2 capitalize form-label" value="{{ __('address') }}"></x-label>
-                <x-input class="form-control" type="text" name="address"  placeholder="{{__('input address of user')}}" value="{{ old('name', $user->address) }}"></x-input>
+                <x-input readonly class="form-control" type="text" name="address"  placeholder="{{__('input address of user')}}" value="{{ old('name', $user->address) }}"></x-input>
                 <x-input-error for="address"></x-input-error>
             </div>
         </div>

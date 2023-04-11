@@ -1,0 +1,43 @@
+
+10.- php artisan migrate:add_column_to_permmisions_table
+20.- php artisan make:controller Admin\RoleController --resource
+30.- php artisan make:controller Admin\PermissionController --resource
+40.- Cración de form compartido
+50.- Creación de Request RoleStoreRequest, RoleUpdateRequest
+60.- Traduccion de campos en validation lang
+
+
+
+// get the names of the user's roles
+$roles = $user->getRoleNames(); // Returns a collection
+$user->assignRole('writer');
+$user->removeRole('writer');
+
+// You can also assign multiple roles at once
+$user->assignRole('writer', 'admin');
+// or as an array
+$user->assignRole(['writer', 'admin']);
+
+// All current roles will be removed from the user and replaced by the array given
+
+$user->syncRoles(['writer', 'admin']);
+
+$user->hasRole('writer');
+
+// or at least one role from an array of roles:
+$user->hasRole(['editor', 'moderator']);
+
+$user->hasAnyRole(['writer', 'reader']);
+// or
+$user->hasAnyRole('writer', 'reader');
+
+$user->hasAllRoles(Role::all());
+$user->hasExactRoles(Role::all());
+
+$user->can('edit articles');
+
+
+$dateOfBirth = '1994-07-02';
+$years = \Carbon::parse($dateOfBirth)->age;
+  
+dd($years);

@@ -7,19 +7,12 @@ use App\Models\Specialty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Requests\SpeacialtyUpdateRequest;
+use App\Http\Requests\SpecialtyUpdateRequest;
 
 class SpecialtyController extends Controller
 {
 
-    public function __construct(){
-        $this->middleware('can:specialties.index')->only('index');
-        $this->middleware('can:specialties.create')->only('create');
-        $this->middleware('can:specialties.store')->only('store');
-        $this->middleware('can:specialties.show')->only('show');
-        $this->middleware('can:specialties.update')->only('update');
-        $this->middleware('can:specialties.edit')->only('edit');
-        $this->middleware('can:specialties.destroy')->only('destroy');
-    }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +34,7 @@ class SpecialtyController extends Controller
        $specialty = new Specialty();
        $btn = "create";
        $title="new Specialty";
-       return view('admin.specialties.create',compact('specialty', 'btn','title'));
+       return view('admin.specialties.create',compact('specialty', 'btn', 'title'));
     }
 
     /**
@@ -97,7 +90,7 @@ class SpecialtyController extends Controller
      * @param  \App\Models\Specialty  $specialty
      * @return \Illuminate\Http\Response
      */
-    public function update(SpeacialtyUpdateRequest $request, Specialty $specialty)
+    public function update(SpecialtyUpdateRequest $request, Specialty $specialty)
     {
         $name = mb_strtolower($request->name);
         $slug = Str::slug($name);

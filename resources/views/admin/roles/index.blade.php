@@ -8,7 +8,7 @@
         <h3 class="text-black fw-bolder">{{__('Role Administration')}}</h3>
     </x-slot>
 
-    <div class="container-sm mt-10">
+    <div class="container mt-10">
         <div class="card shadow h-100 mb-4 mx-auto w-full">
             <div class="card-header ">
                 <div class="flex justify-between items-center">

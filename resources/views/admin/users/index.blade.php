@@ -56,7 +56,7 @@
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             $(document).ready(function() {
                 var table = new DataTable('#user', {
@@ -64,6 +64,7 @@
                         "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                     },
                     "dom": 'Bfrtilp',
+                    "stateSave":true
                     "processing": true,
                     "responsive": true,
                     "serverSide": true,
@@ -132,6 +133,29 @@
                 setTimeout(function() {
                     $('#alert').remove();
                 }, 12200);
+
+                $('.form-delete').submit(function(e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Swal.fire(
+                            //     'Deleted!',
+                            //     'Your file has been deleted.',
+                            //     'success'
+                            // )
+
+                            this.submit()
+                        }
+                    })
+                });
 
             });
         </script>

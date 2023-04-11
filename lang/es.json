@@ -253,7 +253,12 @@
     "List of users": "Lista de usuarios",
     "User Administration": "Administracion de usuarios",
     "add user": "Agregar usuario",
-
+    "specialties": "especialidades",
+    "specialty": "especialidad",
+    "Specialties": "Especialidades",
+    "Specialty": "Especialidad",
+    "List of specialties": "Lista de especialidades",
+    "Specialtie Administration": "Administracion de especialidades",
 
     "Your email address is unverified.": "Su dirección de correo electrónico no está verificada."
 }

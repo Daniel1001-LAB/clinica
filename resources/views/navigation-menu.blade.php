@@ -1,6 +1,7 @@
 @php($navLinks = [
     ['name'=>'Roles de Permisos','route'=>route('roles.index'),'active'=>request()->routeIs('roles.index')],
     ['name'=>'Usuarios','route'=>route('users.index'),'active'=>request()->routeIs('users.index')],
+    ['name'=>'Especialidades','route'=>route('specialties.index'),'active'=>request()->routeIs('specialties.index')],
 
 ])
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
