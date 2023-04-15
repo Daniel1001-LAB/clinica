@@ -246,6 +246,8 @@
     "role list": "Lista de Roles",
     "update": "Actualizar",
     "cancel": "Cancelar",
+    "delete": "borrar",
+    "edit": "editar",
     "patient": "paciente",
     "user": "usuario",
     "notification": "Notificación",
@@ -259,6 +261,11 @@
     "Specialty": "Especialidad",
     "List of specialties": "Lista de especialidades",
     "Specialtie Administration": "Administracion de especialidades",
-
+    "add office": "agregar  oficina",
+    "add new office": "agregar nueva oficina",
+    "edit office": "editar oficina",
+    "delete office": "eliminar oficina",
+    "warning": "advertencia",
+    "you want to delete this office: ": "desea eliminar esta oficina: ",
     "Your email address is unverified.": "Su dirección de correo electrónico no está verificada."
 }
