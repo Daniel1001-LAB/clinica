@@ -48,6 +48,10 @@ class UserController extends Controller
      */
     public function create()
     {
+        $user = new User();
+        $btn = "create";
+        $title="new user";
+        return view('admin.users.create',compact('user', 'btn', 'title'));
     }
 
     /**
@@ -58,7 +62,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $request->validate([
+            'name' => 'required|unique:users,name',
+        ]);
+        $name = mb_strtolower($request->name);
+        $birthdate = mb_strtolower($request->birthdate);
+        $gender = mb_strtolower($request->gender);
+        $phone = mb_strtolower($request->phone);
+        $email = mb_strtolower($request->email);
+        $user = User::create([
+            'name' => $name,
+            'birthdate' => $birthdate,
+            'description' => $request->description,
+            'phone' => $phone,
+            'email' => $email,
+            'gender' => $gender,
+        ]);
     }
 
     /**
@@ -69,7 +89,7 @@ class UserController extends Controller
      */
     public function show(user $user)
     {
-        //
+
     }
 
     /**
@@ -114,6 +134,8 @@ class UserController extends Controller
      */
     public function destroy(user $user)
     {
-        //
+        $this->authorize('canDeleteRole', $user);
+        $user->delete();
+        return redirect()->route('roles.index');
     }
 }

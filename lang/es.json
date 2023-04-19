@@ -266,6 +266,17 @@
     "edit office": "editar oficina",
     "delete office": "eliminar oficina",
     "warning": "advertencia",
+    "morning": "mañana",
+    "afternoon": "tarde",
+    "evening": "noche",
+    "start": "inicio",
+    "end": "finaliza",
+    "active": "activo",
+    "price": "precio",
+    "offices/address": "oficinas/dirección",
     "you want to delete this office: ": "desea eliminar esta oficina: ",
+    "You do not have registered work offices, please create an office before creating and editing work days.":
+    "No tiene oficinas de trabajo registradas, por favor cree una oficina antes de crear y editar días de trabajo.",
+
     "Your email address is unverified.": "Su dirección de correo electrónico no está verificada."
 }

@@ -2,6 +2,7 @@
 
 
 use App\Http\Livewire\Doctor\OfficeController;
+use App\Http\Livewire\Doctor\WorkdayController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -11,6 +12,7 @@ Route::get('/',function(){
 
 
 Route::middleware('can:offices.index')->get('/offices',OfficeController::class)->name('offices.index');
+Route::middleware('role:doctor')->get('/workdays',WorkdayController::class)->name('workdays.index');
 
 
 

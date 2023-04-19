@@ -10,4 +10,9 @@ class Office extends Model
     use HasFactory;
 
     protected $fillable = ['local', 'address', 'phone', 'email', 'mobil', 'lat', 'lng', 'map', 'doctor_id'];
+
+    public function user(){
+        return $this->belongsTo(User::class,'doctor_id');
+    }
+
 }

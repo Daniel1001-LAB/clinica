@@ -13,7 +13,7 @@
             <div class="card-header ">
                 <div class="flex justify-between items-center">
                     <h5 class="text-black fw-bolder">{{ __('List of users') }}</h5>
-                    <a href="{{ route('users.create') }}" user="button"
+                    <a href="{{ route('users.create') }}" type="button"
                         class="btn btn-outline-success d-inline-flex align-items-center" title="{{ __('add user') }}">
                         {{ __('add user') }}
                         <i class="ms-1 fa-solid fa-arrow-right-long"></i>
@@ -64,7 +64,7 @@
                         "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                     },
                     "dom": 'Bfrtilp',
-                    "stateSave":true
+                    "stateSave":true,
                     "processing": true,
                     "responsive": true,
                     "serverSide": true,

@@ -1,5 +1,6 @@
 @php($navLinks = [
     ['name'=>'Oficinas','route'=>route('offices.index'),'active'=>request()->routeIs('offices.index')],
+    ['name'=>'Dia de trabajo','route'=>route('workdays.index'),'active'=>request()->routeIs ('workdays.index')],
 
 
 ])
@@ -10,7 +11,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('doctor.index') }}">
                         <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>

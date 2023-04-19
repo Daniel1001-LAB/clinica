@@ -59,6 +59,7 @@
                 <x-input-error for="role"></x-input-error>
             </div>
         </div>
+
         <div class="col-md-12">
             <div class="mb-4 ">
                 <x-label  for="address" class=" my-2 capitalize form-label" value="{{ __('address') }}"></x-label>

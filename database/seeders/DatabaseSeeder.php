@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PermisionSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(SpecialtySeeder::class);
+        $this->call(HourSeeder::class);
+        $this->call(OfficeSeeder::class);
+
 
 
 
