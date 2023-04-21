@@ -1,6 +1,9 @@
 <div>
-    <div class="container p-3 ">
-        <div class="row row-cols-1 row-cols-md-3">
+    <div class="row">
+
+    </div>
+    <div class="container-fluid p-3 ">
+        <div class="row row-cols-1 row-cols-md-4">
             @foreach ($workdays as $workday)
                 <div class="col mb-3">
                     <div class="card shadow-lg h-100">

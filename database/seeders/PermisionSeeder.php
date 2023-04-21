@@ -59,6 +59,8 @@ class PermisionSeeder extends Seeder
         Permission::create(['name'=>'offices.destroy','privilege'=>'office delete']);
         Permission::create(['name'=>'offices.show','privilege'=>'office view']);
 
+        Permission::create(['name'=>'curriculum.index','privilege'=>'curriculum panel']);
+
         $permissions = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
         $superAdmin = Role::findByName('super-admin');
         $admin = Role::findByName('admin');

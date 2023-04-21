@@ -1,6 +1,9 @@
 @php($navLinks = [
-    ['name'=>'Oficinas','route'=>route('offices.index'),'active'=>request()->routeIs('offices.index')],
-    ['name'=>'Dia de trabajo','route'=>route('workdays.index'),'active'=>request()->routeIs ('workdays.index')],
+    ['name'=>'Offices','route'=>route('offices.index'),'active'=>request()->routeIs('offices.index')],
+    ['name'=>'Workday','route'=>route('workdays.index'),'active'=>request()->routeIs ('workdays.index')],
+    ['name'=>'Curriculum','route'=>route('curriculum.index'),'active'=>request()->routeIs ('curriculum.index')],
+    ['name'=>'Specialties','route'=>route('specialties.index'),'active'=>request()->routeIs ('specialties.index')],
+
 
 
 ])

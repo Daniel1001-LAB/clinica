@@ -31,6 +31,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
     ];
 
+    protected $table="users";
+
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -60,4 +64,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function specialties(){
+        return $this->belongsToMany(Specialty::class);
+    }
 }
+
