@@ -1,4 +1,4 @@
-<div>
+<div class="">
     <div class="list-group  rounded-lg shadow">
         @foreach ($specialties as $specialty )
         <li class="list-group-item list-group-item-action text-capitalize p">

@@ -3,6 +3,8 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Models\Doctor;
+use App\Models\Specialty;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 /*
@@ -18,9 +20,11 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/', function () {
     if(auth()->user()){
-         if(User::role(['admin'])){   return redirect('redirects');}
+         if(User::role(['admin', 'super-admin'])){   return redirect('redirects');}
     }else{
-        return view('welcome');
+        $doctors = Doctor::orderBy('name')->get();
+
+        return view('welcome', compact('doctors'));
     }
 
 });

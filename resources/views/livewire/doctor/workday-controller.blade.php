@@ -92,11 +92,6 @@
 
 
 
-
-
-
-
-
     <x-dialog-modal wire:model="officesEmpty">
         <x-slot name="title">
             <h1 class="text-capitalize">{{ __('warning') }}</h1>

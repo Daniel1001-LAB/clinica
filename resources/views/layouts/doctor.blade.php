@@ -27,7 +27,7 @@
         <x-banner />
 
         <div class="min-h-screen bg-gray-100">
-            <x-menu-doctor-nav/>
+            <x-menu-doctor-nav></x-menu-doctor-nav>
 
 
             <!-- Page Heading -->

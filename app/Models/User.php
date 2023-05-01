@@ -67,6 +67,22 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function specialties(){
         return $this->belongsToMany(Specialty::class);
+
+    }
+
+    public function socials(){
+        return $this->belongsToMany(Social::class)->withPivot('url');
+
+    }
+
+    public function skills(){
+        return $this->hasMany(Skill::class);
+
+    }
+
+    public function offices(){
+        return $this->hasMany(Office::class, 'doctor_id');
+
     }
 }
 

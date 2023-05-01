@@ -4,14 +4,14 @@ namespace App\Http\Livewire\Specialty;
 
 use App\Models\Specialty;
 use Livewire\Component;
-
+use WithPagination;
 class SpecialtyCreate extends Component
 {
     public $openModal = false;
     public $user_specialties_id;
     public $user_specialties;
     public $specialties;
-    public $search;
+    public $search ="";
 
 
     public function modify($s)
@@ -44,17 +44,24 @@ class SpecialtyCreate extends Component
         $this->emitTo('specialty.specialty-list', 'reload');
     }
 
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
+    // public function updatingSearch()
+    // {
+    //     $this->resetPage();
+    // }
 
     public function render()
     {
-        $search = $this->search . '%';
-        $this->user_specialties_id = auth()->user()->specialties()->pluck('specialty_id')->toArray();
+        $search = '%'.$this->search.'%';
+
+        $this->user_specialties_id = auth()->user()->specialties()
+        ->pluck('specialty_id')->toArray();
+
         $this->user_specialties = auth()->user()->specialties;
-        $this->specialties = Specialty::whereNotIn('id', $this->user_specialties_id)->where('name', 'like', $search)->take(5)->get();
+
+
+         $this->specialties = Specialty::whereNotIn('id',$this->user_specialties_id)->where('name','like',$search)
+         ->take(5)->get();
+
         return view('livewire.specialty.specialty-create');
     }
 }

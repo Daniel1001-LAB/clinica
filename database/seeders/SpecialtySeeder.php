@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Specialty;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
@@ -25,5 +26,15 @@ class SpecialtySeeder extends Seeder
             $specialty->slug=Str::slug($obj->name);
             $specialty->save();
         }
+
+        $doctors = User::role(['doctor'])->get();
+        foreach($doctors as $doctor){
+            $numero = random_int(1, 4);
+            $specialties = Specialty::inRandomOrder()->limit($numero)->pluck('id');
+            $doctor->specialties()->sync($specialties);
+        }
+
     }
+
+
 }

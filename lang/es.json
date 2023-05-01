@@ -273,8 +273,33 @@
     "end": "finaliza",
     "active": "activo",
     "price": "precio",
+    "description": "descripcion",
+    "socials media": "redes sociales",
+    "socials urls for": "urls redes sociales de",
+    "welcome": "bienvenido",
+    "skills": "habilidades",
+    "socials": "redes sociales",
+    "add specialty": "agregar especialidad",
+    "add social": "agregar redes sociales",
+    "add skill": "agregar habilidades",
+
+    "name of doctor/user": "doctor/usuario",
+    "selected": "seleccionadas",
+    "focused":"centrado",
+    "doctors":"doctores",
+    "services":"servicios",
+    "contact":"contáctanos",
+    "get started":"comienza ahora",
+    "appointment":"cita médica",
+
+    "on":"en",
+    "focused on your well-being":"centrado en tu bienestar",
+    "you manage your health":"Tú Manejas Tu Salud",
+    "We are a quick and easy way to manage your medical appointments and control your consultations and interviews.":"Somos una forma rápida y sencilla de gestionar tus citas médicas y controlar tus consultas y entrevistas.",
+
     "offices/address": "oficinas/dirección",
     "you want to delete this office: ": "desea eliminar esta oficina: ",
+    "this is your resume, in it, you can detail your specialties and skills as well as your contacts so that patients know how to contact you and so patients can know what you are capable of.": "Este es tu currículum, en él, podrás detallar tus especialidades y habilidades tanto como tus contactos para que los pacientes sepan como contactarte y así los pacientes puedan saber de lo que eres capaz.",
     "You do not have registered work offices, please create an office before creating and editing work days.":
     "No tiene oficinas de trabajo registradas, por favor cree una oficina antes de crear y editar días de trabajo.",
 

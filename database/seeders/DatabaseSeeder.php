@@ -25,6 +25,9 @@ class DatabaseSeeder extends Seeder
         $this->call(SpecialtySeeder::class);
         $this->call(HourSeeder::class);
         $this->call(OfficeSeeder::class);
+        $this->call(SocialSeeder::class);
+        $this->call(SkillSeeder::class);
+        $this->call(WorkdaySeeder::class);
 
 
 
