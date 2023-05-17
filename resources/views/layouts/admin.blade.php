@@ -10,16 +10,17 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+        <script src="https://kit.fontawesome.com/1b1b574e94.js" crossorigin="anonymous"></script>
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @wireUiScripts
+        @vite(['resources/css/app.css', 'resources/js/app.js' ])
 
 
         <!-- Styles -->
 
         @livewireStyles
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-        <script src="https://kit.fontawesome.com/1b1b574e94.js" crossorigin="anonymous"></script>
+
+
         @stack('styles')
 
     </head>
@@ -51,6 +52,6 @@
         @livewireScripts
 
         @stack('script')
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+        <script src="{{ asset('flowbite/dist/flowbite.min.js') }}"></script>
     </body>
 </html>

@@ -1,4 +1,4 @@
-<x-general-layout>
+<x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
@@ -20,15 +20,15 @@
             @csrf
 
             <div class="block">
-                <x-label for="email" value="{{ __('Email') }}" />
+                <x-label for="email" label="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <x-button>
+                <x-button type="submit" spinner>
                     {{ __('Email Password Reset Link') }}
                 </x-button>
             </div>
         </form>
     </x-authentication-card>
-</x-general-layout>
+</x-guest-layout>

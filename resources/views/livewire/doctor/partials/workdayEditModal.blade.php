@@ -1,61 +1,54 @@
-<x-dialog-modal wire:model="workdayEditModal">
-    <x-slot name="title">
-        <div class="row d-flex flex-column align-items-start">
-            <h2 class="text-monospace font-medium">Horario del dia <strong
-                    class="text-primary text-uppercase">{{ __($dia) }}</strong> </h2>
-            <div class=" ">
-                <span
-                    class="badge d-flex align-items-center p-2 pe-3 text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-pill">
-
-                    <input class="form-check-input p-2 m-2" type="checkbox" wire:model="active">
-                    <label class="form-check-label text-capitalize" for="active">
-                        {{ __('active') }}
-                    </label>
-
-                </span>
-
+<div class="capitalize mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+    <x-modal.card title="{{ __('Horario del dia') }} {{ __($dia) }}" blur wire:model="workdayEditModal">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="flex items-center mb-4">
+                <x-checkbox class="capitalize" id="right-label" md wire:model="active" />
+                <label for="right-label"
+                    class="capitalize ml-2 text-sm font-bold text-gray-900 dark:text-gray-300">{{ __('active') }}</label>
             </div>
 
         </div>
 
-    </x-slot>
-
-    <x-slot name="content">
-
-        <div class="card row d-flex flex-column align-items-start mb-3 shadow p-3">
-
-            <h4 class="text-capitalize">{{ __('morning') }} <i class="ms-3 fa-solid fa-sun" style="color: #cbce32;"></i>
-            </h4>
-            <hr class="border border-dark border-2 opacity-50">
-            @include('livewire.doctor.partials.morning')
-        </div>
-
-        <div class="card row d-flex flex-column align-items-start mb-3 shadow p-3">
-            <h4 class="text-capitalize">{{ __('afternoon') }} <i class="ms-3 fa-solid fa-cloud-sun"
-                    style="color: #376ac3;"></i></h4>
-            <hr class="border border-dark border-2 opacity-50">
-            @include('livewire.doctor.partials.afternoon')
-        </div>
-
-
-        <div class="card row d-flex flex-column align-items-start mb-3 shadow p-3">
-            <h4 class="text-capitalize">{{ __('evening') }} <i class="ms-3 fa-solid fa-moon"
-                    style="color: #476190;"></i></h4>
-            <hr class="border border-dark border-2 opacity-50">
-            @include('livewire.doctor.partials.evening')
-        </div>
-
-
-
-    </x-slot>
-
-    <x-slot name="footer">
-        <div class="row">
-            <div class="col-md-12">
-                <button class="btn btn-outline-danger text-capitalize"
-                    wire:click="$set('workdayEditModal', false)">{{ __('cancel') }}</button>
-                <button class="btn btn-success text-capitalize" wire:click="update({{$day}})">{{ __('update') }}</button>
+        <div class="mb-4">
+            <div class="bg-gray-100 rounded-xl shadow-md w-full p-6 flex items-center ">
+                <div class="flex justify-center mb-4 pe-3">
+                    <x-badge warning lg flat label="{{ __('morning') }}" />
+                    <x-badge.circle warning lg icon="sun" />
+                </div>
+                @include('livewire.doctor.partials.morning')
             </div>
         </div>
-    </x-slot>
-</x-dialog-modal>
+
+        <div class="mb-4">
+            <div class="bg-gray-100 rounded-xl shadow-md w-full p-6 flex items-center ">
+                <div class="flex justify-center mb-4 pe-3">
+                    <x-badge sky lg flat label="{{ __('afternoon') }}" />
+                    <x-badge.circle sky lg icon="cloud" />
+                </div>
+                @include('livewire.doctor.partials.afternoon')
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <div class="bg-gray-100 rounded-xl shadow-md w-full p-6 flex items-center ">
+                <div class="flex justify-center mb-4 pe-3">
+                    <x-badge dark lg flat label="{{ __('evening') }}" />
+                    <x-badge.circle dark lg icon="moon" />
+                </div>
+                @include('livewire.doctor.partials.evening')
+            </div>
+        </div>
+        <x-slot name="footer">
+            <div class="flex justify-end gap-x-4">
+                {{-- <x-button flat negative label="Delete" wire:click="delete" /> --}}
+
+                <div class="flex">
+                    <x-button icon="arrow-left" flat label="Cancel" x-on:click="close" />
+                    <x-button icon="check" class="capitalize" primary label="{{ __('update') }}"
+                        wire:click="update({{ $day }})" />
+                </div>
+            </div>
+        </x-slot>
+    </x-modal.card>
+
+</div>

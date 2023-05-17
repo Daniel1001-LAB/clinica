@@ -1,0 +1,168 @@
+<?php
+
+namespace App\Http\Livewire\Patient;
+
+use App\Models\Appoinment;
+use App\Models\Hour;
+use App\Models\Workday;
+use Carbon\Carbon;
+use Livewire\Component;
+use LivewireUI\Modal\ModalComponent;
+
+class PatientDate extends Component
+{
+    public $openModal = false;
+    public $date, $day, $doctor_id, $specialty_id, $intervals = [];
+    public $appointments, $interval, $workday, $morning = [], $afternoon = [], $evening = [];
+
+    protected $listeners = ['selectDate' => 'selectDate', 'addAppointment' => 'addAppointment'];
+
+    public function selectDate($doctorID, $specialtyID)
+    {
+        //dd($doctorID, $specialtyID);
+        $this->reset('date');
+        $this->morning = [];
+        $this->evening = [];
+        $this->afternoon = [];
+
+        $this->doctor_id = $doctorID;
+        $this->specialty_id = $specialtyID;
+        $this->openModal = true;
+    }
+
+    public function updatedDate($value)
+    {
+        $this->morning = [];
+        $this->evening = [];
+        $this->afternoon = [];
+        //dd($value);
+        $newDate = new Carbon($value);
+        $this->day = $newDate->dayOfWeek;
+        //dd($this->day);
+
+        $workday = Workday::where('doctor_id', $this->doctor_id)->where('day', $this->day)->first();
+        //dd($workday);
+        $int1 = $this->getIntervalo($workday->morning_start, $workday->morning_end);
+        $int2 = $this->getIntervalo($workday->afternoon_start, $workday->afternoon_end);
+        $int3 = $this->getIntervalo($workday->evening_start, $workday->evening_end);
+
+        $this->morning = $int1;
+        $this->afternoon = $int2;
+        $this->evening = $int3;
+        // dd($int1, $int2, $int3);
+    }
+
+    public function getIntervalo($start, $end)
+    {
+        $appointments = Appoinment::where('date', $this->date)
+            ->where('doctor_id', $this->doctor_id)->pluck('hour_id')->toArray();
+        $array = [];
+
+        if ($start < $end) {
+            for ($i = $start; $i <= $end; $i++) {
+                $var = Hour::find($i);
+                if (!in_array($var->id, $appointments)) {
+                    array_push($array, $var->interval);
+                }
+            }
+        } else {
+            $array = [];
+        }
+        return $array;
+    }
+
+    public function seleccionar($m)
+    {
+        // dd($m);
+
+        $hour = Hour::where('interval', $m)->first();
+        $workday = Workday::find($hour->id);
+
+        switch ($hour->turn) {
+            case 'dawn':
+                $office = $workday->evening_office;
+                $price = $workday->evening_price;
+                break;
+            case 'morning':
+                $office = $workday->morning_office;
+                $price = $workday->morning_price;
+                break;
+            case 'afternoon':
+                $office = $workday->afternoon_office;
+                $price = $workday->afternoon_price;
+                break;
+            case 'evening':
+                $office = $workday->evening_office;
+                $price = $workday->evening_price;
+                break;
+        }
+
+
+        $this->dispatchBrowserEvent('store-data', [
+            'interval' => $hour->interval,
+            'doctor_id' => $this->doctor_id,
+            'specialty_id' => $this->specialty_id,
+            'day' => $this->day,
+            'date' => $this->date,
+            'office' => $office,
+            'price' => $price,
+        ]);
+
+        if (auth()->user()) {
+            $this->dispatchBrowserEvent('delete-data');
+            //Creacion de la cita
+            Appoinment::create([
+                'patient_id' => auth()->user()->id,
+                'doctor_id' => $this->doctor_id,
+                'specialty_id' => $this->specialty_id,
+                'date' => $this->date,
+                'hour' => $hour->time_hour,
+                'hour_id' => $hour->id,
+                'office' => $office,
+                // 'price' => $price,
+            ]);
+            $this->openModal = false;
+        } else {
+            //Guardaremos la cita
+            $this->openModal = false;
+            //Loguearemos al usuario si no lo esta
+            return redirect()->route('login');
+            //crearemos la cita
+
+
+        }
+    }
+
+
+    public function addAppointment(
+        $interval,
+        $doctor_id,
+        $specialty_id,
+        $day,
+        $date,
+        $office,
+        $price
+    ) {
+        $hour = Hour::where('interval', $interval)->first();
+        $workday = Workday::find($hour->id);
+        if (auth()->user()) {
+            Appoinment::create([
+                'patient_id' => auth()->user()->id,
+                'doctor_id' => $doctor_id,
+                'specialty_id' => $specialty_id,
+                'date' => $date,
+                'hour' => $hour->time_hour,
+                'hour_id' => $hour->id,
+                'office' => $office,
+                'price' => $price,
+            ]);
+        }
+        $this->dispatchBrowserEvent('delete-data');
+        // $this->openModal = false;
+    }
+
+    public function render()
+    {
+        return view('livewire.patient.patient-date');
+    }
+}

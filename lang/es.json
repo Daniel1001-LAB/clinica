@@ -291,8 +291,12 @@
     "contact":"contáctanos",
     "get started":"comienza ahora",
     "appointment":"cita médica",
-
+    "our doctors":"nuestros doctores",
+    "our specialties":"nuestras especialidades",
+    "find doctor":"buscar doctor",
+    "find specialties":"buscar especialidades",
     "on":"en",
+    "this specialty dont have a doctor right now :c":"esta especialidad no posee ningun doctor asignado por los momentos :c",
     "focused on your well-being":"centrado en tu bienestar",
     "you manage your health":"Tú Manejas Tu Salud",
     "We are a quick and easy way to manage your medical appointments and control your consultations and interviews.":"Somos una forma rápida y sencilla de gestionar tus citas médicas y controlar tus consultas y entrevistas.",
@@ -302,6 +306,20 @@
     "this is your resume, in it, you can detail your specialties and skills as well as your contacts so that patients know how to contact you and so patients can know what you are capable of.": "Este es tu currículum, en él, podrás detallar tus especialidades y habilidades tanto como tus contactos para que los pacientes sepan como contactarte y así los pacientes puedan saber de lo que eres capaz.",
     "You do not have registered work offices, please create an office before creating and editing work days.":
     "No tiene oficinas de trabajo registradas, por favor cree una oficina antes de crear y editar días de trabajo.",
+
+    "CONFIRMED":"CONFIRMADA",
+    "PENDING":"PENDIENTE",
+    "ACCOMPLISHED":"COMPLETADA",
+    "UNREALIZED":"NO REALIZADO",
+    "CANCELED":"CANCELADA",
+
+    "confirmed":"confirmada",
+    "pending":"pendiente",
+    "accomplished":"completada",
+    "unrealized":"no realizando",
+    "canceled":"cancelada",
+    "go to interview":"ir a la entrevista",
+    "opening hours":"horario de atención",
 
     "Your email address is unverified.": "Su dirección de correo electrónico no está verificada."
 }

@@ -1,8 +1,5 @@
 <x-admin-layout>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 
-    <script src="https://kit.fontawesome.com/1b1b574e94.js" crossorigin="anonymous"></script>
     <x-slot name="header">
         {{-- <h1>{{ auth()->user()->users()->first()->permissions}}</h1> --}}
         <h3 class="text-black fw-bolder">{{__('User Administration')}}</h3>
@@ -69,9 +66,7 @@
 
 
     @push('script')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
 
         <script>
             $(document).ready(function () {

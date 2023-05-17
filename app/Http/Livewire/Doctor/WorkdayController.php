@@ -14,7 +14,8 @@ class WorkdayController extends Component
     public $morning = [];
     public $afternoon = [];
     public $evening = [];
-    public $day, $ms, $me, $as, $ae, $es, $ee, $mo, $ao, $eo, $mp, $ap, $ep, $dia, $active = false;
+    public $day, $ms, $me, $as, $ae, $es, $ee, $mo, $ao, $eo, $mp, $ap, $ep, $dia, $active = false, $morningActive = false,
+    $eveningActive = false, $afternoonActive = false;
     public $workdayEditModal = false;
     protected $rules = [
         'day' => 'required',
@@ -90,7 +91,9 @@ class WorkdayController extends Component
             'morning_price' => $this->mp,
             'afternoon_price' => $this->ap,
             'evening_price' => $this->ep,
-
+            'morning_active' => $this->morningActive,
+            'afternoon_active' => $this->afternoonActive,
+            'evening_active' => $this->eveningActive,
 
         ]);
         $workday->save();

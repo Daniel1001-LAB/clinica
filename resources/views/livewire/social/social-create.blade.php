@@ -1,74 +1,35 @@
 <div class="section">
     <div>
-        <button wire:click="$set('openModal', true)" wire:submit="addSocial" type="button"
-            class="w-full btn btn-outline-success d-inline-flex align-items-center text-capitalize"
-            title="{{ __('add social') }}">
-            {{ __('add social') }}
-            <i class="ms-1 fa-solid fa-plus"></i>
-        </button>
+        <x-button icon="plus" secondary wire:click="$set('openModal', true)" wire:submit="addSocial" type="button"
+            class="w-full capitalize" label="{{ __('add social') }}">
+        </x-button>
     </div>
 
-    <x-dialog-modal wire:model="openModal">
-        <x-slot name="title">
-            <div class="row">
-                <h2 class="text-center text-capitalize">{{ __('add socials media') }}</h2>
-            </div>
-            <button disabled class="btn btn-dark rounded-circle p-2 lh-1" type="button">
-                <i class="fa-brands fa-facebook" ></i>
-            </button>
-            <button  disabled class="btn btn-dark rounded-circle p-2 lh-1" type="button">
-                <i class="fa-brands fa-instagram"></i>
-            </button>
-            <button disabled class="btn btn-dark rounded-circle p-2 lh-1" type="button">
-                <i class="fa-brands fa-twitter"></i>
-            </button>
-            <button disabled class="btn btn-dark rounded-circle p-2 lh-1" type="button">
-                <i class="fa-brands fa-whatsapp"></i>
-            </button>
-            <button disabled class="btn btn-dark rounded-circle p-2 lh-1" type="button">
-                <i class="fa-brands fa-linkedin"></i>
-            </button>
-        </x-slot>
-        <x-slot name="content">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="aseleccionar">
+    <x-modal.card title="{{ __('add socials media') }}" blur wire:model="openModal" wire:submit.prevent="addSocial">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <x-native-select  label="{{ __('socials media') }}" wire:model="social_id">
+                <option class="capitalize" value=""> {{ __('select social media') }}</option>
+                @foreach ($socials as $s)
+                    <option class="capitalize" value="{{ __($s->id) }}">{{ __($s->name) }}</option>
+                @endforeach
+            </x-native-select>
+            <x-badge flat lg primary label="Doc: {{ auth()->user()->name }}" />
 
-                        <h6 class=" fw-bold text-capitalize">{{ __('socials media') }}</h6>
-                        <hr>
-                        <select wire:model="social_id" class="form-select text-capitalize" aria-label="Default select example">
-                            <option class="text-capitalize" value=""> {{ __('select social media')}}</option>
-                            @foreach ($socials as $s)
-                                <option class="text-capitalize" value="{{ __($s->id) }}">{{ __($s->name) }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="seleccionadas">
-                        <h6 class=" fw-bold text-capitalize">{{ __('socials urls for')}}<mark class=" ms-3 badge bg-primary text-wrap"> {{auth()->user()->name}}</mark></h6>
-                        <hr>
-                        <input wire:model="url" class="form-control" type="text" placeholder="URL">
-                        <x-input-error for="url"></x-input-error>
-                    </div>
-                </div>
+            <div class="col-span-1 sm:col-span-2">
+                <x-input wire:model="url" id="url" label="{{ __('socials urls for') }} {{ auth()->user()->name }}" placeholder="https://mifacebook.com/" />
+                <x-input-error for="url"/>
             </div>
-        </x-slot>
+
+        </div>
+
         <x-slot name="footer">
-            <button wire:click="$set('openModal', false)" type="button"
-                class=" btn btn-outline-danger me-3 d-inline-flex align-items-center text-capitalize"
-                title="{{ __('cancel') }}">
-                {{ __('cancel') }}
-                <i class="fa-solid fa-x ms-2"></i>
-            </button>
+            <div class="flex justify-end gap-x-4">
 
-            <button type="submit" wire:click="addSocial"
-                class=" btn btn-outline-success me-3 d-inline-flex align-items-center text-capitalize">
-                {{ __('save') }}
-                <i class="fa-solid fa-check ms-2"></i>
-            </button>
-
+                <div class="flex">
+                    <x-button flat label="Cancel" x-on:click="close" />
+                    <x-button primary label="Save" wire:click="addSocial" />
+                </div>
+            </div>
         </x-slot>
-
-    </x-dialog-modal>
+    </x-modal.card>
 </div>

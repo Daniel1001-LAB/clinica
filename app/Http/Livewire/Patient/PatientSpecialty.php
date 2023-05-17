@@ -9,15 +9,16 @@ use Livewire\WithPagination;
 class PatientSpecialty extends Component
 {
     use WithPagination;
-    protected $paginationTheme = 'bootstrap';
     public $search;
 
-
+    public function selectDate($doctorId, $specialtyId){
+        $this->emitTo('patient.patient-date', 'selectDate', $doctorId, $specialtyId);
+    }
 
     public function render()
     {
         $search = '%'.$this->search.'%';
-        $specialties = Specialty::orderBy('name')->where('name', 'like', $search)->paginate(9);
+        $specialties = Specialty::orderBy('name')->where('name', 'like', $search)->paginate(8);
         return view('livewire.patient.patient-specialty',['specialties'=> $specialties]);
     }
 }

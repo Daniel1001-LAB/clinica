@@ -39,6 +39,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'gender' => $input['gender'],
                 'birthdate' => $input['birthdate'],
             ])->save();
+            // dd($user);
         }
     }
 

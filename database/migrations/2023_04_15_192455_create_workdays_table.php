@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('workdays', function (Blueprint $table) {
             $table->id();
             $table->boolean('active')->default(false);
+            $table->boolean('morning_active')->default(false);
+            $table->boolean('afternoon_active')->default(false);
+            $table->boolean('evening_active')->default(false);
             $table->integer('day')->default(0);
             $table->integer('morning_start')->default(0);
             $table->integer('morning_end')->default(0);

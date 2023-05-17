@@ -3,7 +3,7 @@
 
 
     <div class="container-sm   pt-4 ">
-        <div class="card mb-3 text-dark border-secondary  mb-3 shadow-lg" >
+        <div class="card mb-3 text-dark border-secondary  shadow-lg" >
             <div class="card-header font-bold text-2xl capitalize"><strong>{{ __($title) }}</div>
             <div class="card-body">
 

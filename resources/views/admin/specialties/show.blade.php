@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <script src="https://kit.fontawesome.com/1b1b574e94.js" crossorigin="anonymous"></script>
+
     <div class="container-sm col-md-6 mt-10 ">
         <div class="card mb-3 shadow-lg">
           <div class="row g-0">

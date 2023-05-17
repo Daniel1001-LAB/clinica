@@ -4,9 +4,11 @@ namespace App\Http\Livewire\Specialty;
 
 use App\Models\Specialty;
 use Livewire\Component;
-use WithPagination;
+use Livewire\WithPagination;
+
 class SpecialtyCreate extends Component
 {
+    use WithPagination;
     public $openModal = false;
     public $user_specialties_id;
     public $user_specialties;
@@ -44,10 +46,10 @@ class SpecialtyCreate extends Component
         $this->emitTo('specialty.specialty-list', 'reload');
     }
 
-    // public function updatingSearch()
-    // {
-    //     $this->resetPage();
-    // }
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {

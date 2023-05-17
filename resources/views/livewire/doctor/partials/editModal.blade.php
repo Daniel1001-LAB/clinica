@@ -1,102 +1,55 @@
-<x-dialog-modal wire:model="officeEditModal">
-    <x-slot name="title">
-        <h1 class="text-capitalize">{{ __('edit office') }}</h1>
-    </x-slot>
+<section class="soft-scrollbar">
+    <x-modal.card sm title="{{ __('edit office') }}" blur wire:model="officeEditModal">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <x-input icon="home" wire:model.defer="local" label="{{ __('Local') }}"
+                placeholder="{{ __('full name of the local') }}" />
+            <x-input icon="location-marker" wire:model.defer="address" label="{{ __('Address') }}"
+                placeholder="{{ __('full name of the address') }}" />
 
-    <x-slot name="content">
-        <div class="row">
-            <div class="col-md-4 mb-3">
-                <div class="input-group flex-nowrap">
-                    <span for="local" class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-street-view" style="color: #728fc5;"></i></span>
-                    <input type="text" name="local" class="form-control" placeholder="{{__('local')}}" aria-label="{{__('local')}}"
-                        aria-describedby="addon-wrapping" wire:model.defer="local">
+            <div class="col-span-1 sm:col-span-2">
+                <x-input icon="at-symbol" wire:model.defer="email" label="{{ __('Email') }}"
+                    placeholder="{{ __('email') }}" />
+            </div>
+            <x-input icon="phone" wire:model.defer="phone" label="{{ __('Phone') }}"
+                placeholder="{{ __('your phone') }}" />
+            <x-input icon="device-mobile" wire:model.defer="mobil" label="{{ __('Mobile Phone') }}"
+                placeholder="{{ __('your mobile phone number') }}" />
 
-                </div>
-                <x-input-error for="local"/>
+            <div class="col-span-1 sm:col-span-2">
+                <x-input icon="map" wire:model.defer="map" label="{{ __('Map name') }}"
+                    placeholder="{{ __('full map name') }}" />
             </div>
-            <div class="col-md-8 mb-3">
-                <div class="input-group flex-nowrap">
-                    <span for="address" class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-map-location-dot" style="color: #728fc5;"></i></span>
-                    <input type="text" class="form-control" placeholder="{{__('address')}}" aria-label="{{__('address')}}"
-                        aria-describedby="addon-wrapping" wire:model.defer="address">
-                </div>
-                <x-input-error for="address"/>
+            <x-input icon="location-marker" wire:model.defer="lat" label="{{ __('Latitude') }}"
+                placeholder="{{ __('a latitude') }}" />
+            <x-input icon="location-marker" wire:model.defer="lgn" label="{{ __('Longitude') }}"
+                placeholder="{{ __('a longitude') }}" />
+            <div class="w-full flex justify-center">
+                <x-errors />
             </div>
-            <div class="col-md-6 mb-3">
-                <div class="input-group flex-nowrap">
-                    <span for="phone" class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-phone" style="color: #728fc5;"></i></span>
-                    <input type="phone" class="form-control" placeholder="{{__('phone')}}" aria-label="{{__('phone')}}"
-                        aria-describedby="addon-wrapping" wire:model.defer="phone">
-                </div>
-                <x-input-error for="phone"/>
-            </div>
-            <div class="col-md-6 mb-3">
-                <div class="input-group flex-nowrap">
-                    <span for="mobil" class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-mobile" style="color: #728fc5;"></i></span>
-                    <input type="phone" class="form-control" placeholder="{{__('mobil')}}" aria-label="{{__('mobil')}}"
-                        aria-describedby="addon-wrapping" wire:model.defer="mobil">
-                </div>
-                <x-input-error for="mobil"/>
-            </div>
-            <div class="col-md-12 mb-3">
-                <div class="input-group flex-nowrap">
-                    <span for="email" class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-envelope" style="color: #728fc5;"></i></span>
-                    <input type="email" class="form-control" placeholder="{{__('email')}}" aria-label="{{__('email')}}"
-                        aria-describedby="addon-wrapping" wire:model.defer="email">
-                </div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <div class="input-group flex-nowrap">
-                    <span for="map" class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-map" style="color: #728fc5;"></i></span>
-                    <input type="text" class="form-control" placeholder="{{__('map')}}" aria-label="{{__('map')}}"
-                        aria-describedby="addon-wrapping" wire:model.defer="map">
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="input-group flex-nowrap">
-                    <span for="lat" class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-location-crosshairs" style="color: #728fc5;"></i></span>
-                    <input type="text" class="form-control" placeholder="{{__('lat')}}" aria-label="{{__('lat')}}"
-                        aria-describedby="addon-wrapping" wire:model.defer="lat">
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="input-group flex-nowrap">
-                    <span for="lgn" class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-location-crosshairs" style="color: #728fc5;"></i></span>
-                    <input type="text" class="form-control" placeholder="{{__('lgn')}}" aria-label="{{__('lgn')}}"
-                        aria-describedby="addon-wrapping" wire:model.defer="lgn">
-                </div>
-            </div>
-            {{-- <div class="col-md-4 mb-3">
-                <div class="input-group flex-nowrap">
-                    <span for="doctor_id" class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-user-doctor" style="color: #728fc5;"></i></span>
-                    <input type="text" class="form-control" placeholder="{{__('doctor_id')}}" aria-label="{{__('doctor_id')}}"
-                        aria-describedby="addon-wrapping" wire:model.defer="doctor_id">
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="input-group flex-nowrap">
-                    <span for="created_at" class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-calendar-plus" style="color: #728fc5;"></i></span>
-                    <input type="text" class="form-control" placeholder="{{__('created_at')}}" aria-label="{{__('created_at')}}"
-                        aria-describedby="addon-wrapping" wire:model.defer="created_at">
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="input-group flex-nowrap">
-                    <span for="updated_at" class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-calendar-plus " style="color: #728fc5;"></i></span>
-                    <input type="text" class="text-capitalize form-control" placeholder="{{__('updated_at')}}" aria-label="{{__('updated_at')}}"
-                        aria-describedby="addon-wrapping" wire:model.defer="updated_at">
-                </div>
-            </div> --}}
         </div>
 
-    </x-slot>
-
-    <x-slot name="footer">
-        <div class="row">
-            <div class="col-md-12">
-                <button class="btn btn-outline-danger text-capitalize" wire:click="$set('officeEditModal', false)">{{__('cancel')}}</button>
-                <button class="btn btn-success text-capitalize" wire:click="editOffice({{$office_id}})">{{__('update')}}</button>
+        <x-slot name="footer">
+            <div class="flex justify-between gap-x-4">
+                <div class="flex">
+                    <x-button icon="trash" class="me-3" negative flat label="{{ __('cancel') }}"
+                        x-on:click="close" />
+                    <x-button onclick="notificationEdited()" icon="save" wire:click="editOffice({{ $office_id }})" class="capitalize" primary
+                        label="{{ __('edit') }}" />
+                </div>
             </div>
-        </div>
-    </x-slot>
-</x-dialog-modal>
+        </x-slot>
+    </x-modal.card>
+</section>
+
+@push('script')
+    <script>
+        function notificationEdited(){
+            window.$wireui.notify({
+            title: 'Office edited!',
+            description: 'Your office was successfully edited and saved',
+            icon: 'success'
+        });
+        }
+
+    </script>
+@endpush

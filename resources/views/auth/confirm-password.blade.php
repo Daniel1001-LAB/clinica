@@ -1,4 +1,4 @@
-<x-general-layout>
+<x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
@@ -14,15 +14,15 @@
             @csrf
 
             <div>
-                <x-label for="password" value="{{ __('Password') }}" />
+                <x-label for="password" label="{{ __('Password') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" autofocus />
             </div>
 
             <div class="flex justify-end mt-4">
-                <x-button class="ml-4">
+                <x-button class="ml-4" type="submit" spinner>
                     {{ __('Confirm') }}
                 </x-button>
             </div>
         </form>
     </x-authentication-card>
-</x-general-layout>
+</x-guest-layout>

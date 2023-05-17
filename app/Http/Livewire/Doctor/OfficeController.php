@@ -4,9 +4,12 @@ namespace App\Http\Livewire\Doctor;
 
 use App\Models\Office;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 
 class OfficeController extends Component
 {
+    use Actions;
+
     public $local, $address, $email, $phone, $mobil, $lat, $lgn, $map, $doctor_id, $office_id;
     public $officeAddModal = false;
     public $officeEditModal = false;
@@ -67,12 +70,18 @@ class OfficeController extends Component
             'doctor_id' => $this->doctor_id,
         ]);
 
-        $this->officeAddModal = false;
-        $this->reset();
-        session()->flash('success', 'registro creado correctamente');
+        $errors = $this->getErrorBag()->getMessages();
+        $this->officeAddModal = empty($errors);
+        if (empty($errors)) {
+            $this->reset();
+            // session()->flash('success', 'Registro creado correctamente');
+        }
+
+
     }
 
-    public function openDeleteModal(Office $office){
+    public function openDeleteModal(Office $office)
+    {
         $this->local = $office->local;
         $this->address = $office->address;
         $this->office_id = $office->id;
@@ -80,7 +89,8 @@ class OfficeController extends Component
         $this->officeDeleteModal = true;
     }
 
-    public function deleteOffice(){
+    public function deleteOffice()
+    {
         $office = Office::find($this->office_id);
         $office->delete();
         $this->officeDeleteModal = false;

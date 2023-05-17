@@ -1,44 +1,31 @@
-<div class="row">
-
-    <div class="col-md-4 mb-3">
-        <label class="text-capitalize" for="start">{{__('start')}}</label>
-        <select wire:model="as" id="start" class="form-select" aria-label="Afternoon">
+<div>
+    <div class="grid grid-cols-3 sm:grid-cols-3 gap-2 text-sm items-center mb-3">
+        <x-native-select class="capitalize" label="{{ __('start') }}" wire:model="as">
             @foreach ($afternoon as $m)
                 <option value="{{ $m['id'] }}">{{ __($m['str_hour_12']) }}</option>
             @endforeach
-        </select>
+        </x-native-select>
         <x-input-error for="as" />
-    </div>
-    <div class="col-md-4 mb-3">
-        <label class="text-capitalize" for="end">{{__('end')}}</label>
-        <select wire:model="ae" class="form-select" aria-label="Afternoon">
+
+        <x-native-select class="capitalize" label="{{ __('end') }}" wire:model="ae">
             @foreach ($afternoon as $m)
                 <option value="{{ $m['id'] }}">{{ __($m['str_hour_12']) }}</option>
             @endforeach
-        </select>
+        </x-native-select>
         <x-input-error for="ae" />
-    </div>
 
-    <div class="col-md-4 mb-3">
-        <label class="text-capitalize" for="ap">{{__('price')}}</label>
-        <div class="input-group flex-nowrap">
-            <span for="ap" class="input-group-text" id="addon-wrapping"><i
-                    class="fa-solid fa-money-check-dollar "></i></span>
-            <input type="text" class="form-control" placeholder="{{ __('0.00') }}"
-                aria-label="{{ __('price') }}" aria-describedby="addon-wrapping" wire:model="ap">
-        </div>
+        <x-input icon="currency-dollar" label="{{ __('price') }}" placeholder="{{ __('price') }}" wire:model="ap"/>
         <x-input-error for="ap" />
+
     </div>
 
-    <div class="col-md-12 mb-3">
-        <label class="text-capitalize" for="offices/address">{{__('offices/address')}}</label>
-        <select wire:model="ao" class="form-select" aria-label="Offices">
+    <div class="col-span-1 sm:col-span-1">
+        <x-native-select class="capitalize mb-4" label="{{ __('offices/address') }}" wire:model="ao">
             @foreach ($offices as $o)
                 <option value="{{ $o->id }}">{{ __($o->local . ', ' . $o->address) }}</option>
             @endforeach
-        </select>
+        </x-native-select>
         <x-input-error for="ao" />
     </div>
-
 </div>
 
