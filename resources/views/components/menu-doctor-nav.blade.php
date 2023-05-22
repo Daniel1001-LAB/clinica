@@ -2,7 +2,7 @@
     ['name'=>'Offices','route'=>route('offices.index'),'active'=>request()->routeIs('offices.index')],
     ['name'=>'Workday','route'=>route('workdays.index'),'active'=>request()->routeIs ('workdays.index')],
     ['name'=>'Curriculum','route'=>route('curriculum.index'),'active'=>request()->routeIs ('curriculum.index')],
-    // ['name'=>'Specialties','route'=>route('specialties.index'),'active'=>request()->routeIs ('specialties.index')],
+    ['name'=>'Enfermedades','route'=>route('disases.index'),'active'=>request()->routeIs ('disases.index')],
 
 
 
@@ -27,11 +27,6 @@
                         {{ __($navLink['name']) }}
                     </x-nav-link>
                     @endforeach
-
-
-
-
-
                 </div>
             </div>
 
@@ -92,6 +87,7 @@
 
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
+
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())

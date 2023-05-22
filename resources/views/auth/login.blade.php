@@ -13,7 +13,7 @@
                     <div class="hidden lg:block lg:w-1/2 bg-cover w-50"
                         style="background-image: url('{{ asset('assets/logo1.png') }}')">
                     </div>
-                    <div class="w-full p-5 lg:w-1/2">
+                    <div class="w-full  p-5 lg:w-1/2">
                         <h2 class="text-2xl font-semibold text-gray-700 text-center">San Luis Planes</h2>
                         <p class="text-xl text-gray-600 text-center">{{ __('Welcome back!') }}</p>
                         <a href="#"
@@ -34,7 +34,7 @@
                                         fill="#1976D2" />
                                 </svg>
                             </div>
-                            <h1 class="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">Sign in with Google</h1>
+                            <h3 class="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">Sign in with Google</h3>
                         </a>
                         <div class="mt-4 flex items-center justify-between">
                             <span class="border-b w-1/5 lg:w-1/4"></span>

@@ -1,4 +1,4 @@
-<div class="bg-white shadow-lg p-6 rounded-lg">
+<div class=" h-full bg-white shadow-lg p-6 rounded-lg">
     <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
         <h1
             class="capitalize text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl dark:text-white">
@@ -27,6 +27,7 @@
                 placeholder="{{ __('find patient...') }}" required>
         </div>
     </div>
+
     <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
         @foreach ($users as $user)
             <li class="pb-3 sm:pb-4 py-3 sm:py-4">
@@ -37,7 +38,7 @@
                     </div>
                     <div class="flex-1 min-w-0">
                         <p class="text-lg font-medium text-gray-900 truncate dark:text-white">
-                            <a href="" class="font-bold hover:underline">{{ $user->name }}</a>
+                            <a href="{{ route('interviews.index', $user->id) }}" class="font-bold hover:underline">{{ $user->name }}</a>
                         </p>
                         <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                             {{ $user->phone }}
@@ -47,7 +48,7 @@
             </li>
         @endforeach
         @if ($users->count() > 0)
-            <div class="flex justify-center pt-6  text-sm">
+            <div class="flex justify-center pt-2  text-sm">
                 {{$users->links('vendor.livewire.simple-tailwind')}}
             </div>
         @endif
