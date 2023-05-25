@@ -8,8 +8,12 @@
             @livewire('patient.patient-list')
         </div>
 
-        <div class=" h-full w-full">
+        <div class="h-full w-full">
             @livewire('appointment.appointment-list')
+        </div>
+
+        <div class="h-full w-full">
+            @livewire('schedulle.schedulle')
         </div>
     </div>
 </x-doctor-layout>

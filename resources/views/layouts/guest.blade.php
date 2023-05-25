@@ -36,6 +36,6 @@
 
 @stack('script')
 <script src="{{ asset('flowbite/dist/flowbite.min.js') }}"></script>
-<script src="{{ asset('js/main.js')}}"></script>
+{{-- <script src="{{ asset('js/main.js')}}"></script> --}}
 
 </html>

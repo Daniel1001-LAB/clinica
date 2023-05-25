@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SocialSeeder::class);
         $this->call(SkillSeeder::class);
         $this->call(WorkdaySeeder::class);
+        $this->call(DisaseSeeder::class);
 
 
 

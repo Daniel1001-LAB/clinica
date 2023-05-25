@@ -21,8 +21,9 @@ class AppointmentList extends Component
         $this->dateTo = now();
     }
 
-    public function updatedDays()
+    public function updatedDays($value)
     {
+        $this->days = $value;
         if ($this->days == 0) {
             $this->dateTo = now()->addDays(0);
         } else {
@@ -36,6 +37,7 @@ class AppointmentList extends Component
         $appoinment->status = Appoinment::CONFIRMED;
         $appoinment->save();
         event(new AppoinmentStatusEvent($appoinment));
+
     }
 
     public function canceled(Appoinment $appoinment)
@@ -57,7 +59,9 @@ class AppointmentList extends Component
             $find = 'patient_id';
         }
 
-        $appoinments = Appoinment::orderBy('date', 'asc')->whereBetween('date', [$this->dateFrom, $this->dateTo])->where($find, $user->id)->paginate(3);
+        $appoinments = Appoinment::orderBy('date', 'asc')->whereBetween('date', [$this->dateFrom, $this->dateTo])
+            ->where($find, $user->id)->where('status',Appoinment::CONFIRMED)->orWhere('status',Appoinment::PENDING)
+            ->paginate(3);
         // dd($appoinments);
         return view('livewire.appointment.appointment-list', ['appoinments' => $appoinments]);
     }

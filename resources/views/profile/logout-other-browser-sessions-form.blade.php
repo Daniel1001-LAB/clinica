@@ -52,7 +52,7 @@
         @endif
 
         <div class="flex items-center mt-5">
-            <x-button wire:click="confirmLogout" wire:loading.attr="disabled">
+            <x-button primary icon="x" wire:click="confirmLogout" wire:loading.attr="disabled">
                 {{ __('Log Out Other Browser Sessions') }}
             </x-button>
 
@@ -62,7 +62,49 @@
         </div>
 
         <!-- Log Out Other Devices Confirmation Modal -->
-        <x-dialog-modal wire:model="confirmingLogout">
+        <x-modal.card title=" {{ __('Log Out Other Browser Sessions') }}" blur wire:model="confirmingLogout">
+            <div class="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                <div class="flex p-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+                    <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Info</span>
+                    <div>
+                        {{ __('Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.') }}
+                    </div>
+                  </div>
+
+
+                <div class="col-span-1 sm:col-span-2 shadow-sm">
+                    <div class="mt-2 p-4" x-data="{}" x-on:confirming-delete-user.window="setTimeout(() => $refs.password.focus(), 250)">
+                        <x-inputs.password type="password" class="mt-1 block w-3/4"
+                                    autocomplete="current-password"
+                                    placeholder="{{ __('Password') }}"
+                                    x-ref="password"
+                                    label="{{ __('current password') }}"
+                                    wire:model.defer="password"
+                                    wire:keydown.enter="logoutOtherBrowserSessions" />
+
+                        {{-- <x-input-error for="password" class="mt-2" /> --}}
+                    </div>
+                </div>
+
+
+            </div>
+
+            <x-slot name="footer">
+                <div class="flex justify-between gap-x-4">
+
+                    <div class="flex">
+                        <x-button icon="x" flat label="{{__('Cancel')}}" wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled" x-on:click="close" />
+                        <x-button icon="check" primary label="{{ __('Log Out Other Browser Sessions') }}" wire:click="logoutOtherBrowserSessions"
+                        wire:loading.attr="disabled"/>
+                    </div>
+                </div>
+            </x-slot>
+        </x-modal.card>
+
+
+        <!-- Log Out Other Devices Livewire viejo -->
+        <x-dialog-modal >
             <x-slot name="title">
                 {{ __('Log Out Other Browser Sessions') }}
             </x-slot>

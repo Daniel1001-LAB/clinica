@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -12,6 +13,14 @@ class AppLayout extends Component
      */
     public function render(): View
     {
+        $user = Auth::user();
+        $role = $user->role;
+
+        if ($role === 'admin') {
+            return view('navigation-menu');
+        } elseif ($role === 'doctor') {
+            return view('components.menu-doctor-nav');
+        }
         return view('layouts.app');
     }
 }

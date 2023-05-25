@@ -25,7 +25,7 @@ use Illuminate\Support\Str;
 
 Route::get('/', function () {
     if(auth()->user()){
-         if(User::role(['admin', 'super-admin'])){   return redirect('redirects');}
+         if(User::role(['admin', 'doctor'])){   return redirect('redirects');}
     }else{
         $doctors = Doctor::orderBy('name')->get();
 

@@ -21,6 +21,10 @@ return new class extends Migration
             $table->text('two_factor_recovery_codes')
                     ->after('two_factor_secret')
                     ->nullable();
+
+            $table->timestamp('two_factor_confirmed_at')
+                    ->nullable()
+                    ->after('two_factor_recovery_codes');
         });
     }
 

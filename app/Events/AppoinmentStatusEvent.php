@@ -13,6 +13,7 @@ use Illuminate\Queue\SerializesModels;
 
 class AppoinmentStatusEvent
 {
+
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $appoinment;
     /**

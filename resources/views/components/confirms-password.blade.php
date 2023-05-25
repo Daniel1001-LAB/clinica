@@ -15,7 +15,38 @@
 </span>
 
 @once
-<x-dialog-modal wire:model="confirmingPassword">
+
+<x-modal.card title="{{ $title }}" blur wire:model="confirmingPassword">
+    <div class="grid grid-cols-1 sm:grid-cols-1 gap-4">
+        {{ $content }}
+
+
+        <div class="col-span-1 sm:col-span-2">
+            <div class="mt-4" x-data="{}" x-on:confirming-password.window="setTimeout(() => $refs.confirmable_password.focus(), 250)">
+                <x-input type="password" class="mt-1 block w-3/4" placeholder="{{ __('Password') }}" autocomplete="current-password"
+                            x-ref="confirmable_password"
+                            wire:model.defer="confirmablePassword"
+                            wire:keydown.enter="confirmPassword" />
+
+                {{-- <x-input-error for="confirmable_password" class="mt-2" /> --}}
+            </div>
+        </div>
+
+
+    </div>
+
+    <x-slot name="footer">
+        <div class="flex justify-between gap-x-4">
+
+            <div class="flex">
+                <x-button icon="x" flat label="{{__('Cancel')}}" wire:click="stopConfirmingPassword" wire:loading.attr="disabled" x-on:click="close" />
+                <x-button icon="check" primary label="{{ $button }}" dusk="confirm-password-button" wire:click="confirmPassword" wire:loading.attr="disabled"/>
+            </div>
+        </div>
+    </x-slot>
+</x-modal.card>
+{{-- Modal viejo  --}}
+<x-dialog-modal >
     <x-slot name="title">
         {{ $title }}
     </x-slot>

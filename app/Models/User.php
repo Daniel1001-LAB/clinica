@@ -33,9 +33,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
     ];
 
-    protected $table="users";
+    protected $table = "users";
 
-
+    public function routeNotificationForWhatsApp()
+    {
+        return $this->phone;
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -58,6 +61,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+
+    protected $dates = [
+        'created_at'=>'datetime',
+        'updated_at'=>'datetime',
+        'birthdate'=>'datetime',
+
+    ];
+
     /**
      * The accessors to append to the model's array form.
      *
@@ -67,24 +78,27 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
-    public function specialties(){
+    public function specialties()
+    {
         return $this->belongsToMany(Specialty::class);
-
     }
 
-    public function socials(){
+    public function socials()
+    {
         return $this->belongsToMany(Social::class)->withPivot('url');
-
     }
 
-    public function skills(){
+    public function skills()
+    {
         return $this->hasMany(Skill::class);
-
     }
 
-    public function offices(){
+    public function offices()
+    {
         return $this->hasMany(Office::class, 'doctor_id');
+    }
 
+    public function appoinments(){
+        return $this->hasMany(Appoinment::class,'patient_id');
     }
 }
-
