@@ -17,7 +17,6 @@ Route::middleware('can:offices.index')->get('/offices',OfficeController::class)-
 Route::middleware('role:doctor')->get('/workdays',WorkdayController::class)->name('workdays.index');
 Route::middleware('role:doctor')->get('/curriculum',[CurriculumController::class, 'index'])->name('curriculum.index');
 Route::middleware('role:doctor')->get('/interviews/{user}',[InterviewController::class, 'index'])->name('interviews.index');
-
 Route::middleware('role:doctor')->get('/disases',DisaseController::class)->name('disases.index');
 
 
