@@ -37,7 +37,6 @@ class AppointmentList extends Component
         $appoinment->status = Appoinment::CONFIRMED;
         $appoinment->save();
         event(new AppoinmentStatusEvent($appoinment));
-
     }
 
     public function canceled(Appoinment $appoinment)
@@ -50,7 +49,6 @@ class AppointmentList extends Component
 
     public function render()
     {
-
         $user = User::find(Auth::user()->id);
         $isDoctor = $user->hasRole('doctor');
         if ($isDoctor) {
@@ -59,10 +57,16 @@ class AppointmentList extends Component
             $find = 'patient_id';
         }
 
-        $appoinments = Appoinment::orderBy('date', 'asc')->whereBetween('date', [$this->dateFrom, $this->dateTo])
-            ->where($find, $user->id)->where('status',Appoinment::CONFIRMED)->orWhere('status',Appoinment::PENDING)
+        $appoinments = Appoinment::orderBy('date', 'asc')
+            ->whereBetween('date', [$this->dateFrom, $this->dateTo])
+            ->where($find, $user->id)
+            ->where('status', Appoinment::CONFIRMED)
+            ->orWhere('status', Appoinment::PENDING)
             ->paginate(3);
-        // dd($appoinments);
-        return view('livewire.appointment.appointment-list', ['appoinments' => $appoinments]);
+
+
+        return view('livewire.appointment.appointment-list', [
+            'appoinments' => $appoinments,
+        ]);
     }
 }

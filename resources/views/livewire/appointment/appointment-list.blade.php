@@ -91,20 +91,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex flex-col items-start justify-between text-xs font-light gap-2 mt-4">
+                        <div class="flex flex-col items-center justify-between text-xs font-light gap-2 mt-4">
                             <span
                                 class="text-lg font-bold capitalize text-gray-900 dark:text-white">{{ __('opening hours') }}</span>
-                            <span class="text-lg font-medium text-gray-900 dark:text-white">
-                                {{ Carbon\Carbon::parse($appoinment->date)->format('d/m/Y') }}
+                            <span class="text-lg capitalize font-medium text-gray-900 dark:text-white">
+                                {{__('date')}}:{{ Carbon\Carbon::parse($appoinment->date)->format('d/m/Y') }}
                             </span>
-                            <span class="text-sm text-gray-700 dark:text-gray-400">
-                                {{ Carbon\Carbon::parse($appoinment->hour)->format('h:ia') }}
+                            <span class="text-sm capitalize text-gray-700 dark:text-gray-400">
+                                {{__('hour')}}:{{ Carbon\Carbon::parse($appoinment->hour)->format('h:ia') }}
                             </span>
-                            <span class="text-sm text-gray-700 dark:text-gray-400">
-                                {{ $appoinment->office }}
+                            <span class="text-sm capitalize text-gray-700 dark:text-gray-400">
+                                {{__('local')}}: {{ $appoinment->office }}
                             </span>
-                            <span class="text-sm text-gray-700 dark:text-gray-400">{{ $appoinment->price }}</span>
-                            <span class="mx-4 text-justify">{{ $appoinment->description }}</span>
+                            <span class="text-sm text-gray-700 dark:text-gray-400">{{__('price')}}:{{ $appoinment->price }}</span>
+                            <span class="mx-4 text-justify capitalize">{{__('desc')}}:{{ $appoinment->description }}</span>
                         </div>
                         <div class="flex flex-col mt-4 md:flex-row md:justify-between md:items-center md:gap-x-4">
                             <div class="flex justify-center md:justify-start mb-2 md:mb-0">

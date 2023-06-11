@@ -20,10 +20,10 @@ class Appoinment extends Model
 
     protected $guarded = [];
     protected $dates = [
-        'created_at'=>'datetime',
-        'updated_at'=>'datetime',
-        'date'=>'datetime',
-        'hour'=>'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'date' => 'datetime',
+        'hour' => 'datetime',
         // your other new column
     ];
 
@@ -45,10 +45,15 @@ class Appoinment extends Model
         return $specialty;
     }
 
-    public function getOficinaAttribute(){
+    public function getOficinaAttribute()
+    {
         $oficina = Office::find($this->office);
         return $oficina;
+    }
 
+    public function office()
+    {
+        return Office::find($this->id);
     }
 
     public function user()

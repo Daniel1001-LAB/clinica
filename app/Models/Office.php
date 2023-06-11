@@ -15,4 +15,8 @@ class Office extends Model
         return $this->belongsTo(User::class,'doctor_id');
     }
 
+    // public function appoinment(){
+    //     return $this->belongsTo(Appoinment::class,'doctor_id');
+    // }
+
 }
