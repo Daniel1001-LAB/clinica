@@ -33,12 +33,20 @@
             <li class="pb-3 sm:pb-4 py-3 sm:py-4">
                 <div class="flex justify-center items-center space-x-4">
                     <div class="flex-shrink-0">
-                        <img class="w-10 h-10 rounded-full" src="{{ $user->profile_photo_url }}"
-                            alt="{{ $user->name }}">
+                        @if ($user->external_auth == 'google')
+                            <img class="w-10 h-10 rounded-full" src="{{ $user->avatar }}"
+                                alt="{{ $user->name }}">
+                                @else
+                                <img class="w-10 h-10 rounded-full" src="{{ $user->profile_photo_url }}"
+                                alt="{{ $user->name }}">
+                        @endif
+
+
                     </div>
                     <div class="flex-1 min-w-0">
                         <p class="text-lg font-medium text-gray-900 truncate dark:text-white">
-                            <a href="{{ route('interviews.index', $user->id) }}" class="font-bold hover:underline">{{ $user->name }}</a>
+                            <a href="{{ route('interviews.index', $user->id) }}"
+                                class="font-bold hover:underline">{{ $user->name }}</a>
                         </p>
                         <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                             {{ $user->phone }}
@@ -49,7 +57,7 @@
         @endforeach
         @if ($users->count() > 0)
             <div class="flex justify-center pt-2  text-sm">
-                {{$users->links('vendor.livewire.simple-tailwind')}}
+                {{ $users->links('vendor.livewire.simple-tailwind') }}
             </div>
         @endif
     </ul>

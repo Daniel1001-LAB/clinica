@@ -1,0 +1,62 @@
+[
+    {
+      "id": 1,
+      "name": "Paracetamol",
+      "slug": "paracetamol",
+      "descripcion": "El paracetamol es un analgésico y antipirético utilizado para aliviar el dolor y reducir la fiebre."
+    },
+    {
+      "id": 2,
+      "name": "Ibuprofeno",
+      "slug": "ibuprofeno",
+      "descripcion": "El ibuprofeno es un antiinflamatorio no esteroideo (AINE) utilizado para aliviar el dolor, reducir la inflamación y bajar la fiebre."
+    },
+    {
+      "id": 3,
+      "name": "Amoxicilina",
+      "slug": "amoxicilina",
+      "descripcion": "La amoxicilina es un antibiótico utilizado para tratar infecciones bacterianas, como infecciones del tracto respiratorio, infecciones del oído y sinusitis."
+    },
+    {
+      "id": 4,
+      "name": "Omeprazol",
+      "slug": "omeprazol",
+      "descripcion": "El omeprazol es un inhibidor de la bomba de protones (IBP) utilizado para reducir la producción de ácido en el estómago y tratar afecciones como la acidez estomacal y la úlcera péptica."
+    },
+    {
+      "id": 5,
+      "name": "Lorazepam",
+      "slug": "lorazepam",
+      "descripcion": "El lorazepam es un medicamento ansiolítico y sedante utilizado para tratar trastornos de ansiedad, insomnio y controlar las convulsiones."
+    },
+    {
+      "id": 6,
+      "name": "Simvastatina",
+      "slug": "simvastatina",
+      "descripcion": "La simvastatina es un medicamento utilizado para reducir los niveles de colesterol y prevenir enfermedades cardiovasculares."
+    },
+    {
+      "id": 7,
+      "name": "Metformina",
+      "slug": "metformina",
+      "descripcion": "La metformina es un medicamento antidiabético utilizado para controlar los niveles de glucosa en la sangre en pacientes con diabetes tipo 2."
+    },
+    {
+      "id": 8,
+      "name": "Losartan",
+      "slug": "losartan",
+      "descripcion": "El losartan es un medicamento utilizado para tratar la hipertensión arterial y proteger los riñones en pacientes con diabetes tipo 2."
+    },
+    {
+      "id": 9,
+      "name": "Atorvastatina",
+      "slug": "atorvastatina",
+      "descripcion": "La atorvastatina es un medicamento utilizado para reducir los niveles de colesterol y prevenir enfermedades cardiovasculares."
+    },
+    {
+      "id": 10,
+      "name": "Metoclopramida",
+      "slug": "metoclopramida",
+      "descripcion": "La metoclopramida es un medicamento utilizado para tratar los trastornos gastrointestinales, como la acidez estomacal, el reflujo gastroesofágico y las náuseas."
+    }
+  ]

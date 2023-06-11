@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Symptom;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -29,6 +30,9 @@ class DatabaseSeeder extends Seeder
         $this->call(SkillSeeder::class);
         $this->call(WorkdaySeeder::class);
         $this->call(DisaseSeeder::class);
+        $this->call(SurgerySeeder::class);
+        $this->call(SymptomSeeder::class);
+        $this->call(ComplementSeeder::class);
 
 
 

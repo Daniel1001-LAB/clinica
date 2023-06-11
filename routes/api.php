@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Medicine;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,11 @@ Route::get('/users', function (Request $request){
     ->rawColumns(['btn'])
     ->toJson();
 });
+
+Route::get('/medicines', function (Request $request) {
+
+    $search = $request->search;
+
+    return \App\Models\Medicine::where('name', 'like', "%$search%")
+    ->orWhere('id', 'slug', 'like', "%$search%")->get();
+})->name('api.medicines.index');

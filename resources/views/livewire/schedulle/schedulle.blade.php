@@ -25,7 +25,7 @@
                                 {{ $workday->HourEs }} {{ $workday->HourEe }}
                             </p>
                         </div>
-                        </div=>
+                        </div>
 
                     </div>
             @endforeach

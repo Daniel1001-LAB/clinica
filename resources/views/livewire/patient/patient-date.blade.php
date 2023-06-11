@@ -4,22 +4,27 @@
             <x-datetime-picker min="{{ now()->toIso8601String() }}" display-format="DD/MM/YYYY" without-time
                 label="Appointment Date" class="capitalize" placeholder="{{ __('appointment date') }}" wire:model="date" />
         </div>
+
         <div class="grid grid-cols-3 gap-2 p-2 ">
             <ul>
-                @foreach ($morning as $m )
-                    <x-button wire:click="seleccionar('{{$m}}')" icon="calendar" class="mb-2 cursor-pointer text-sm px-4  w-full"  primary  label="{{$m}}"></x-button>
+                @foreach ($morning as $m)
+                    <x-button wire:click="seleccionar('{{ $m }}')" icon="calendar"
+                        class="mb-2 cursor-pointer text-sm px-4  w-full" primary label="{{ $m }}"></x-button>
                 @endforeach
             </ul>
 
             <ul>
-                @foreach ($afternoon as $a )
-                    <x-button wire:click="seleccionar('{{$a}}')" icon="calendar" class="mb-2 cursor-pointer text-sm px-4  w-full"  primary  label="{{$a}}"></x-button>
+                @foreach ($afternoon as $a)
+                    <x-button wire:click="seleccionar('{{ $a }}')" icon="calendar"
+                        class="mb-2 cursor-pointer text-sm px-4  w-full" primary label="{{ $a }}"></x-button>
                 @endforeach
             </ul>
 
             <ul>
-                @foreach ($evening as $e )
-                    <x-button wire:click="seleccionar('{{$e}}')" icon="calendar" class="mb-2 cursor-pointer text-sm px-4  w-full"  primary  label="{{$e}}"></x-button>
+                @foreach ($evening as $e)
+                    <x-button wire:click="seleccionar('{{ $e }}')" icon="calendar"
+                        class="mb-2 cursor-pointer text-sm px-4  w-full" primary label="{{ $e }}">
+                    </x-button>
                 @endforeach
             </ul>
             <x-errors />
@@ -38,7 +43,7 @@
 
 @push('script')
     <script type="text/javascript">
-        window.addEventListener('store-data', event=>{
+        window.addEventListener('store-data', event => {
             localStorage.setItem('interval', event.detail.interval)
             localStorage.setItem('doctor_id', event.detail.doctor_id)
             localStorage.setItem('specialty_id', event.detail.specialty_id)
@@ -48,7 +53,7 @@
             localStorage.setItem('price', event.detail.price)
         })
 
-        window.addEventListener('delete-data', event=>{
+        window.addEventListener('delete-data', event => {
             localStorage.removeItem('interval')
             localStorage.removeItem('doctor_id')
             localStorage.removeItem('specialty_id')
@@ -57,6 +62,5 @@
             localStorage.removeItem('office')
             localStorage.removeItem('price')
         })
-
     </script>
 @endpush

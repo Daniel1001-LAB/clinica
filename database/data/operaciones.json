@@ -1,20 +1,92 @@
 [
     {
-        "name": "Cesarea"
+      "id": 1,
+      "name": "Apendicectomía",
+      "slug": "apendicectomia",
+      "description": "Remoción quirúrgica del apéndice."
     },
     {
-        "name": "Apendicitis"
+      "id": 2,
+      "name": "Colectomía",
+      "slug": "colectomia",
+      "description": "Remoción quirúrgica de parte o la totalidad del colon."
     },
     {
-        "name": "Cirugía Facial"
+      "id": 3,
+      "name": "Artroplastia de cadera",
+      "slug": "artroplastia-de-cadera",
+      "description": "Reemplazo quirúrgico de la articulación de la cadera."
     },
     {
-        "name": "Cirugía de piel"
+      "id": 4,
+      "name": "Cirugía de bypass coronario",
+      "slug": "cirugia-de-bypass-coronario",
+      "description": "Creación de una ruta alternativa para el flujo sanguíneo alrededor de una arteria coronaria bloqueada o estrechada."
     },
     {
-        "name": "Cirugía de Hernia"
+      "id": 5,
+      "name": "Cirugía de cataratas",
+      "slug": "cirugia-de-cataratas",
+      "description": "Extracción quirúrgica del cristalino opaco y reemplazo con una lente intraocular."
     },
     {
-        "name": "Cirugía de Corazón"
+      "id": 6,
+      "name": "Histerectomía",
+      "slug": "histerectomia",
+      "description": "Remoción quirúrgica del útero."
+    },
+    {
+      "id": 7,
+      "name": "Liposucción",
+      "slug": "liposuccion",
+      "description": "Extracción quirúrgica de depósitos de grasa mediante succión."
+    },
+    {
+      "id": 8,
+      "name": "Mastectomía",
+      "slug": "mastectomia",
+      "description": "Remoción quirúrgica de una o ambas mamas."
+    },
+    {
+      "id": 9,
+      "name": "Rinoplastia",
+      "slug": "rinoplastia",
+      "description": "Cirugía estética o reconstructiva de la nariz."
+    },
+    {
+      "id": 10,
+      "name": "Colecistectomía",
+      "slug": "colecistectomia",
+      "description": "Remoción quirúrgica de la vesícula biliar."
+    },
+    {
+      "id": 11,
+      "name": "Ortoplastia",
+      "slug": "ortoplastia",
+      "description": "Cirugía para corregir malformaciones en las orejas."
+    },
+    {
+      "id": 12,
+      "name": "Cirugía de columna",
+      "slug": "cirugia-de-columna",
+      "description": "Intervención quirúrgica en la columna vertebral."
+    },
+    {
+      "id": 13,
+      "name": "Cirugía de tiroides",
+      "slug": "cirugia-de-tiroides",
+      "description": "Remoción quirúrgica de la glándula tiroides."
+    },
+    {
+      "id": 14,
+      "name": "Artroscopia",
+      "slug": "artroscopia",
+      "description": "Examen y tratamiento quirúrgico de una articulación mediante el uso de un endoscopio."
+    },
+    {
+      "id": 15,
+      "name": "Septoplastia",
+      "slug": "septoplastia",
+      "description": "Cirugía para corregir el tabique nasal desviado."
     }
-]
+  ]

@@ -1,57 +1,7 @@
 <x-guest-layout>
     {{-- Header Section - Nav --}}
     <header>
-        <nav id="navbar"
-            class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600 px-4 py-2">
-            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a href="#home" class="flex items-center">
-                    <img src="{{ asset('assets/onlyLogov1.svg') }}" class="h-8 mr-3" alt="UAPS">
-                    {{-- <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span> --}}
-                </a>
-                <div class="flex md:order-2">
-                    <a type="button" href="#getstarted"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get
-                        started</a>
-                    <button data-collapse-toggle="navbar-sticky" type="button"
-                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                        aria-controls="navbar-sticky" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                    <ul
-                        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                        <li>
-                            <a href="#home"
-                                class=" capitalize block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
-                                aria-current="page">{{ __('home') }}</a>
-                        </li>
-                        <li>
-                            <a href="#appointment"
-                                class=" capitalize block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">{{ __('appointment') }}</a>
-                        </li>
-                        <li>
-                            <a href="#specialties"
-                                class=" capitalize block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">{{ __('specialties') }}</a>
-                        </li>
-                        <li>
-                            <a href="#doctors"
-                                class=" capitalize block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">{{ __('doctors') }}</a>
-                        </li>
-                        <li>
-                            <a href="#contact"
-                                class=" capitalize block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">{{ __('contact') }}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <x-menu-user-nav />
     </header>
     {{-- Header Section Exit --}}
 
@@ -63,7 +13,8 @@
                 <div class="flex flex-wrap items-center justify-between">
                     <div class="md:w-1/2 md:order-2  lg:order-first order-1">
                         <h3 class="text-3xl text-white font-medium">{{ __('you manage your health') }}</h3>
-                        <h1 class="text-6xl text-white font-bold capitalize">{{ __('focused on your well-being') }}</h1>
+                        <h1 class="text-6xl text-white font-bold capitalize">{{ __('focused on your well-being') }}
+                        </h1>
                         <p class="font-bold text-xl leading-7 text-slate-200 my-6">
                             {{ __('We are a quick and easy way to manage your medical appointments and control your consultations and interviews.') }}
                         </p>
@@ -225,6 +176,17 @@
     </section>
     <!-- Doctors section exit -->
 
+    <!-- Patients section -->
+    @auth
+        <section id="info" class="shadow-xl mb-4">
+            <div class="container mx-auto ">
+                @livewire('patient.patient-info')
+            </div>
+        </section>
+    @endauth
+
+    <!-- Patients section exit -->
+
 
     {{-- Modals Sections --}}
     <section>
@@ -269,8 +231,7 @@
                             {{ __('For Doctors') }}</h2>
                         <ul class="text-gray-600 dark:text-gray-400 font-medium">
                             <li class="mb-4">
-                                <a href="https://github.com/themesberg/flowbite"
-                                    class="hover:underline ">{{ __('Get started') }}</a>
+                                <a href="{{ route('login') }}" class="hover:underline ">{{ __('Get started') }}</a>
                             </li>
                             <li class="mb-4">
                                 <a href="#" class="hover:underline">{{ __('Our services') }}</a>
@@ -287,10 +248,11 @@
                         <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
                         <ul class="text-gray-600 dark:text-gray-400 font-medium">
                             <li class="mb-4">
-                                <a href="#" class="hover:underline">Privacy Policy</a>
+                                <a href="{{ route('policy.show') }}" class="hover:underline">Privacy Policy</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                                <a href="{{ route('terms.show') }}" class="hover:underline">Terms &amp;
+                                    Conditions</a>
                             </li>
                         </ul>
                     </div>
@@ -361,31 +323,31 @@
 
                 if (interval !== null) {
                     Swal.fire({
-                        title: 'Create appointment?',
-                        text: "You have an appointment that we have not registered, do we register it?",
+                        title: '@lang('messages.create_appointment_title')',
+                        text: '@lang('messages.create_appointment_text')',
                         icon: 'info',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, create Appointment'
+                        confirmButtonText: '@lang('messages.yes_create_appointment')'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             Swal.fire(
-                                'Created!',
-                                'Your appointment has been created.',
+                                '@lang('messages.appointment_created_title')',
+                                '@lang('messages.appointment_created_text')',
                                 'success'
                             )
                             livewire.emitTo('patient.patient-date', 'addAppointment', interval, doctor_id,
                                 specialty_id, day, date, office, price)
 
                         } else {
-                                localStorage.removeItem('interval')
-                                localStorage.removeItem('doctor_id')
-                                localStorage.removeItem('specialty_id')
-                                localStorage.removeItem('day')
-                                localStorage.removeItem('date')
-                                localStorage.removeItem('office')
-                                localStorage.removeItem('price')
+                            localStorage.removeItem('interval')
+                            localStorage.removeItem('doctor_id')
+                            localStorage.removeItem('specialty_id')
+                            localStorage.removeItem('day')
+                            localStorage.removeItem('date')
+                            localStorage.removeItem('office')
+                            localStorage.removeItem('price')
                         }
                     })
                 }

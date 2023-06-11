@@ -4,13 +4,16 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Models\Doctor;
+use App\Models\Medicine;
 use App\Models\Specialty;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,15 +27,77 @@ use Illuminate\Support\Str;
 */
 
 Route::get('/', function () {
-    if(auth()->user()){
-         if(User::role(['admin', 'doctor'])){   return redirect('redirects');}
-    }else{
+    if (auth()->user()) {
+        if (User::role(['admin', 'doctor'])) {
+            return redirect('redirects');
+        }
+    } else {
         $doctors = Doctor::orderBy('name')->get();
 
         return view('welcome', compact('doctors'));
     }
+});
+
+// GOOGLE
+Route::get('/login-google', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/google-callback', function () {
+    $user = Socialite::driver('google')->user();
+    // dd($user);
+
+    $userExists = User::where('external_id', $user->id)->where('external_auth', 'google')->first();
+    if ($userExists) {
+        Auth::login($userExists);
+    } else {
+        $userNew= User::create([
+            'name' => $user->name,
+            'email' => $user->email,
+            'avatar' => $user->avatar,
+            'external_id' => $user->id,
+            'external_auth' => 'google',
+
+        ]);
+
+        Auth::login($userNew);
+    }
+    // $user->token
+
+    return redirect('redirects');
 
 });
+
+// FACEBOOK
+Route::get('/login-facebook', function () {
+    return Socialite::driver('facebook')->redirect();
+});
+
+Route::get('/facebook-callback', function () {
+    $user = Socialite::driver('facebook')->user();
+    //dd($user);
+
+    $userExists = User::where('external_id', $user->id)->where('external_auth', 'facebook')->first();
+    if ($userExists) {
+        Auth::login($userExists);
+    } else {
+        $userNew= User::create([
+            'name' => $user->name,
+            'email' => $user->email,
+            'avatar' => $user->avatar,
+            'external_id' => $user->id,
+            'external_auth' => 'facebook',
+
+        ]);
+
+        Auth::login($userNew);
+    }
+    // $user->token
+
+    return redirect('redirects');
+
+});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -66,8 +131,8 @@ Route::post('/forgot-password', function (Request $request) {
     );
 
     return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
-                : back()->withErrors(['email' => __($status)]);
+        ? back()->with(['status' => __($status)])
+        : back()->withErrors(['email' => __($status)]);
 })->middleware('guest')->name('password.email');
 
 Route::get('/reset-password/{token}', function (string $token) {
@@ -95,8 +160,8 @@ Route::post('/reset-password', function (Request $request) {
     );
 
     return $status === Password::PASSWORD_RESET
-                ? redirect()->route('login')->with('status', __($status))
-                : back()->withErrors(['email' => [__($status)]]);
+        ? redirect()->route('login')->with('status', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('redirects', [HomeController::class,'index']);
+Route::middleware(['auth:sanctum', 'verified'])->get('redirects', [HomeController::class, 'index']);

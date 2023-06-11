@@ -112,7 +112,7 @@
                     </x-confirms-password>
                 @else
                     <x-confirms-password wire:then="disableTwoFactorAuthentication">
-                        <x-button flat icon="power" negative  wire:loading.attr="disabled">
+                        <x-button flat icon="minus-sm" negative  wire:loading.attr="disabled">
                             {{ __('Disable') }}
                         </x-button>
                     </x-confirms-password>

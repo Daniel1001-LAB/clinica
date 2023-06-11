@@ -24,7 +24,15 @@
     <x-banner />
     <x-notifications position="top-right" />
     <div class="min-h-screen bg-gray-100">
-        @livewire('navigation-menu')
+        @if (Auth::user()->hasRole('admin'))
+            @livewire('navigation-menu')
+        @elseif (Auth::user()->hasRole('doctor'))
+            <x-menu-doctor-nav />
+        @else
+            {{-- <x-menu-user-nav /> --}}
+        @endif
+
+
 
         <!-- Page Heading -->
         @if (isset($header))

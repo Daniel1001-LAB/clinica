@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('disase_user', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('disase_id');
+            $table->unsignedBigInteger('year');
             $table->unsignedBigInteger('user_id');
             $table->foreign('disase_id')->references('id')->on('disases')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

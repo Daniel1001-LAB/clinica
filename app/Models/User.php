@@ -31,6 +31,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'avatar',
+        'external_id',
+        'external_auth',
     ];
 
     protected $table = "users";
@@ -63,9 +66,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     protected $dates = [
-        'created_at'=>'datetime',
-        'updated_at'=>'datetime',
-        'birthdate'=>'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'birthdate' => 'datetime',
 
     ];
 
@@ -98,7 +101,37 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Office::class, 'doctor_id');
     }
 
-    public function appoinments(){
-        return $this->hasMany(Appoinment::class,'patient_id');
+    public function appoinments()
+    {
+        return $this->hasMany(Appoinment::class, 'patient_id');
+    }
+
+    public function disases()
+    {
+        return $this->belongsToMany(Disase::class)->withPivot('year');
+    }
+
+    public function surgeries()
+    {
+        return $this->belongsToMany(Surgery::class)->withPivot('year');
+    }
+
+    public function symptoms()
+    {
+        return $this->belongsToMany(Symptom::class, 'symptom_user','patient_id')->withPivot('interview_id');
+    }
+
+    public function medicines()
+    {
+        return $this->belongsToMany(Medicine::class)->withPivot('interview_id', 'instruction', 'dosage')->withTimestamps();
+    }
+
+    public function interviews()
+    {
+        return $this->hasMany(Interview::class, 'patient_id');
+    }
+
+    public function files(){
+        return $this->hasMany(File::class);
     }
 }
