@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Appointment;
 
 use App\Events\AppoinmentStatusEvent;
 use App\Models\Appoinment;
+use App\Models\Interview;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -47,6 +48,14 @@ class AppointmentList extends Component
         event(new AppoinmentStatusEvent($appoinment));
     }
 
+    public function accomplished(Appoinment $appoinment)
+    {
+        // dd($appoinment);
+        $appoinment->status = Appoinment::ACCOMPLISHED;
+        $appoinment->save();
+        event(new AppoinmentStatusEvent($appoinment));
+    }
+
     public function render()
     {
         $user = User::find(Auth::user()->id);
@@ -57,16 +66,23 @@ class AppointmentList extends Component
             $find = 'patient_id';
         }
 
-        $appoinments = Appoinment::orderBy('date', 'asc')
+        $appoinments = Appoinment::orderBy('date', 'desc')
             ->whereBetween('date', [$this->dateFrom, $this->dateTo])
             ->where($find, $user->id)
-            ->where('status', Appoinment::CONFIRMED)
-            ->orWhere('status', Appoinment::PENDING)
-            ->paginate(3);
+            ->where(function ($query) {
+                $query->where('status', Appoinment::CONFIRMED)
+                    ->orWhere('status', Appoinment::PENDING)
+                    ->orWhere('status', Appoinment::CANCELED)
+                    ->orWhere('status', Appoinment::ACCOMPLISHED)
+                    ->orWhere('status', Appoinment::UNREALIZED);
+            })
+            ->paginate(1);
 
+        $interviews = Interview::orderBy('date', 'asc')
+            ->where($find, $user->id);
 
         return view('livewire.appointment.appointment-list', [
-            'appoinments' => $appoinments,
+            'appoinments' => $appoinments, 'interviews' => $interviews
         ]);
     }
 }

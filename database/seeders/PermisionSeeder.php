@@ -72,11 +72,5 @@ class PermisionSeeder extends Seeder
         $doctor = Role::findByName('doctor');
         $superAdmin->givePermissionTo($permissions);
         $doctor->givePermissionTo($permissions);
-
-
-
-
-
-
     }
 }

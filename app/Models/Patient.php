@@ -15,4 +15,6 @@ class Patient extends User
     public function appoinments(){
         return $this->hasMany(Appoinment::class);
     }
+
+
 }

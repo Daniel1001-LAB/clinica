@@ -480,5 +480,25 @@
     "Contact":"Contáctanos",
     "Appointment":"Cita Medica",
     "My Appointments":"Mis Citas",
+
+    "employee":"empleado",
+    "categories":"categorias",
+    "products":"productos",
+    "roles":"roles",
+    "permissons":"Permisos",
+    "assign":"asignar",
+    "sales":"ventas",
+    "coins":"monedas",
+    "closures":"cierres",
+    "tonnages":"arqueos",
+
+    "most suffered disease":"enfermedad mas padecida",
+    "suspicions more suffered":"sospechas mas padecida",
+    "interviews realized":"entrevistas realizadas",
+    "last interview realized":"ultima entrevista realizada",
+    "most applied surgery": "cirugía más aplicada",
+    "hour": "hora",
+    "confirm": "confirmar",
+    "LISEM health program": "programa de salud LISEM",
     "Your email address is unverified.": "Su dirección de correo electrónico no está verificada."
 }

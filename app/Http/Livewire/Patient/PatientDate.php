@@ -76,27 +76,31 @@ class PatientDate extends Component
         // dd($m);
 
         $hour = Hour::where('interval', $m)->first();
-        $workday = Workday::find($hour->id);
+        $workday = Workday::where('doctor_id', $this->doctor_id)
+            ->where('day', $this->day)
+            ->first();
+
+        $office_id = null;
+        $price = null;
 
         switch ($hour->turn) {
             case 'dawn':
-                $office = $workday->evening_office;
+                $office_id = $workday->evening_office;
                 $price = $workday->evening_price;
                 break;
             case 'morning':
-                $office = $workday->morning_office;
+                $office_id = $workday->morning_office;
                 $price = $workday->morning_price;
                 break;
             case 'afternoon':
-                $office = $workday->afternoon_office;
+                $office_id = $workday->afternoon_office;
                 $price = $workday->afternoon_price;
                 break;
             case 'evening':
-                $office = $workday->evening_office;
+                $office_id = $workday->evening_office;
                 $price = $workday->evening_price;
                 break;
         }
-
 
         $this->dispatchBrowserEvent('store-data', [
             'interval' => $hour->interval,
@@ -104,13 +108,13 @@ class PatientDate extends Component
             'specialty_id' => $this->specialty_id,
             'day' => $this->day,
             'date' => $this->date,
-            'office' => $office,
+            'office_id' => $office_id,
             'price' => $price,
         ]);
 
         if (auth()->user()) {
             $this->dispatchBrowserEvent('delete-data');
-            //Creacion de la cita
+            // Creacion de la cita
             Appoinment::create([
                 'patient_id' => auth()->user()->id,
                 'doctor_id' => $this->doctor_id,
@@ -118,18 +122,16 @@ class PatientDate extends Component
                 'date' => $this->date,
                 'hour' => $hour->time_hour,
                 'hour_id' => $hour->id,
-                'office' => $office,
-                // 'price' => $price,
+                'office_id' => $office_id,
+                'price' => $price,
             ]);
             $this->openModal = false;
         } else {
-            //Guardaremos la cita
+            // Guardaremos la cita
             $this->openModal = false;
-            //Loguearemos al usuario si no lo esta
+            // Loguearemos al usuario si no lo está
             return redirect()->route('login');
-            //crearemos la cita
-
-
+            // Crearemos la cita
         }
     }
 
@@ -140,7 +142,7 @@ class PatientDate extends Component
         $specialty_id,
         $day,
         $date,
-        $office,
+        $office_id,
         $price
     ) {
         $hour = Hour::where('interval', $interval)->first();
@@ -153,7 +155,7 @@ class PatientDate extends Component
                 'date' => $date,
                 'hour' => $hour->time_hour,
                 'hour_id' => $hour->id,
-                'office' => $office,
+                'office_id' => $office_id,
                 'price' => $price,
             ]);
         }

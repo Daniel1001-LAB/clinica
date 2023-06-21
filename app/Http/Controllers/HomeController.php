@@ -28,6 +28,12 @@ class HomeController extends Controller
                 case 'user':
                     return view('user.index');
                     break;
+                case 'employee':
+                    return view('inventory.app');
+                    break;
+                case 'admin-pos':
+                    return view('inventory.app');
+                    break;
                 case '':
                     return view('welcome');
                     break;

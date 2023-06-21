@@ -20,6 +20,8 @@ class AppLayout extends Component
             return view('navigation-menu');
         } elseif ($role === 'doctor') {
             return view('components.menu-doctor-nav');
+        } elseif ($role === 'patient') {
+            return view('components.menu-user-nav');
         }
         return view('layouts.app');
     }

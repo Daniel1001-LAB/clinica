@@ -15,16 +15,18 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('patient_id')->nullable();
             $table->unsignedBigInteger('doctor_id')->nullable();
-            $table->bigInteger('specialty_id');
+            $table->unsignedBigInteger('office_id')->nullable(); // Nueva columna para la relación
 
-            $table->string('office')->nullable();
+            $table->bigInteger('specialty_id');
             $table->date('date');
             $table->time('hour');
             $table->bigInteger('hour_id');
             $table->string('status')->nullable();
             $table->string('description')->nullable();
+
             $table->foreign('patient_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('doctor_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('office_id')->references('id')->on('offices')->onDelete('cascade')->onUpdate('cascade'); // Clave externa para la relación con offices
 
             $table->timestamps();
         });

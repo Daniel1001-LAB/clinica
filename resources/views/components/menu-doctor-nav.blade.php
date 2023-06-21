@@ -1,13 +1,11 @@
-@php($navLinks = [
+@php
+    $navLinks = [['name' => 'Panel Principal', 'route' => route('doctor.index'), 'active' => request()->routeIs('doctor.index')], ['name' => 'Oficinas', 'route' => route('offices.index'), 'active' => request()->routeIs('offices.index')], ['name' => 'Dias de Trabajo', 'route' => route('workdays.index'), 'active' => request()->routeIs('workdays.index')], ['name' => 'Curriculum', 'route' => route('curriculum.index'), 'active' => request()->routeIs('curriculum.index')], ['name' => 'Enfermedades', 'route' => route('disases.index'), 'active' => request()->routeIs('disases.index')], ['name' => 'Cirugías', 'route' => route('surgeries.index'), 'active' => request()->routeIs('surgeries.index')]];
 
-['name' => 'Panel Principal', 'route' => route('doctor.index'), 'active' => request()->routeIs('doctor.index')],
-['name' => 'Oficinas', 'route' => route('offices.index'), 'active' => request()->routeIs('offices.index')],
-['name' => 'Dias de Trabajo', 'route' => route('workdays.index'), 'active' => request()->routeIs('workdays.index')],
-['name' => 'Curriculum', 'route' => route('curriculum.index'), 'active' => request()->routeIs('curriculum.index')],
-['name' => 'Enfermedades', 'route' => route('disases.index'), 'active' => request()->routeIs('disases.index')],
-['name' => 'Cirugías', 'route' => route('surgeries.index'), 'active' => request()->routeIs('surgeries.index')],
-])
+    $programLinks = [['name' => 'Programa LISEM', 'route' => route('lisem.index'), 'active' => request()->routeIs('lisme.index')], ['name' => 'Programa PAI', 'route' => route('pai.index'), 'active' => request()->routeIs('pai.index')], ['name' => 'Club Hipertensos', 'route' => route('hiper.index'), 'active' => request()->routeIs('hiper.index')]];
 
+    // $allLinks = array_merge($navLinks, $programLinks);
+
+@endphp
 
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
@@ -22,14 +20,24 @@
                 </div>
 
                 <!-- Navigation Links -->
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex justify-between">
                     @foreach ($navLinks as $navLink)
                         <x-nav-link href="{{ $navLink['route'] }}" :active="$navLink['active']">
                             {{ __($navLink['name']) }}
                         </x-nav-link>
                     @endforeach
+                    <div class="flex items-center">
+                        <x-dropdown>
+                            <x-slot name="trigger">
+                                <x-button flat label="Programas de Salud" primary />
+                            </x-slot>
+                            @foreach ($programLinks as $link)
+                                <x-dropdown.item :icon="$link['name'] === 'Programa LISEM' ? 'user-circle' : ($link['name'] === 'Programa PAI' ? 'face-smile' : 'home-modern')" label="{{ $link['name'] }}" href="{{ $link['route'] }}" :active="$link['active']" />
+                            @endforeach
+                        </x-dropdown>
+                    </div>
                 </div>
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -118,7 +126,7 @@
                             <x-dropdown.item icon="user" href="{{ route('profile.show') }}"
                                 label="{{ __('Profile') }}" />
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                <x-dropdown.item  icon="cog" href="{{ route('api-tokens.index') }}"
+                                <x-dropdown.item icon="cog" href="{{ route('api-tokens.index') }}"
                                     label="{{ __('API Tokens') }}" />
                             @endif
 
@@ -215,6 +223,12 @@
 
         <div class="pt-2 pb-3 space-y-1">
             @foreach ($navLinks as $navLink)
+                <x-responsive-nav-link href="{{ $navLink['route'] }}" :active="$navLink['active']">
+                    {{ __($navLink['name']) }}
+                </x-responsive-nav-link>
+            @endforeach
+
+            @foreach ($programLinks as $navLink)
                 <x-responsive-nav-link href="{{ $navLink['route'] }}" :active="$navLink['active']">
                     {{ __($navLink['name']) }}
                 </x-responsive-nav-link>

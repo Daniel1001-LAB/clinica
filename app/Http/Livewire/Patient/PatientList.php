@@ -21,7 +21,7 @@ class PatientList extends Component
     {
 
         $search = '%' .$this->search.'%';
-        $users = User::orderBy('name')->whereNotIn('id', [auth()->user()->id])->where('name', 'like',$search)->paginate(10);
+        $users = User::orderBy('name')->whereNotIn('id', [auth()->user()->id])->where('name', 'like',$search)->paginate(5);
         return view('livewire.patient.patient-list', ['users'=>$users]);
     }
 }

@@ -33,6 +33,10 @@ class DatabaseSeeder extends Seeder
         $this->call(SurgerySeeder::class);
         $this->call(SymptomSeeder::class);
         $this->call(ComplementSeeder::class);
+        $this->call(DenominationSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(ProductSeeder::class);
+
 
 
 

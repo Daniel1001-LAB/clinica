@@ -21,6 +21,7 @@
 
     <div class="col-span-1 sm:col-span-1">
         <x-native-select class="capitalize mb-4" label="{{ __('offices/address') }}" wire:model="ao">
+            <option>Selecciona el consultorio</option>
             @foreach ($offices as $o)
                 <option value="{{ $o->id }}">{{ __($o->local . ', ' . $o->address) }}</option>
             @endforeach

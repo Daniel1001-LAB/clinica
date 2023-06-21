@@ -33,7 +33,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'avatar',
         'external_id',
+        'profile',
         'external_auth',
+        'status',
     ];
 
     protected $table = "users";
@@ -72,6 +74,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     ];
 
+
     /**
      * The accessors to append to the model's array form.
      *
@@ -80,6 +83,13 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function getProfilePhotoUrlAttribute()
+{
+    return $this->profile_photo_path
+        ? asset('storage/profile-photos/' . $this->profile_photo_path)
+        : $this->defaultProfilePhotoUrl();
+}
 
     public function specialties()
     {
@@ -133,5 +143,15 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function files(){
         return $this->hasMany(File::class);
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
+
+    public function latestInterview()
+    {
+        return $this->hasOne(Interview::class, 'doctor_id')->latest();
     }
 }

@@ -45,15 +45,21 @@ class Appoinment extends Model
         return $specialty;
     }
 
+    public function getOfficeAttribute()
+    {
+        $office = Office::find($this->office_id);
+        return $office;
+    }
+
     public function getOficinaAttribute()
     {
-        $oficina = Office::find($this->office);
+        $oficina = Office::find($this->office_id);
         return $oficina;
     }
 
     public function office()
     {
-        return Office::find($this->id);
+        return $this->belongsTo(Office::class);
     }
 
     public function user()

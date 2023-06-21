@@ -1,4 +1,4 @@
-<div class=" h-full bg-white shadow-lg p-6 rounded-lg">
+<div class="h-full bg-white shadow-lg p-3 rounded-lg">
     <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
         <h1
             class="capitalize text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl dark:text-white">
@@ -28,16 +28,15 @@
         </div>
     </div>
 
-    <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+    <ul class=" divide-y divide-gray-200 dark:divide-gray-700">
         @foreach ($users as $user)
-            <li class="pb-3 sm:pb-4 py-3 sm:py-4">
+            <li class="pb-3 sm:pb-4 py-3 sm:py-4 ">
                 <div class="flex justify-center items-center space-x-4">
                     <div class="flex-shrink-0">
                         @if ($user->external_auth == 'google')
-                            <img class="w-10 h-10 rounded-full" src="{{ $user->avatar }}"
-                                alt="{{ $user->name }}">
-                                @else
-                                <img class="w-10 h-10 rounded-full" src="{{ $user->profile_photo_url }}"
+                            <img class="w-10 h-10 rounded-full" src="{{ $user->avatar }}" alt="{{ $user->name }}">
+                        @else
+                            <img class="w-10 h-10 rounded-full" src="{{ $user->profile_photo_url }}"
                                 alt="{{ $user->name }}">
                         @endif
 
@@ -56,7 +55,7 @@
             </li>
         @endforeach
         @if ($users->count() > 0)
-            <div class="flex justify-center pt-2  text-sm">
+            <div class="flex justify-center pt-6 text-sm">
                 {{ $users->links('vendor.livewire.simple-tailwind') }}
             </div>
         @endif

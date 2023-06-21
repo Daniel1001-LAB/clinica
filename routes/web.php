@@ -3,6 +3,18 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Reports\ExportController;
+use App\Http\Livewire\Asignar\AsignarController;
+use App\Http\Livewire\Cashouts\CashoutsController;
+use App\Http\Livewire\Category\CategoriesController;
+use App\Http\Livewire\DashboardPos\DashboardController;
+use App\Http\Livewire\Denomination\CoinsController;
+use App\Http\Livewire\Permissions\PermissionsController;
+use App\Http\Livewire\Pos\PosController;
+use App\Http\Livewire\Product\ProductsController;
+use App\Http\Livewire\Reports\ReportsController;
+use App\Http\Livewire\Roles\RolesController;
+use App\Http\Livewire\Users\UsersController;
 use App\Models\Doctor;
 use App\Models\Medicine;
 use App\Models\Specialty;
@@ -28,7 +40,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
     if (auth()->user()) {
-        if (User::role(['admin', 'doctor'])) {
+        if (User::role(['admin', 'doctor','admin-pos'])) {
             return redirect('redirects');
         }
     } else {
@@ -37,6 +49,36 @@ Route::get('/', function () {
         return view('welcome', compact('doctors'));
     }
 });
+
+
+// RUTAS DEL POS
+Route::middleware(['auth'])->group(function () {
+    Route::get('dash', DashboardController::class, 'InventoryController@index');
+    Route::get('categories', CategoriesController::class)->middleware('role:admin-pos|admin');
+    Route::get('products', ProductsController::class);
+    Route::get('coins', CoinsController::class);
+    Route::get('pos', PosController::class);
+
+    Route::group(['middleware' => ['role:admin-pos|admin']], function () {
+        Route::get('roles', RolesController::class);
+        Route::get('permissions', PermissionsController::class);
+        Route::get('asignar', AsignarController::class);
+        Route::get('users', UsersController::class);
+    });
+
+    Route::get('cashout', CashoutsController::class);
+    Route::get('reports', ReportsController::class);
+
+    //REPORTES PDF POS
+    Route::get('report/pdf/{user}/{type}/{f1}/{f2}', [ExportController::class, 'reportPDF']);
+    Route::get('report/pdf/{user}/{type}', [ExportController::class, 'reportPDF']);
+
+    Route::get('report/excel/{user}/{type}/{f1}/{f2}', [ExportController::class, 'reporteExcel']);
+    Route::get('report/excel/{user}/{type}', [ExportController::class, 'reporteExcel']);
+});
+
+
+
 
 // GOOGLE
 Route::get('/login-google', function () {
@@ -51,7 +93,7 @@ Route::get('/google-callback', function () {
     if ($userExists) {
         Auth::login($userExists);
     } else {
-        $userNew= User::create([
+        $userNew = User::create([
             'name' => $user->name,
             'email' => $user->email,
             'avatar' => $user->avatar,
@@ -65,7 +107,6 @@ Route::get('/google-callback', function () {
     // $user->token
 
     return redirect('redirects');
-
 });
 
 // FACEBOOK
@@ -81,7 +122,7 @@ Route::get('/facebook-callback', function () {
     if ($userExists) {
         Auth::login($userExists);
     } else {
-        $userNew= User::create([
+        $userNew = User::create([
             'name' => $user->name,
             'email' => $user->email,
             'avatar' => $user->avatar,
@@ -95,7 +136,6 @@ Route::get('/facebook-callback', function () {
     // $user->token
 
     return redirect('redirects');
-
 });
 
 

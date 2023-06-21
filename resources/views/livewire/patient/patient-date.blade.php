@@ -49,7 +49,7 @@
             localStorage.setItem('specialty_id', event.detail.specialty_id)
             localStorage.setItem('day', event.detail.day)
             localStorage.setItem('date', event.detail.date)
-            localStorage.setItem('office', event.detail.office)
+            localStorage.setItem('office_id', event.detail.office)
             localStorage.setItem('price', event.detail.price)
         })
 
@@ -59,7 +59,7 @@
             localStorage.removeItem('specialty_id')
             localStorage.removeItem('day')
             localStorage.removeItem('date')
-            localStorage.removeItem('office')
+            localStorage.removeItem('office_id')
             localStorage.removeItem('price')
         })
     </script>
