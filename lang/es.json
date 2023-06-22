@@ -500,5 +500,9 @@
     "hour": "hora",
     "confirm": "confirmar",
     "LISEM health program": "programa de salud LISEM",
+    "Informational message": "Mensaje informativo",
+    "select date and time": "selecciona fecha y hora",
+    "appointment date": "fecha de la cita",
+    "select a date to see the appointments list available": "seleccione una fecha para ver la lista de citas disponibles",
     "Your email address is unverified.": "Su dirección de correo electrónico no está verificada."
 }

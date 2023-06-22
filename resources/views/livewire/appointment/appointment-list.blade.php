@@ -1,5 +1,5 @@
-<div>
-    <div class="h-full bg-white p-2 rounded-lg">
+
+    <div class="h-full bg-white p-4 rounded-lg">
         <div class="flex justify-between items-center mb-4">
             <h1
                 class="me-4 capitalize text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl dark:text-white">
@@ -173,6 +173,4 @@
             @endif
             </ul>
         </div>
-
     </div>
-</div>

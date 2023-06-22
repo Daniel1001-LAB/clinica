@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Patient;
 
 use App\Models\Appoinment;
 use App\Models\Hour;
+use App\Models\Office;
 use App\Models\Workday;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -12,6 +13,10 @@ use LivewireUI\Modal\ModalComponent;
 class PatientDate extends Component
 {
     public $openModal = false;
+    public $selectedOfficeAddress;
+    public $selectedOfficePrice;
+    public  $officeAddress, $officePrice;
+    public $price;
     public $date, $day, $doctor_id, $specialty_id, $intervals = [];
     public $appointments, $interval, $workday, $morning = [], $afternoon = [], $evening = [];
 
@@ -73,7 +78,6 @@ class PatientDate extends Component
 
     public function seleccionar($m)
     {
-        // dd($m);
 
         $hour = Hour::where('interval', $m)->first();
         $workday = Workday::where('doctor_id', $this->doctor_id)
@@ -101,6 +105,8 @@ class PatientDate extends Component
                 $price = $workday->evening_price;
                 break;
         }
+
+        $this->$price = $price;
 
         $this->dispatchBrowserEvent('store-data', [
             'interval' => $hour->interval,

@@ -30,7 +30,7 @@ class ClearUnconfirmedAppointments extends Command
         $appointments = Appoinment::where('status', Appoinment::PENDING)
             ->where('date', '<', Carbon::now())
             ->update(['status' => Appoinment::UNREALIZED]);
-
+            // dd($appointments);
         $this->info('Unconfirmed appointments cleared successfully.');
     }
 }

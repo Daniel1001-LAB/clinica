@@ -150,6 +150,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Sale::class);
     }
 
+    public function allergies()
+    {
+        return $this->belongsToMany(Pathology::class,'pathology_user','user_id','pathology_id')->withPivot(['allergy'])->withTimestamps()->orderBy('name');
+    }
+
+    public function vaccines()
+    {
+        return $this->belongsToMany(Vaccine::class)->withPivot(['date','vaccine_id'])->withTimestamps()->orderBy('date', 'desc');
+    }
+
     public function latestInterview()
     {
         return $this->hasOne(Interview::class, 'doctor_id')->latest();

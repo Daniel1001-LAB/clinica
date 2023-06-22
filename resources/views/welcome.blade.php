@@ -141,7 +141,7 @@
     <!-- Get Started section exit -->
 
     <!-- Specialties section -->
-    <section id="specialties" class="shadow-xl">
+    <section id="specialties">
         <div class="container mx-auto ">
             @livewire('patient.patient-specialty')
         </div>
@@ -157,7 +157,7 @@
                     <div class="col-span-1 lg:col-span-4 text-left md:text-center">
                         <h3 class="text-white text-5xl">Request your appointment and start your smile makeover!</h3>
                         <a href="#"
-                            class="block shadow-lg m-auto mt-5 transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out bg-pink-500 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded inline-flex items-center capitalize">Request
+                            class="shadow-lg m-auto mt-5 transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out bg-pink-500 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded inline-flex items-center capitalize">Request
                             Appointment
                             <i class="ms-5 fa-solid fa-ticket-simple fa-beat"></i>
                         </a>
@@ -169,7 +169,7 @@
     <!-- Appoinment section exit -->
 
     <!-- Doctors section -->
-    <section id="doctors" class="shadow-xl">
+    <section id="doctors">
         <div class="container mx-auto ">
             @livewire('patient.patient-doctor')
         </div>
@@ -178,7 +178,7 @@
 
     <!-- Patients section -->
     @auth
-        <section id="info" class="shadow-xl mb-4">
+        <section id="info" class=" mb-4">
             <div class="container mx-auto ">
                 @livewire('patient.patient-info')
             </div>

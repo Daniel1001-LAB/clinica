@@ -53,7 +53,7 @@ class AppointmentList extends Component
         // dd($appoinment);
         $appoinment->status = Appoinment::ACCOMPLISHED;
         $appoinment->save();
-        event(new AppoinmentStatusEvent($appoinment));
+        // event(new AppoinmentStatusEvent($appoinment));
     }
 
     public function render()

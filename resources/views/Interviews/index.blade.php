@@ -37,7 +37,7 @@
                             <li class="flex items-center py-3">
                                 <span>Status</span>
                                 <span class="ml-auto"><span
-                                        class="bg-blue-500 py-1 px-2 rounded text-white text-sm">Active</span></span>
+                                        class="bg-blue-500 py-1 px-2 rounded text-white text-sm">{{$user->status}}</span></span>
                             </li>
                             <li class="flex items-center py-3">
                                 <span>Member since</span>
@@ -137,10 +137,11 @@
                                         </div>
 
                                         @if ($user->birthdate)
-                                        <div class="grid grid-cols-2">
-                                            <div class="px-4 py-2 font-semibold capitalize">{{ 'birthdate' }}</div>
-                                            <div class="px-4 py-2">{{ $user->birthdate }}</div>
-                                        </div>
+                                            <div class="grid grid-cols-2">
+                                                <div class="px-4 py-2 font-semibold capitalize">{{ 'birthdate' }}
+                                                </div>
+                                                <div class="px-4 py-2">{{ $user->birthdate }}</div>
+                                            </div>
                                         @endif
                                         <div class="grid grid-cols-2">
                                             <div class="px-4 py-2 font-semibold capitalize">{{ __('email') }}.</div>
@@ -156,19 +157,20 @@
                         <button
                             class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Show
                             Full Information</button>
-                            <div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-2">
-                                <div class="col-span-1 md:col-span-2 xl:col-span-2">
-                                    @livewire('patient.patient-interview', ['user' => $user->id])
-                                </div>
-                                <div class="col-span-1 md:col-span-1 xl:col-span-1">
-                                    @livewire('patient.patient-list-interview', ['user' => $user->id])
-                                </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-2">
+                            <div class="col-span-1 md:col-span-2 xl:col-span-2">
+                                @livewire('patient.patient-interview', ['user' => $user->id])
                             </div>
+                            <div class="col-span-1 md:col-span-1 xl:col-span-1">
+                                @livewire('patient.patient-list-interview', ['user' => $user->id])
+                            </div>
+
+                        </div>
                     </div>
                     <!-- End of patient section -->
                     <div class="my-8"></div>
                     <!-- Experience and education -->
-                    <div class="relative bg-white py-6 px-6 rounded-3xl w-full h-full my-4 shadow-xl">
+                    <div class="relative bg-white py-6 px-6 rounded-3xl w-full h-full my-4 shadow-xl border-b-4 border-blue-400 ">
                         <div
                             class=" text-white flex items-center absolute rounded-full py-4 px-4 shadow-xl bg-blue-500 left-4 -top-6">
                             <!-- svg  -->
@@ -180,8 +182,22 @@
                             <span class="tracking-wide text-2xl ms-3 capitalize">{{ __('about patient') }}</span>
                         </div>
                         <div class="mt-8">
-                            <div class="grid grid-cols-2">
-                                <div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
+                                <div class="h-full shadow-xl">
+                                    <div class="flex justify-start ">
+                                        <!-- svg  -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+                                        </svg>
+                                        <span
+                                            class="text-xl capitalize font-semibold my-2">{{ __('vaccination history') }}</span>
+
+                                    </div>
+                                    @livewire('interview.interview-patient-vaccine', ['user' => $user->id])
+                                </div>
+                                <div class="h-full shadow-xl">
                                     <div class=" flex justify-start ">
                                         <!-- svg  -->
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -191,23 +207,12 @@
                                         </svg>
 
                                         <span
-                                            class="text-xl capitalize font-semibold my-2">{{ __('interviews') }}</span>
+                                            class="text-xl capitalize font-semibold my-2">{{ __('history of allergies') }}</span>
 
                                     </div>
+                                    @livewire('interview.interview-patient-allergy', ['user' => $user->id])
                                 </div>
-                                <div>
-                                    <div class="flex justify-start">
-                                        <!-- svg  -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
-                                        </svg>
 
-                                        <span
-                                            class="text-xl capitalize font-semibold my-2">{{ __('medicine') }}</span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -16,6 +16,11 @@ class PatientDoctor extends Component
         $this->emitTo('patient.patient-date', 'selectDate', $doctorId, $specialtyId);
     }
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
 

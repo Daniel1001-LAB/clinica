@@ -1,4 +1,4 @@
-<div class="h-full bg-white shadow-lg p-3 rounded-lg">
+<div class="h-full bg-white shadow-lg p-4 rounded-lg">
     <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
         <h1
             class="capitalize text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl dark:text-white">
@@ -45,7 +45,13 @@
                     <div class="flex-1 min-w-0">
                         <p class="text-lg font-medium text-gray-900 truncate dark:text-white">
                             <a href="{{ route('interviews.index', $user->id) }}"
-                                class="font-bold hover:underline">{{ $user->name }}</a>
+                                class="font-bold hover:underline">{{ $user->name }}
+                                @if($user->gender == 'male')
+                                <i class="text-blue-500 fa-solid fa-mars"></i>
+                                @else 
+                                <i class="text-pink-500 fa-solid fa-venus"></i>
+                                @endif
+                            </a>
                         </p>
                         <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                             {{ $user->phone }}
@@ -54,11 +60,10 @@
                 </div>
             </li>
         @endforeach
-        @if ($users->count() > 0)
-            <div class="flex justify-center pt-6 text-sm">
-                {{ $users->links('vendor.livewire.simple-tailwind') }}
-            </div>
-        @endif
     </ul>
-
+    @if ($users->count() > 0)
+        <div class="flex justify-center pt-6 text-sm">
+            {{ $users->links('vendor.livewire.simple-tailwind') }}
+        </div>
+    @endif
 </div>
