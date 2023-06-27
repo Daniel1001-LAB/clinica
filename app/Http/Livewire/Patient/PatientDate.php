@@ -15,7 +15,7 @@ class PatientDate extends Component
     public $openModal = false;
     public $selectedOfficeAddress;
     public $selectedOfficePrice;
-    public  $officeAddress, $officePrice;
+    public $officeAddress, $officePrice;
     public $price;
     public $date, $day, $doctor_id, $specialty_id, $intervals = [];
     public $appointments, $interval, $workday, $morning = [], $afternoon = [], $evening = [];
@@ -96,8 +96,8 @@ class PatientDate extends Component
             ->where('day', $this->day)
             ->first();
 
-        $office_id = null;
-        $price = null;
+        // $office_id = null;
+        // $price = null;
 
         switch ($hour->turn) {
             case 'dawn':
@@ -118,7 +118,6 @@ class PatientDate extends Component
                 break;
         }
 
-        $this->$price = $price;
 
         $this->dispatchBrowserEvent('store-data', [
             'interval' => $hour->interval,

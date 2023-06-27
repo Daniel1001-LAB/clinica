@@ -23,8 +23,7 @@
                     <x-button wire:click="seleccionar('{{ $m }}')" icon="calendar"
                         class="mb-2 cursor-pointer text-sm px-4  w-full" primary label="{{ $m }} ">
                     </x-button>
-                    {{-- <p>{{ __('Consultorio Dirección') }}: {{ $workday->doctor->address }}</p> --}}
-                    <p>{{ __('Precio') }}: {{ $price }}</p>
+
                 @endforeach
             </ul>
 
