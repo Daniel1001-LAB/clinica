@@ -10,7 +10,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="#home">
                         <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
@@ -76,7 +76,7 @@
                                 <x-dropdown.item icon="user" href="{{ route('profile.show') }}"
                                     label="{{ __('Profile') }}" />
                                 <x-dropdown.item icon="clipboard" href="{{ url('/dashboard') }}"
-                                    label="{{ __('My Appointments') }}" />
+                                    label="{{ __('My History') }}" />
 
 
                                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

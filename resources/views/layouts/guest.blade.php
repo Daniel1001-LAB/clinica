@@ -25,8 +25,8 @@
 </head>
 
 <body style="font-family: Sora">
-    <x-notifications position="top-right" />
-
+    {{-- <x-notifications position="top-right" /> --}}
+    <x-dialog blur="md"/>
     <div class="">
         {{ $slot }}
     </div>

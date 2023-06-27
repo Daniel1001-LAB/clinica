@@ -19,20 +19,27 @@
 
             <ul>
                 <li class="capitalize text-gray-500 text-center mb-2">{{ __('morning') }}</li>
+
                 @foreach ($morning as $m)
                     <x-button wire:click="seleccionar('{{ $m }}')" icon="calendar"
                         class="mb-2 cursor-pointer text-sm px-4  w-full" primary label="{{ $m }} ">
                     </x-button>
-
+                    @if ($selectedOffice)
+                        <p>{{ $selectedOffice->local }}</p>
+                    @endif
                 @endforeach
             </ul>
 
             <ul>
                 <li class="capitalize text-gray-500 text-center mb-2">{{ __('afternoon') }}</li>
+
                 @foreach ($afternoon as $a)
                     <x-button wire:click="seleccionar('{{ $a }}')" icon="calendar"
                         class="mb-2 cursor-pointer text-sm px-4  w-full" primary label="{{ $a }}">
                     </x-button>
+                    @if ($selectedOffice)
+                        <p>{{ $selectedOffice->local }}</p>
+                    @endif
                 @endforeach
             </ul>
 
@@ -42,6 +49,9 @@
                     <x-button wire:click="seleccionar('{{ $e }}')" icon="calendar"
                         class="mb-2 cursor-pointer text-sm px-4  w-full" primary label="{{ $e }}">
                     </x-button>
+                    @if ($selectedOffice)
+                        <p>{{ $selectedOffice->local }}</p>
+                    @endif
                 @endforeach
             </ul>
             <x-errors />

@@ -9,17 +9,19 @@ use App\Models\Workday;
 use Carbon\Carbon;
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
+use WireUi\Traits\Actions;
 
 class PatientDate extends Component
 {
+    use Actions;
     public $openModal = false;
     public $selectedOfficeAddress;
-    public $selectedOfficePrice;
+    public $selectedOffice;
     public $officeAddress, $officePrice;
     public $price;
     public $date, $day, $doctor_id, $specialty_id, $intervals = [];
     public $appointments, $interval, $workday, $morning = [], $afternoon = [], $evening = [];
-
+    public $office;
     protected $listeners = ['selectDate' => 'selectDate', 'addAppointment' => 'addAppointment'];
 
     public function selectDate($doctorID, $specialtyID)
@@ -43,7 +45,7 @@ class PatientDate extends Component
 
         $newDate = new Carbon($value);
         $hoy = Carbon::now();
-        if($hoy->gt($newDate)){
+        if ($hoy->gt($newDate)) {
             session()->flash('message', 'La fecha seleccionada no es válida.');
             return redirect()->back();
         }
@@ -51,11 +53,11 @@ class PatientDate extends Component
         $work = Workday::where('doctor_id', $this->doctor_id)
             ->where('day', $this->day)->first();
 
-        if(
-        ($work->morning_start ==$work->morning_end) and
-        ($work->afternoon_start ==$work->afternoon_end) and
-        ($work->evening_start == $work->evening_end)
-        ){
+        if (
+            ($work->morning_start == $work->morning_end) and
+            ($work->afternoon_start == $work->afternoon_end) and
+            ($work->evening_start == $work->evening_end)
+        ) {
             session()->flash('message', 'No hay horario para el día selecionado.');
             return redirect()->back();
         };
@@ -91,64 +93,80 @@ class PatientDate extends Component
     public function seleccionar($m)
     {
 
-        $hour = Hour::where('interval', $m)->first();
-        $workday = Workday::where('doctor_id', $this->doctor_id)
-            ->where('day', $this->day)
-            ->first();
+        try {
+            $hour = Hour::where('interval', $m)->first();
+            $workday = Workday::where('doctor_id', $this->doctor_id)
+                ->where('day', $this->day)
+                ->first();
 
-        // $office_id = null;
-        // $price = null;
+            // $office_id = null;
+            // $price = null;
 
-        switch ($hour->turn) {
-            case 'dawn':
-                $office_id = $workday->evening_office;
-                $price = $workday->evening_price;
-                break;
-            case 'morning':
-                $office_id = $workday->morning_office;
-                $price = $workday->morning_price;
-                break;
-            case 'afternoon':
-                $office_id = $workday->afternoon_office;
-                $price = $workday->afternoon_price;
-                break;
-            case 'evening':
-                $office_id = $workday->evening_office;
-                $price = $workday->evening_price;
-                break;
-        }
+            switch ($hour->turn) {
+                case 'dawn':
+                    $office_id = $workday->evening_office;
+                    $price = $workday->evening_price;
+                    break;
+                case 'morning':
+                    $office_id = $workday->morning_office;
+                    $price = $workday->morning_price;
+                    break;
+                case 'afternoon':
+                    $office_id = $workday->afternoon_office;
+                    $price = $workday->afternoon_price;
+                    break;
+                case 'evening':
+                    $office_id = $workday->evening_office;
+                    $price = $workday->evening_price;
+                    break;
+            }
 
+            $office = Office::find($workday->office_id);
+            $this->selectedOffice = $office;
+            $this->officePrice = $price;
 
-        $this->dispatchBrowserEvent('store-data', [
-            'interval' => $hour->interval,
-            'doctor_id' => $this->doctor_id,
-            'specialty_id' => $this->specialty_id,
-            'day' => $this->day,
-            'date' => $this->date,
-            'office_id' => $office_id,
-            'price' => $price,
-        ]);
-
-        if (auth()->user()) {
-            $this->dispatchBrowserEvent('delete-data');
-            // Creacion de la cita
-            Appoinment::create([
-                'patient_id' => auth()->user()->id,
+            $this->dispatchBrowserEvent('store-data', [
+                'interval' => $hour->interval,
                 'doctor_id' => $this->doctor_id,
                 'specialty_id' => $this->specialty_id,
+                'day' => $this->day,
                 'date' => $this->date,
-                'hour' => $hour->time_hour,
-                'hour_id' => $hour->id,
                 'office_id' => $office_id,
                 'price' => $price,
             ]);
-            $this->openModal = false;
-        } else {
-            // Guardaremos la cita
-            $this->openModal = false;
-            // Loguearemos al usuario si no lo está
-            return redirect()->route('login');
-            // Crearemos la cita
+
+            if (auth()->user()) {
+                $this->dispatchBrowserEvent('delete-data');
+                // Creacion de la cita
+                Appoinment::create([
+                    'patient_id' => auth()->user()->id,
+                    'doctor_id' => $this->doctor_id,
+                    'specialty_id' => $this->specialty_id,
+                    'date' => $this->date,
+                    'hour' => $hour->time_hour,
+                    'hour_id' => $hour->id,
+                    'office_id' => $office_id,
+                    'price' => $price,
+                ]);
+                $this->openModal = false;
+            } else {
+                // Guardaremos la cita
+                $this->openModal = false;
+                // Loguearemos al usuario si no lo está
+                return redirect()->route('login');
+                // Crearemos la cita
+            }
+
+
+            $this->dialog()->success(
+                $title = 'Cita creada Correctamente',
+                $description = 'Se ha notificado al doctor de tu cita programada, el doctor se pondra en contacto contigo por correo electronico o por tu numero de telefono.'
+            );
+        } catch (\Exception $e) {
+            $this->dialog()->error(
+                $title = 'Error al crear la cita',
+                $description = $e->getMessage()
+            );
         }
     }
 
@@ -182,6 +200,7 @@ class PatientDate extends Component
 
     public function render()
     {
-        return view('livewire.patient.patient-date');
+
+        return view('livewire.patient.patient-date', );
     }
 }
