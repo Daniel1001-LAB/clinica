@@ -92,7 +92,8 @@
                                                 alt="{{ $specialty->name }}" />
                                         </div>
                                         <div>
-                                            <p class="text-sm tracking-wide capitalize text-gray-800">{{ $specialty->name }}</p>
+                                            <p class="text-sm tracking-wide capitalize text-gray-800">
+                                                {{ $specialty->name }}</p>
 
                                         </div>
                                     </div>
@@ -104,13 +105,11 @@
                 </div>
             @endforeach
         </div>
-    </div>
-    <div class="p-10">
-        @if (!empty($doctors))
+        <div class="p-10">
             {{ $doctors->links() }}
-        @endif
-
+        </div>
     </div>
+
 </div>
 
 

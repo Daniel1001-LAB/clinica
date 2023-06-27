@@ -38,23 +38,35 @@ class PatientDate extends Component
     public function updatedDate($value)
     {
         $this->morning = [];
-        $this->evening = [];
         $this->afternoon = [];
-        //dd($value);
-        $newDate = new Carbon($value);
-        $this->day = $newDate->dayOfWeek;
-        //dd($this->day);
+        $this->evening = [];
 
-        $workday = Workday::where('doctor_id', $this->doctor_id)->where('day', $this->day)->first();
-        //dd($workday);
-        $int1 = $this->getIntervalo($workday->morning_start, $workday->morning_end);
-        $int2 = $this->getIntervalo($workday->afternoon_start, $workday->afternoon_end);
-        $int3 = $this->getIntervalo($workday->evening_start, $workday->evening_end);
+        $newDate = new Carbon($value);
+        $hoy = Carbon::now();
+        if($hoy->gt($newDate)){
+            session()->flash('message', 'La fecha seleccionada no es válida.');
+            return redirect()->back();
+        }
+        $this->day = $newDate->dayOfWeek;
+        $work = Workday::where('doctor_id', $this->doctor_id)
+            ->where('day', $this->day)->first();
+
+        if(
+        ($work->morning_start ==$work->morning_end) and
+        ($work->afternoon_start ==$work->afternoon_end) and
+        ($work->evening_start == $work->evening_end)
+        ){
+            session()->flash('message', 'No hay horario para el día selecionado.');
+            return redirect()->back();
+        };
+
+        $int1 = $this->getIntervalo($work->morning_start, $work->morning_end);
+        $int2 = $this->getIntervalo($work->afternoon_start, $work->afternoon_end);
+        $int3 = $this->getIntervalo($work->evening_start, $work->evening_end);
 
         $this->morning = $int1;
         $this->afternoon = $int2;
         $this->evening = $int3;
-        // dd($int1, $int2, $int3);
     }
 
     public function getIntervalo($start, $end)

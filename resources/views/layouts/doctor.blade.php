@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="scroll-smooth" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -20,8 +20,8 @@
 
 <body class="font-sans antialiased">
     <x-banner />
-    <x-notifications position="bottom-right" />
-    <div class="min-h-screen bg-gray-100">
+    <x-notifications />
+    <div class="min-h-scree">
         <x-menu-doctor-nav/>
         <!-- Page Heading -->
         @if (isset($header))

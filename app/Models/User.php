@@ -164,4 +164,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Interview::class, 'doctor_id')->latest();
     }
+
+    public function pregnants(){
+        return $this->hasMany(Pregnant::class);
+    }
 }

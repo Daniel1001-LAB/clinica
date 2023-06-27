@@ -216,6 +216,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        'OpenAI' => Openai\Laravel\Facades\OpenAI::class,
     ])->toArray(),
 
 ];

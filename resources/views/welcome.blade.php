@@ -6,9 +6,10 @@
     {{-- Header Section Exit --}}
 
     <!-- Home section -->
-    <section id="home" class="mb-10 mx-auto">
-        <div class="wrap p-10"
-            style="background-image: url('{{ asset('assets/images/top-banner-img/Top-banner.jpg') }}');">
+    <section id="home" class="mb-10 mx-auto"
+        style="background-repeat: no-repeat;
+    background-size: cover; background-image: url('{{ asset('assets/images/top-banner-img/Top-banner.jpg') }}');">
+        <div class="wrap p-10">
             <div class="container mx-auto px-4 mt-2 p-5">
                 <div class="flex flex-wrap items-center justify-between">
                     <div class="md:w-1/2 md:order-2  lg:order-first order-1">
@@ -36,6 +37,12 @@
                                         {{ __('Log Out') }}
                                     </a>
                                 </form>
+
+                                <a href="#historial"
+                                    class="shadow-lg transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded inline-flex items-center capitalize ml-3 mb-2">
+                                    {{ __('medical history') }}
+                                    <i class="ms-2 fas fa-address-card"></i>
+                                </a>
                             @else
                                 <a href="{{ route('login') }}"
                                     class="shadow-lg transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded inline-flex items-center capitalize ml-3 mb-2">
@@ -48,6 +55,8 @@
                                     {{ __('register') }}
                                     <i class="ms-2 fas fa-address-card"></i>
                                 </a>
+
+
                             @endauth
                         </div>
                     </div>
@@ -66,43 +75,47 @@
             </div>
         </div>
 
-        <div class="container mx-auto mt-5 p-5">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div
-                    class="card text-center bg-white shadow-lg rounded-lg overflow-hidden hover:-translate-y-5 hover:shadow-2xl transition duration-500 ease-in-out">
-                    <div class="icon-box bg-blue-500 text-white p-4">
-                        <img decoding="async" src="{{ asset('assets/images/top-banner-img/Appointment-icon.png') }}">
-                    </div>
-                    <div class="p-4">
-                        <h4 class="text-lg font-semibold">{{ __('Easy Appointment') }}</h4>
-                        <p class="text-gray-600 mt-2">
-                            {{ __('Easy appointments for anyone at our UAPS San Luis Planes clinic') }}</p>
-                    </div>
-                </div>
-                <div
-                    class="card text-center bg-white shadow-lg rounded-lg overflow-hidden hover:-translate-y-5 hover:shadow-2xl transition duration-500 ease-in-out">
-                    <div class="icon-box bg-blue-500 text-white p-4">
-                        <img decoding="async" src="{{ asset('assets/images/top-banner-img/Emergency-icon.png') }}">
-                    </div>
-                    <div class="p-4">
-                        <h4 class="text-lg font-semibold">{{ __('Emergency Service') }}</h4>
-                        <p class="text-gray-600 mt-2">
-                            {{ __('Lorem Ipsum is simply is very dummy text of the printings and type setting') }}</p>
-                    </div>
-                </div>
-                <div
-                    class="card text-center bg-white shadow-lg rounded-lg overflow-hidden hover:-translate-y-5 hover:shadow-2xl transition duration-500 ease-in-out">
-                    <div class="icon-box bg-blue-500 text-white p-4">
-                        <img decoding="async" src="{{ asset('assets/images/top-banner-img/7-Service-icon.png') }}">
-                    </div>
-                    <div class="p-4">
-                        <h4 class="text-lg font-semibold">{{ __('24/7 Service') }}</h4>
-                        <p class="text-gray-600 mt-2">
-                            {{ __('Lorem Ipsum is simply is very dummy text of the printings and type setting') }}</p>
-                    </div>
+
+        <div class="relative">
+            <div class="absolute inset-x-0 bottom-0">
+                <svg viewBox="0 0 224 12" fill="currentColor" class="w-full -mb-1 text-white"
+                    preserveAspectRatio="none">
+                    <path
+                        d="M0,0 C48.8902582,6.27314026 86.2235915,9.40971039 112,9.40971039 C137.776408,9.40971039 175.109742,6.27314026 224,0 L224,12.0441132 L0,12.0441132 L0,0 Z">
+                    </path>
+                </svg>
+            </div>
+            <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-10">
+                <div class="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
+                    <h2 class="mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
+                        Control e Historial <br class="hidden md:block" />
+
+                        <span class="relative inline-block px-2">
+                            <div class="absolute inset-0 transform -skew-x-12 "></div>
+                            <span class="relative text-pink-500">Médico</span>
+                        </span>
+                    </h2>
+                    <p class="mb-6 text-base text-indigo-100 md:text-lg">
+                        Los historiales médicos no solo sirven para mejorar la calidad de la atención al paciente,
+                        además son instrumentos de control para los profesionales médico y para usted
+                    </p>
+
+                    <p class="max-w-md mb-10 text-xs tracking-wide text-indigo-100 sm:text-sm sm:mx-auto md:mb-16">
+                        Con nuestro servicio en linea usted controlará su historial médico.
+                    </p>
+                    <a href="#getstarted" aria-label="Scroll down"
+                        class="flex items-center justify-center w-10 h-10 mx-auto text-white duration-300 transform border border-gray-400 rounded-full hover:text-teal-accent-400 hover:border-teal-accent-400 hover:shadow hover:scale-110">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"
+                            fill="currentColor">
+                            <path
+                                d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z">
+                            </path>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
+
     </section>
     <!-- Home section exit -->
 
@@ -149,20 +162,55 @@
     <!-- Specialties section exit -->
 
     <!-- Appoinment section -->
-    <section id="appointment">
-        <div class="citas p-20"
-            style="background-image: url('{{ asset('assets/images/top-banner-img/Top-banner.jpg') }}');">
-            <div class="container mx-auto px-4 mt-2 p-5">
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <div class="col-span-1 lg:col-span-4 text-left md:text-center">
-                        <h3 class="text-white text-5xl">Request your appointment and start your smile makeover!</h3>
-                        <a href="#"
-                            class="shadow-lg m-auto mt-5 transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out bg-pink-500 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded inline-flex items-center capitalize">Request
-                            Appointment
-                            <i class="ms-5 fa-solid fa-ticket-simple fa-beat"></i>
-                        </a>
+    <section id="appointment" class="py-10 mb-10">
+        <div class="relative px-4 pt-16 mx-auto lg:py-32 md:px-8 xl:px-20 sm:max-w-xl md:max-w-full">
+            <div class="max-w-xl mx-auto lg:max-w-screen-xl">
+                <div class="mb-16 lg:max-w-lg lg:mb-0">
+                    <div class="max-w-xl mb-6">
+                        <div>
+                            <p
+                                class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-white uppercase rounded-full bg-blue-500">
+                                UAPS - SAN LUIS PLANES
+                            </p>
+                        </div>
+                        <h2
+                            class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+                            Deseas agendar una<br class="hidden md:block" />
+                            nueva
+                            <span class="inline-block text-blue-700">cita?</span>
+                        </h2>
+                        <p class="text-base text-gray-700 md:text-lg">
+                            Si ya tienes una cuenta inicia sesion y escoge cualquiera de nuestras especialidades medicas
+                            o al doctor de tu preferencia, sino tienes una cuenta puedes registrarte de forma gratuita.
+                        </p>
+                    </div>
+                    <div class="flex items-center">
+                        @auth
+                            <a href="#historial"
+                                class="shadow-lg transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center capitalize ml-3 mb-2">
+                                {{ __('medical history') }}
+                                <i class="ms-2 fas fa-address-card"></i>
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}"
+                                class="shadow-lg transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center capitalize ml-3 mb-2">
+                                {{ __('login') }}
+                                <i class="ms-2 fas fa-right-to-bracket"></i>
+                            </a>
+                            <a href="{{ route('register') }}"
+                                class="shadow-lg transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center capitalize ml-3 mb-2">
+                                {{ __('register') }}
+                                <i class="ms-2 fas fa-address-card"></i>
+                            </a>
+                        @endauth
                     </div>
                 </div>
+            </div>
+            <div
+                class="flex justify-center h-full overflow-hidden lg:w-2/3 xl:w-1/2 lg:absolute lg:justify-start lg:bottom-0 lg:right-0 lg:items-end">
+                <img src="https://kitwind.io/assets/kometa/full-browser.png"
+                    class="object-cover object-top w-full h-64 max-w-xl -mb-16 rounded shadow-2xl lg:ml-64 xl:ml-8 lg:-mb-24 xl:-mb-28 lg:h-auto lg:max-w-screen-md"
+                    alt="" />
             </div>
         </div>
     </section>
@@ -178,7 +226,7 @@
 
     <!-- Patients section -->
     @auth
-        <section id="info" class=" mb-4">
+        <section id="historial" class=" mb-4">
             <div class="container mx-auto ">
                 @livewire('patient.patient-info')
             </div>
@@ -186,13 +234,22 @@
     @endauth
 
     <!-- Patients section exit -->
-
-
     {{-- Modals Sections --}}
     <section>
         @livewire('patient.patient-date')
     </section>
     {{-- Modals Sections exit --}}
+
+
+    {{-- <div id="chat-container">
+        <div id="chat-messages"></div>
+        <div id="chat-input-container">
+            @csrf
+            <input type="text" id="chat-input" placeholder="Type your message here">
+            <button id="send-button">Send</button>
+        </div>
+    </div> --}}
+
 
     <footer class="bg-white dark:bg-gray-900">
         <div id="contact" class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
@@ -353,5 +410,49 @@
                 }
             })
         </script>
+
+{{--
+        <script>
+            const chatMessages = document.getElementById('chat-messages');
+            const chatInput = document.getElementById('chat-input');
+            const sendButton = document.getElementById('send-button');
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            sendButton.addEventListener('click', sendMessage);
+
+            function sendMessage() {
+                const question = chatInput.value.trim();
+
+                if (question === '') {
+                    return;
+                }
+
+                addMessageToChat(question, 'user');
+                chatInput.value = '';
+
+                // Send the question to the server using AJAX (or any other method you prefer)
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/chat-openai', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        const answer = response.response;
+                        addMessageToChat(answer, 'bot');
+                    }
+                };
+                xhr.send('question=' + encodeURIComponent(question));
+            }
+
+            function addMessageToChat(message, sender) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', sender);
+                messageElement.textContent = message;
+
+                chatMessages.appendChild(messageElement);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        </script> --}}
     @endpush
 </x-guest-layout>

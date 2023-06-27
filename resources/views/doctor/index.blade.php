@@ -2,14 +2,15 @@
     <div class="grid mb-4 pb-10 px-6 mx-4 ">
 
         <div class="grid grid-cols-12 gap-6">
-            <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
+            <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9 ">
                 <div class="col-span-12 mt-8">
-                    <div class="flex items-center h-10 intro-y">
-                        <h2 class="mr-5 text-lg font-medium truncate capitalize">
+                    <div class="flex items-center h-10 intro-y justify-between">
+                        <h2 class="mr-5 text-lg font-medium truncate capitalize ">
                             panel principal de:
                             <x-badge lg right-icon="information-circle" info label="  {{ auth()->user()->name }}" />
 
                         </h2>
+                        <x-button href="#charts" icon="clipboard-list" primary label="ver graficos generales" />
                     </div>
                     <div class="grid grid-cols-12 gap-6 mt-5">
                         @if ($latestInterview)
@@ -144,10 +145,12 @@
                     </div>
                 </div>
                 <div class="col-span-12 mt-5">
-                    <div class="grid gap-2 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+                    <div class="grid gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+                        <div class="bg-white shadow-lg rounded-lg">
+                            @livewire('patient.patient-list')
+                        </div>
                         <div class="bg-white shadow-lg rounded-lg">
                             @livewire('appointment.appointment-list')
-                            @livewire('patient.patient-list')
                         </div>
                     </div>
                 </div>
@@ -156,8 +159,99 @@
                         @livewire('schedulle.schedulle')
                     </div>
                 </div>
+
+                <div class="col-span-12 mt-5" id="charts">
+                    <div class=" pt-6 2xl:container">
+                        <div class="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
+                            <div class="md:col-span-2 lg:col-span-1 ">
+                                <div class="h-75  rounded-xl border border-gray-200 bg-white shadow-lg">
+                                    <div class="bg-gray-200 px-6 py-4 rounded-t-xl">
+                                        <h2 class="text-lg font-semibold text-gray-800">Usuarios Registrados
+                                            Recientemente</h2>
+                                    </div>
+                                    <div class="p-6 ">
+                                        {!! $recentP->container() !!}
+                                        {!! $recentP->script() !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="h-75  rounded-xl border border-gray-200 bg-white shadow-lg">
+                                    <div class="bg-gray-200 px-6 py-4 rounded-t-xl">
+                                        <h2 class="text-lg font-semibold text-gray-800">Citas del año por mes</h2>
+                                    </div>
+                                    <div class="p-6">
+                                        {!! $appoinmentsPerMonth->container() !!}
+                                        {!! $appoinmentsPerMonth->script() !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-12 mt-5" id="charts">
+                    <div class=" pt-6 2xl:container">
+                        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                            <div class="md:col-span-2 lg:col-span-1">
+                                <div class="h-75   rounded-xl border border-gray-200 bg-white shadow-lg">
+                                    <div class="bg-gray-200 px-6 py-4 rounded-t-xl">
+                                        <h2 class="text-lg font-semibold text-gray-800">Ranking de Medicos
+                                            Recientemente</h2>
+                                    </div>
+                                    <div class="p-6">
+                                        {!! $ranking->container() !!}
+                                        {!! $ranking->script() !!}
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div>
+                                <div class="h-75  rounded-xl border border-gray-200 bg-white shadow-lg">
+                                    <div class="bg-gray-200 px-6 py-4 rounded-t-xl">
+                                        <h2 class="text-lg font-semibold text-gray-800">Distribución de Citas por Día
+                                            de la Semana</h2>
+                                    </div>
+                                    <div class="p-6">
+                                        {!! $appDays->container() !!}
+                                        {!! $appDays->script() !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="h-75  rounded-xl border border-gray-200 bg-white shadow-lg">
+                                    <div class="bg-gray-200 px-6 py-4 rounded-t-xl">
+                                        <h2 class="text-lg font-semibold text-gray-800">Especialidades mas cotizadas</h2>
+                                    </div>
+                                    <div class="p-6">
+                                        {!! $specialtiesDemand->container() !!}
+                                    {!! $specialtiesDemand->script() !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-12">
+                    <div class="md:col-span-2 lg:col-span-1">
+                        <div class="h-full   rounded-xl border border-gray-200 bg-white shadow-lg">
+                            <div class="bg-gray-200 px-6 py-4 rounded-t-xl">
+                                <h2 class="text-lg font-semibold text-gray-800">Pacientes por Edad General</h2>
+                            </div>
+                            <div class="p-6">
+                                {!! $agesDemand->container() !!}
+                                {!! $agesDemand->script() !!}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    @push('script')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+    @endpush
 
 </x-doctor-layout>

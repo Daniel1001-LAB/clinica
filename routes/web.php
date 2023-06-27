@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ChatbotController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OpenAIController;
 use App\Http\Controllers\Reports\ExportController;
 use App\Http\Livewire\Asignar\AsignarController;
 use App\Http\Livewire\Cashouts\CashoutsController;
@@ -40,7 +42,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
     if (auth()->user()) {
-        if (User::role(['admin', 'doctor','admin-pos'])) {
+        if (User::role(['admin', 'doctor', 'admin-pos'])) {
             return redirect('redirects');
         }
     } else {
@@ -77,9 +79,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('report/excel/{user}/{type}', [ExportController::class, 'reporteExcel']);
 });
 
-
-
-
+Route::post('send', [ChatbotController::class, 'sendChat']);
+Route::post('/chat-openai', [OpenAIController::class, 'chatOpenAi'])->middleware('web');
 // GOOGLE
 Route::get('/login-google', function () {
     return Socialite::driver('google')->redirect();

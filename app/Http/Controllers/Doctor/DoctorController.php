@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers\Doctor;
 
+use App\Charts\AgesDemand;
+use App\Charts\AppoinmentsDays;
+use App\Charts\AppointmentsPerMonthChart;
+use App\Charts\PatientsCreateDate;
+use App\Charts\RankingDoctors;
+use App\Charts\SpecialtiesDemand;
 use App\Http\Controllers\Controller;
 use App\Models\Appoinment;
 use App\Models\Disase;
@@ -82,9 +88,25 @@ class DoctorController extends Controller
             // No se encontraron enfermedades
         }
 
+
+        $recentP = new PatientsCreateDate;
+        $recentP->createChart();
+        $appoinmentsPerMonth = new AppointmentsPerMonthChart;
+        $appoinmentsPerMonth->createChart();
+        $ranking = new RankingDoctors;
+        $ranking->createChart();
+        $appDays = new AppoinmentsDays;
+        $appDays->createChart();
+        $specialtiesDemand = new SpecialtiesDemand;
+        $specialtiesDemand->createChart();
+        $agesDemand = new AgesDemand;
+        $agesDemand->createChart();
+
         return view('doctor.index', [
             'interviews' => $interviews, 'mostCommonSuspicion' => $mostCommonSuspicion, 'mostCommonDisase' => $mostCommonDisase,
-            'latestInterview' => $latestInterview, 'mostCommonSurgery' => $mostCommonSurgery,
+            'latestInterview' => $latestInterview, 'mostCommonSurgery' => $mostCommonSurgery, 'recentP' => $recentP, 'appoinmentsPerMonth' => $appoinmentsPerMonth,
+            'ranking' => $ranking, 'appDays' => $appDays, 'specialtiesDemand' => $specialtiesDemand, 'agesDemand' => $agesDemand,
         ]);
     }
+
 }

@@ -3,10 +3,19 @@
     <div class="relative bg-white py-6 px-6 rounded-3xl w-full h-full my-4 shadow-xl border-t-4 border-blue-400">
         <div class=" text-white flex items-center absolute rounded-full py-1 px-1 shadow-xl bg-blue-500 left-4 -top-6">
             <!-- svg  -->
-            <x-avatar xl src="{{ $patient->profile_photo_path }}" />
+            <x-avatar xl src="{{ $patient->profile_photo_url }}" />
         </div>
         <div class="mt-8">
-            <p class="text-xl font-semibold my-2 capitalize">{{__('interview resume')}}: {{ $patient->name }}</p>
+            <div class="flex justify-between">
+                <p class="text-xl font-semibold my-2 capitalize">{{ __('interview resume') }}: {{ $patient->name }}</p>
+                <div class="">
+                    <x-button href="{{ route('interviews.pdf', ['interview' => $interview->id]) }}" sm
+                        icon="clipboard-list" secondary label="PDF" />
+                    <x-button href="{{ route('interviews.pdf', ['interview' => $interview->id]) }}" sm
+                        icon="clipboard-list" primary label="Imprimir PDF" />
+                </div>
+            </div>
+
             <div class="flex space-x-2 text-gray-400 text-sm">
                 <!-- svg  -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -34,11 +43,11 @@
 
             <div class="grid grid-cols-2 gap-2">
                 <div class="my-2">
-                    <p class="font-semibold text-base mb-2">{{__('suspicion')}}</p>
+                    <p class="font-semibold text-base mb-2">{{ __('suspicion') }}</p>
                     <p class="">{{ $interview->suspicion }}</p>
                 </div>
                 <div class="my-2">
-                    <p class="font-semibold text-base mb-2">{{__('diagnosis')}}</p>
+                    <p class="font-semibold text-base mb-2">{{ __('diagnosis') }}</p>
                     <p class="">{{ $interview->diagnosis }}</p>
                 </div>
             </div>

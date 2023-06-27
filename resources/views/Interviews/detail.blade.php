@@ -47,6 +47,7 @@
                     <!-- Experience and education -->
                     <div class="relative bg-white  rounded-3xl w-full h-full my-4 shadow-xl">
                         @livewire('patient.patient-interview-resume', compact('interview'))
+
                     </div>
                     <!-- End of Experience and education grid -->
                     <!-- End of profile tab -->
@@ -55,29 +56,4 @@
         </div>
     </div>
 
-    {{-- <section>
-        <div class="container mx-auto p-5 grid grid-cols-1 md:grid-cols-12 gap-4">
-            <div class="md:col-span-3">
-                <!-- Componente medicine-controller -->
-                @livewire('medicine.medicine-controller')
-            </div>
-            <div class="md:col-span-6">
-                <div class="flex flex-col w-full h-full">
-                    <!-- Componente A -->
-                    <div class="flex-grow flex-auto">
-                        @livewire('patient.patient-medicine', compact('interview'))
-                    </div>
-
-                    <!-- Componente B -->
-                    <div class="flex-grow mt-4">
-                        @livewire('patient.patient-medicine', compact('interview'))
-                    </div>
-                </div>
-            </div>
-            <div class="md:col-span-3">
-                <!-- Componente patient-file -->
-                @livewire('patient.patient-file', compact('interview'))
-            </div>
-        </div>
-    </section> --}}
 </x-doctor-layout>

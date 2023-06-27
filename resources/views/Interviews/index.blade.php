@@ -1,5 +1,4 @@
 <x-doctor-layout>
-
     <!-- component -->
     <style>
         :root {
@@ -19,8 +18,8 @@
         }
     </style>
 
-    <div class="bg-gray-100 bg-contain">
-        <div class="container mx-auto p-5">
+    <div class="bg-gray-100 bg-contain pt-4">
+        <div class="container mx-auto p-2">
             <div class="md:flex no-wrap md:-mx-2  ">
                 <!-- Left Side -->
                 <div class="w-full md:w-3/12 md:mx-2 ">
@@ -37,15 +36,54 @@
                             <li class="flex items-center py-3">
                                 <span>Status</span>
                                 <span class="ml-auto"><span
-                                        class="bg-blue-500 py-1 px-2 rounded text-white text-sm">{{$user->status}}</span></span>
+                                        class="bg-blue-500 py-1 px-2 rounded text-white text-sm">{{ $user->status }}</span></span>
                             </li>
                             <li class="flex items-center py-3">
                                 <span>Member since</span>
                                 <span class="ml-auto">{{ $user->created_at->format('d-m-Y') }}</span>
                             </li>
+                            @if ($user->gender == 'female')
+                                <li class="flex items-center py-3 ">
+                                    <span class="text-black underline">{{('Status of woman')}}</span>
+                                    @if ($user->pregnants()->where('active', 1)->count() == 0)
+                                        <span
+                                            class="ml-auto">
+                                            @livewire('patient.patient-gesta', ['user' => $user->id])
+                                        </span>
+                                    @else
+                                        <span
+                                            class="ml-auto bg-pink-700 text-white px-2 py-1 text-sm  rounded">
+                                            EN CONTROL
+                                        </span>
+                                    @endif
+                                </li>
+                            @endif
+
+
                         </ul>
                     </div>
                     <!-- End of profile card -->
+                    <div class="my-4"></div>
+
+                    <!-- Friends card -->
+                    <div class="bg-white p-3 hover:shadow rounded-xl shadow-lg">
+                        <div
+                            class="flex items-center justify-center space-x-3 font-semibold text-gray-900 text-xl leading-8">
+                            <span class="text-blue-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
+                                </svg>
+
+                            </span>
+                            <span class="capitalize">{{ __('Appoinments history') }}</span>
+                        </div>
+                        <div class="grid grid-cols-1">
+                            @livewire('patient.patient-appoinment', ['user' => $user->id])
+                        </div>
+                    </div>
+                    <!-- End of friends card -->
                     <div class="my-4"></div>
                     <!-- Friends card -->
                     <div class="bg-white p-3 hover:shadow rounded-xl shadow-lg">
@@ -88,13 +126,12 @@
                     <!-- End of friends card -->
 
 
-
                 </div>
                 <!-- Right Side -->
-                <div class="w-full md:w-9/12 mx-2 h-full">
+                <div class="w-full md:w-9/12 mx-2 md:h-full">
                     <!-- Profile tab -->
                     <!-- patient Section -->
-                    <div class="relative bg-white py-6 px-6 rounded-3xl w-full my-4 shadow-xl">
+                    <div class="relative bg-white py-6 px-6 rounded-3xl h-full w-full my-4 shadow-xl">
                         <div
                             class=" text-white flex items-center absolute rounded-full py-4 px-4 shadow-xl bg-blue-500 left-4 -top-6">
                             <!-- svg  -->
@@ -169,8 +206,9 @@
                     </div>
                     <!-- End of patient section -->
                     <div class="my-8"></div>
-                    <!-- Experience and education -->
-                    <div class="relative bg-white py-6 px-6 rounded-3xl w-full h-full my-4 shadow-xl border-b-4 border-blue-400 ">
+
+                    <div
+                        class="relative bg-white py-6 px-6 rounded-3xl w-full h-full my-4 shadow-xl border-t-4 border-blue-400 ">
                         <div
                             class=" text-white flex items-center absolute rounded-full py-4 px-4 shadow-xl bg-blue-500 left-4 -top-6">
                             <!-- svg  -->
@@ -183,7 +221,7 @@
                         </div>
                         <div class="mt-8">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
-                                <div class="h-full shadow-xl">
+                                <div class="h-full shadow-xl rounded-xl ">
                                     <div class="flex justify-start ">
                                         <!-- svg  -->
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -197,7 +235,7 @@
                                     </div>
                                     @livewire('interview.interview-patient-vaccine', ['user' => $user->id])
                                 </div>
-                                <div class="h-full shadow-xl">
+                                <div class="h-full shadow-xl rounded-2xl">
                                     <div class=" flex justify-start ">
                                         <!-- svg  -->
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -217,9 +255,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- End of Experience and education grid -->
-                <!-- End of profile tab -->
+
             </div>
+
+
         </div>
     </div>
 

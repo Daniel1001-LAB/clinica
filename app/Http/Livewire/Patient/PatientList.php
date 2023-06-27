@@ -13,6 +13,7 @@ class PatientList extends Component
     public $search;
 
 
+
     public function updatingSearch(){
         $this->resetPage();
     }

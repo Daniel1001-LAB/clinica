@@ -36,4 +36,11 @@ class Interview extends Model
     public function files(){
         return $this->belongsToMany(File::class)->withPivot('user_id')->withTimestamps();
     }
+
+    public function medicines()
+{
+    return $this->belongsToMany(Medicine::class, 'medicine_user')
+                ->withPivot('user_id', 'instruction', 'dosage')
+                ->withTimestamps();
+}
 }

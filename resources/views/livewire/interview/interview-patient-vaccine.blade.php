@@ -1,7 +1,7 @@
 <div class="container">
     <div class="w-full">
         <!-- Profile Card -->
-        <div class="bg-white  rounded-lg ">
+        <div class="bg-white  rounded-2xl ">
             <section class="antialiased bg-gray-100 text-gray-600 ">
                 <div class="flex flex-col justify-center h-full">
                     <!-- Table -->

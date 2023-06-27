@@ -27,6 +27,9 @@ Route::middleware('role:doctor')->get('/workdays',WorkdayController::class)->nam
 Route::middleware('role:doctor')->get('/curriculum',[CurriculumController::class, 'index'])->name('curriculum.index');
 Route::middleware('role:doctor')->get('/interviews/{user}',[InterviewController::class, 'index'])->name('interviews.index');
 Route::middleware('role:doctor')->get('/interviews/detail/{interview}',[InterviewController::class, 'detail'])->name('interviews.detail');
+
+Route::middleware('role:doctor')->get('/interviews/detail/{interview}/pdf',[InterviewController::class, 'pdf'])->name('interviews.pdf');
+
 Route::middleware('role:doctor')->get('/disases',DisaseController::class)->name('disases.index');
 Route::middleware('role:doctor')->get('/surgeries',SurgeryController::class)->name('surgeries.index');
 
