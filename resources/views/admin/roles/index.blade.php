@@ -32,9 +32,9 @@
                     <tbody>
                         @foreach ($roles as $role)
                         <tr>
-                            <td width="20%" >{{ $role->id }}</td>
-                            <td class="text-capitalize" width="60%">{{ __($role->name) }}</td>
-                            <td width="10%">
+                            <td width="5%" >{{ $role->id }}</td>
+                            <td class="text-capitalize" width="70%">{{ __($role->name) }}</td>
+                            <td width="20%">
                                 <a class="btn btn-primary rounded-circle p-2 lh-1" href="{{ route('roles.show', $role->id)}}"> <i class="fa-solid fa-eye"></i></a>
                                 <a class="btn btn-warning rounded-circle p-2 lh-1" href="{{ route('roles.edit', $role->id)}}"> <i class="fa-solid fa-pen-to-square"></i></a>
                                 <form action="{{ route('roles.destroy', $role->id)}}" method="POST" class="btn btn-danger rounded-circle p-2 lh-1">
