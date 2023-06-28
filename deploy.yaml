@@ -1,0 +1,34 @@
+import:
+  - recipe/laravel.php
+  - contrib/npm.php
+
+config:
+  repository: 'https://github.com/Daniuwu504/clinica.git'
+
+hosts:
+  UAPS:
+    remote_user: ubuntu
+    hostname: uaps-sanluis.com
+    deploy_path: '/var/www/{{hostname}}'
+
+tasks:
+  deploy:
+    - deploy:prepare
+    - deploy:vendors
+    - artisan:storage:link
+    - artisan:config:cache
+    - artisan:route:cache
+    - artisan:view:cache
+    - artisan:event:cache
+    - artisan:migrate
+    - npm:install
+    - build
+    - deploy:publish
+
+
+  build:
+    - cd: "{{release_path}}"
+    - run: "npm run build"
+
+after:
+  deploy:failed: deploy:unlock
