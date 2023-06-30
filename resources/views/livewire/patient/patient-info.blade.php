@@ -21,18 +21,14 @@
 
         </h2>
         <p class="text-base text-gray-700 md:text-lg">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam, eaque
-            ipsa quae.
+            {{ __('In this section you will see your medical history and everything related to your appointments and doctors, you will be able to see your medical history and prescription drugs.') }}
         </p>
     </div>
     <div class="grid gap-4 row-gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <div class="flex flex-col justify-between p-5 border rounded shadow-sm  h-96 overflow-y-auto">
             <div>
                 <div class="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50">
-                    <svg class="w-12 h-12 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-                        <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"
-                            points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-                    </svg>
+                    <i class="fa-regular fa-calendar-check fa-beat fa-2xl" style="color: #1b56bb;"></i>
                 </div>
                 <h6 class="mb-2 font-semibold leading-5 capitalize">{{ 'appointments' }}</h6>
                 @forelse ($data['appointments'] as $a)
@@ -89,10 +85,7 @@
         <div class="flex flex-col justify-between p-5 border h-96 rounded shadow-sm overflow-y-auto">
             <div>
                 <div class="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50">
-                    <svg class="w-12 h-12 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-                        <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"
-                            points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-                    </svg>
+                    <i class="fa-solid fa-clipboard-question fa-beat fa-2xl" style="color: #1b56bb;"></i>
                 </div>
                 <h6 class="mb-2 font-semibold leading-5 capitalize">{{ __('interviews') }}</h6>
                 @forelse ($data['interviews'] as $i)
@@ -137,10 +130,7 @@
         <div class="flex flex-col justify-between p-5 border h-96 rounded shadow-sm overflow-y-auto">
             <div>
                 <div class="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50">
-                    <svg class="w-12 h-12 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-                        <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"
-                            points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-                    </svg>
+                    <i class="fa-solid fa-file-waveform fa-beat fa-2xl" style="color: #1b56bb;"></i>
                 </div>
                 <h6 class="mb-2 font-semibold leading-5 capitalize">{{ __('your files') }}</h6>
                 <ul class="w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -184,10 +174,7 @@
         <div class="flex flex-col justify-between p-5 border rounded shadow-sm overflow-y-auto h-96">
             <div>
                 <div class="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50">
-                    <svg class="w-12 h-12 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-                        <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"
-                            points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-                    </svg>
+                    <i class="fa-solid fa-prescription-bottle fa-beat fa-2xl" style="color: #1b56bb;"></i>
                 </div>
                 <h6 class="mb-2 font-semibold leading-5 capitalize">{{ __('medicines') }}</h6>
                 @forelse ($data['medicines'] as $medicine)

@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\Appoinment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -10,13 +11,13 @@ use Illuminate\Notifications\Notification;
 class AppoinmentStatusCancelNotification extends Notification
 {
     use Queueable;
-
+    protected $appoinment;
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(Appoinment $appoinment)
     {
-        //
+        $this->appoinment = $appoinment;
     }
 
     /**
@@ -34,10 +35,13 @@ class AppoinmentStatusCancelNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
+
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('Cita Cancelada')
+                    ->view('emails.appoinment-cancel',[
+                        'notifiable' => $notifiable,
+                        'appoinment' => $this->appoinment,
+                    ]);
     }
 
     /**

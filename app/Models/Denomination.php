@@ -14,9 +14,9 @@ class Denomination extends Model
     {
 
         if ($this->image != null) {
-            return (file_exists('storage/denominations/' . $this->image) ? 'denominations/' . $this->image : 'no-photos.png');
+            return (file_exists('storage/denominations/' . $this->image) ? 'denominations/' . $this->image : 'noimg.jpg');
         } else {
-            return 'no-photos.png';
+            return 'noimg.jpg';
         }
     }
 }

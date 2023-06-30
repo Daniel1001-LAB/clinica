@@ -37,10 +37,14 @@ class AppoinmentNotify extends Notification
     {
         return (new MailMessage)
                     ->subject('Notificación de cita')
-                    ->greeting('Hola ' . $notifiable->name)
-                    ->line('Has sido notificado sobre una cita programada para el día ' . $this->appoinment->date)
-                    ->line('Por favor, confirma tu asistencia o comunícate con nosotros si necesitas cancelarla.')
-                    ->line('Gracias por tu atención.');
+                    // ->greeting('Hola ' . $notifiable->name)
+                    ->view('emails.appoinment-notify',[
+                        'notifiable' => $notifiable,
+                        'appoinment' => $this->appoinment,
+                    ]);
+                    // ->line('Has sido notificado sobre una cita programada para el día ' . $this->appoinment->date)
+                    // ->line('Por favor, confirma tu asistencia o comunícate con nosotros si necesitas cancelarla.')
+                    // ->line('Gracias por tu atención.');
     }
 
     /**

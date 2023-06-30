@@ -24,9 +24,7 @@
                     <x-button wire:click="seleccionar('{{ $m }}')" icon="calendar"
                         class="mb-2 cursor-pointer text-sm px-4  w-full" primary label="{{ $m }} ">
                     </x-button>
-                    @if ($selectedOffice)
-                        <p>{{ $selectedOffice->local }}</p>
-                    @endif
+
                 @endforeach
             </ul>
 
@@ -37,9 +35,7 @@
                     <x-button wire:click="seleccionar('{{ $a }}')" icon="calendar"
                         class="mb-2 cursor-pointer text-sm px-4  w-full" primary label="{{ $a }}">
                     </x-button>
-                    @if ($selectedOffice)
-                        <p>{{ $selectedOffice->local }}</p>
-                    @endif
+
                 @endforeach
             </ul>
 
@@ -49,9 +45,7 @@
                     <x-button wire:click="seleccionar('{{ $e }}')" icon="calendar"
                         class="mb-2 cursor-pointer text-sm px-4  w-full" primary label="{{ $e }}">
                     </x-button>
-                    @if ($selectedOffice)
-                        <p>{{ $selectedOffice->local }}</p>
-                    @endif
+
                 @endforeach
             </ul>
             <x-errors />
@@ -76,7 +70,7 @@
             localStorage.setItem('specialty_id', event.detail.specialty_id)
             localStorage.setItem('day', event.detail.day)
             localStorage.setItem('date', event.detail.date)
-            localStorage.setItem('office_id', event.detail.office)
+            localStorage.setItem('office_id', event.detail.office_id)
             localStorage.setItem('price', event.detail.price)
         })
 

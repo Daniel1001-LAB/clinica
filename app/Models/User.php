@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -57,6 +58,17 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_secret',
     ];
 
+        /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
     /**
      * The attributes that should be cast.
      *
@@ -84,12 +96,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
-    public function getProfilePhotoUrlAttribute()
-{
-    return $this->profile_photo_path
-        ? asset('storage/profile-photos/' . $this->profile_photo_path)
-        : $this->defaultProfilePhotoUrl();
-}
+    // public function getProfilePhotoUrlAttribute()
+    // {
+    //     return $this->profile_photo_path
+    //         ? asset('storage/profile-photos/')
+    //         : $this->defaultProfilePhotoUrl();
+    // }
 
     public function specialties()
     {
@@ -128,7 +140,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function symptoms()
     {
-        return $this->belongsToMany(Symptom::class, 'symptom_user','patient_id')->withPivot('interview_id');
+        return $this->belongsToMany(Symptom::class, 'symptom_user', 'patient_id')->withPivot('interview_id');
     }
 
     public function medicines()
@@ -141,7 +153,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Interview::class, 'patient_id');
     }
 
-    public function files(){
+    public function files()
+    {
         return $this->hasMany(File::class);
     }
 
@@ -152,12 +165,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function allergies()
     {
-        return $this->belongsToMany(Pathology::class,'pathology_user','user_id','pathology_id')->withPivot(['allergy'])->withTimestamps()->orderBy('name');
+        return $this->belongsToMany(Pathology::class, 'pathology_user', 'user_id', 'pathology_id')->withPivot(['allergy'])->withTimestamps()->orderBy('name');
     }
 
     public function vaccines()
     {
-        return $this->belongsToMany(Vaccine::class)->withPivot(['date','vaccine_id'])->withTimestamps()->orderBy('date', 'desc');
+        return $this->belongsToMany(Vaccine::class)->withPivot(['date', 'vaccine_id'])->withTimestamps()->orderBy('date', 'desc');
     }
 
     public function latestInterview()
@@ -165,7 +178,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Interview::class, 'doctor_id')->latest();
     }
 
-    public function pregnants(){
+    public function pregnants()
+    {
         return $this->hasMany(Pregnant::class);
     }
 }

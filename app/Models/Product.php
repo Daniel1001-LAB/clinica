@@ -16,9 +16,9 @@ class Product extends Model
 
     public function getImagenAttribute(){
         if ($this->image != null) {
-            return (file_exists('storage/products/' . $this->image) ? 'products/' . $this->image : 'no-photos.png');
+            return (file_exists('storage/products/' . $this->image) ? 'products/' . $this->image : 'noimg.jpg');
         } else {
-            return 'no-photos.png';
+            return 'noimg.jpg';
         }
     }
 }

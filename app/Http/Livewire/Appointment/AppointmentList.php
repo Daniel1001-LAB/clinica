@@ -64,6 +64,11 @@ class AppointmentList extends Component
         $appoinment->status = Appoinment::CONFIRMED;
         $appoinment->save();
         event(new AppoinmentStatusEvent($appoinment));
+
+        $this->notification()->success(
+            $title = 'Notificacion Enviada',
+            $description = 'Se ha notificado correctamente al paciente.'
+        );
     }
 
     public function canceled(Appoinment $appoinment)
@@ -72,6 +77,11 @@ class AppointmentList extends Component
         $appoinment->status = Appoinment::CANCELED;
         $appoinment->save();
         event(new AppoinmentStatusEvent($appoinment));
+
+        $this->notification()->success(
+            $title = 'Notificacion Enviada',
+            $description = 'Se ha notificado correctamente al paciente de la cancelacion de la cita.'
+        );
     }
 
     public function accomplished(Appoinment $appoinment)

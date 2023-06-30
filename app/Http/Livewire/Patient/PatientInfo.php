@@ -12,7 +12,13 @@ class PatientInfo extends Component
     use WithPagination;
     public $desde;
     public $hasta;
+    protected $listeners =['actualizar'=>'actualizar'];
 
+    public function actualizar(){
+        $value = 'Su Cita ha sido creada Exitósamente, revise Historial';
+        $this->dispatchBrowserEvent('name-updated', ['newName' => $value]);
+    $this->render();
+}
 
     public function updatingSearch()
     {

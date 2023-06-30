@@ -2,8 +2,9 @@ import:
   - recipe/laravel.php
   - contrib/npm.php
 
+
 config:
-  repository: 'https://github.com/Daniuwu504/clinica.git'
+  repository: 'yes'
 
 hosts:
   UAPS:
@@ -24,6 +25,7 @@ tasks:
     - npm:install
     - build
     - deploy:publish
+
 
 
   build:

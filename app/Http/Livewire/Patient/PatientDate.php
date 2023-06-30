@@ -121,9 +121,9 @@ class PatientDate extends Component
                     break;
             }
 
-            $office = Office::find($workday->office_id);
-            $this->selectedOffice = $office;
-            $this->officePrice = $price;
+            // $office = Office::find($workday->office_id);
+            // $this->selectedOffice = $office;
+            // $this->officePrice = $price;
 
             $this->dispatchBrowserEvent('store-data', [
                 'interval' => $hour->interval,
@@ -193,6 +193,7 @@ class PatientDate extends Component
                 'office_id' => $office_id,
                 'price' => $price,
             ]);
+            $this->emitTo('patient.patient-info','actualizar');
         }
         $this->dispatchBrowserEvent('delete-data');
         // $this->openModal = false;

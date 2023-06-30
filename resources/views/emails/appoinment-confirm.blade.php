@@ -31,7 +31,7 @@
             </td>
         </tr>
         <tr>
-            @include('emails.partials.footer')
+            {{-- @include('emails.partials.footer') --}}
         </tr>
     </table>
 </body>

@@ -23,6 +23,7 @@ use App\Models\Specialty;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -109,6 +110,8 @@ Route::get('/google-callback', function () {
 
     return redirect('redirects');
 });
+
+
 
 // FACEBOOK
 Route::get('/login-facebook', function () {
@@ -206,3 +209,6 @@ Route::post('/reset-password', function (Request $request) {
 })->middleware('guest')->name('password.update');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('redirects', [HomeController::class, 'index']);
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');

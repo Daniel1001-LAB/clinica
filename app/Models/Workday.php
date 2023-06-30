@@ -73,9 +73,24 @@ class Workday extends Model
         return $hour12->str_hour_12;
     }
 
+    public function morningOffice()
+    {
+        return $this->belongsTo(Office::class, 'morning_office');
+    }
+
+    public function afternoonOffice()
+    {
+        return $this->belongsTo(Office::class, 'afternoon_office');
+    }
+
+    public function eveningOffice()
+    {
+        return $this->belongsTo(Office::class, 'evening_office');
+    }
+
     public function getMOAttribute()
     {
-        $office = Office::find($this->morning_office);
+        $office = $this->morningOffice;
         if ($office) {
             $address = $office->local . ', ' . $office->address;
         } else {
@@ -86,9 +101,9 @@ class Workday extends Model
 
     public function getAOAttribute()
     {
-        $office = Office::find($this->afternoon_office);
+        $office = $this->afternoonOffice;
         if ($office) {
-            $address = $office->local . ' , ' . $office->address;
+            $address = $office->local . ', ' . $office->address;
         } else {
             $address = "No tiene oficina registrada";
         }
@@ -97,7 +112,7 @@ class Workday extends Model
 
     public function getEOAttribute()
     {
-        $office = Office::find($this->evening_office);
+        $office = $this->eveningOffice;
         if ($office) {
             $address = $office->local . ', ' . $office->address;
         } else {
@@ -105,6 +120,7 @@ class Workday extends Model
         }
         return $address;
     }
+
 
 
     public function doctor()
