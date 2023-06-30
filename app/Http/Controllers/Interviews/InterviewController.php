@@ -8,8 +8,10 @@ use App\Models\File;
 use App\Models\Interview;
 use App\Models\Medicine;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\PDF;
+
 
 class InterviewController extends Controller
 {
@@ -47,7 +49,7 @@ class InterviewController extends Controller
             ->wherePivot('interview_id', $interview->id)
             ->paginate(10);
         $this->interview = $interview;
-        $pdf = PDF::loadView('Interviews.pdf', [
+        $pdf = Pdf::loadView('Interviews.pdf', [
             'interview' => $interview,
             'doctor' => $doctor,
             'patient' => $patient,
