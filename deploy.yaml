@@ -4,11 +4,11 @@ import:
 
 
 config:
-  repository: 'yes'
+  repository: 'https://github.com/Daniuwu504/clinica'
 
 hosts:
   UAPS:
-    remote_user: ubuntu
+    remote_user: root
     hostname: uaps-sanluis.com
     deploy_path: '/var/www/{{hostname}}'
 
