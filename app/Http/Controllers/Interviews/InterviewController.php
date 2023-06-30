@@ -19,7 +19,7 @@ class InterviewController extends Controller
     {
         $gender = ['male', 'female'];
 
-        return view('interviews.index', compact('user', 'gender'));
+        return view('Interviews.index', compact('user', 'gender'));
     }
 
     public function detail(Interview $interview)
@@ -28,7 +28,7 @@ class InterviewController extends Controller
         $patient = User::find($interview->patient_id);
         $doctor = User::find($interview->doctor_id);
 
-        return view('interviews.detail', compact('interview', 'doctor', 'patient'));
+        return view('Interviews.detail', compact('interview', 'doctor', 'patient'));
     }
 
     public function pdf(Interview $interview)
@@ -47,7 +47,7 @@ class InterviewController extends Controller
             ->wherePivot('interview_id', $interview->id)
             ->paginate(10);
         $this->interview = $interview;
-        $pdf = PDF::loadView('interviews.pdf', [
+        $pdf = PDF::loadView('Interviews.pdf', [
             'interview' => $interview,
             'doctor' => $doctor,
             'patient' => $patient,
@@ -85,7 +85,7 @@ class InterviewController extends Controller
 
         $gender = $user->gender;
 
-        return view('interviews.create', compact('doctor', 'user', 'interview', 'gender'));
+        return view('Interviews.create', compact('doctor', 'user', 'interview', 'gender'));
     }
 
     public function patientUpdate(Request $request, User $user)
@@ -114,7 +114,7 @@ class InterviewController extends Controller
     {
         $ficha = File::find($fileId);
         if ($ficha->extension !== 'pdf') {
-            return view('interviews.ficha', compact('ficha'));
+            return view('Interviews.ficha', compact('ficha'));
         } else {
             return redirect(asset($ficha->url));
         }
