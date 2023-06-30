@@ -6,7 +6,7 @@ use App\Exports\SalesExport;
 use App\Http\Controllers\Controller;
 use App\Models\Sale;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\PDF as PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\SaleDetails;
@@ -44,7 +44,7 @@ class ExportController extends Controller
         }
 
         $user = $userId == 0 ? 'Todos' : User::find($userId)->name;
-        $pdf = PDF::loadView('pdf.reporte', compact('data', 'reportType', 'user', 'dateFrom', 'dateTo'));
+        $pdf = Pdf::loadView('pdf.reporte', compact('data', 'reportType', 'user', 'dateFrom', 'dateTo'));
 
         /*
     $pdf = new DOMPDF();
