@@ -9,7 +9,7 @@ use App\Models\Interview;
 use App\Models\Medicine;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\PDF as PDF;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class InterviewController extends Controller
 {
