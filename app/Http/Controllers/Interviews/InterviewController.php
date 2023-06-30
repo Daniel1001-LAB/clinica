@@ -19,7 +19,7 @@ class InterviewController extends Controller
     {
         $gender = ['male', 'female'];
 
-        return view('Interviews.index', compact('user', 'gender'));
+        return view('interviews.index', compact('user', 'gender'));
     }
 
     public function detail(Interview $interview)
