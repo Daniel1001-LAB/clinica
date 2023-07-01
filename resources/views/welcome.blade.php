@@ -489,7 +489,7 @@
                 specialty_id = localStorage.getItem('specialty_id')
                 day = localStorage.getItem('day')
                 date = localStorage.getItem('date')
-                office = localStorage.getItem('office')
+                office_id = localStorage.getItem('office_id')
                 price = localStorage.getItem('price')
 
                 if (interval !== null) {
@@ -509,7 +509,7 @@
                                 'success'
                             )
                             livewire.emitTo('patient.patient-date', 'addAppointment', interval, doctor_id,
-                                specialty_id, day, date, office, price)
+                                specialty_id, day, date, office_id, price)
 
                         } else {
                             localStorage.removeItem('interval')
@@ -517,7 +517,7 @@
                             localStorage.removeItem('specialty_id')
                             localStorage.removeItem('day')
                             localStorage.removeItem('date')
-                            localStorage.removeItem('office')
+                            localStorage.removeItem('office_id')
                             localStorage.removeItem('price')
                         }
                     })
