@@ -9,9 +9,7 @@
             <div class="flex justify-between">
                 <p class="text-xl font-semibold my-2 capitalize">{{ __('interview resume') }}: {{ $patient->name }}</p>
                 <div class="">
-                    <x-button href="{{ route('interviews.pdf', ['interview' => $interview->id]) }}" sm
-                        icon="clipboard-list" secondary label="PDF" />
-                    <x-button href="{{ route('interviews.pdf', ['interview' => $interview->id]) }}" sm
+                    <x-button target="_blank" href="{{ route('interviews.pdf', ['interview' => $interview->id]) }}" sm
                         icon="clipboard-list" primary label="Imprimir PDF" />
                 </div>
             </div>
