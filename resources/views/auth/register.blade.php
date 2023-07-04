@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="h-screen md:flex">
         <div
-            class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
+            class="relative lg:p-6 overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
             <div>
                 <img src="{{ asset('assets/logo1.png') }}" class="rounded-xl shadow-xl img-fluid" alt=""
                     srcset="">
@@ -11,7 +11,7 @@
             <div class="absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
             <div class="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
         </div>
-        <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
+        <div class="flex lg:w-full md:w-1/2 justify-center py-10 items-center bg-white">
             <form class="bg-white" method="POST" action="{{ route('register') }}">
                 <h1 class="text-gray-800 font-bold text-2xl mb-1">{{ __('Hello Again!') }}</h1>
                 <p class="text-sm font-normal text-gray-600 mb-7">{{ __('Welcome Back') }}</p>

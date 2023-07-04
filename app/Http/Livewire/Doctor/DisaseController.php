@@ -19,11 +19,23 @@ class DisaseController extends Component
     public $modalEdit = false;
     public $sortField = 'name';
 
-    protected $rules = ['name' => 'required|unique:disases'];
+    protected  $rules = [
+        'name' => 'required|unique:disases|min:3',
+    ];
+
+    protected $messages = [
+        'name.required' => 'Nombre de la enfermedad es requerido.',
+        'name.unique' => 'Ya extiste una enfermedad con este nombre.',
+        'name.min' => 'El nombre de la enfermedad debe tener al menos 10 caracteres',
+    ];
+
+
+    // protected $rules = ['name' => 'required|unique:disases|min:10'];
 
     public function addDisase()
     {
-        $this->validate();
+
+        $this->validate($this->rules, $this->messages);
         $disase = Disase::create([
             'name' => mb_strtolower($this->name),
             'slug' => Str::slug($this->name),

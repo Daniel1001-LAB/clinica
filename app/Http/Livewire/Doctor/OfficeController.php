@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Doctor;
 
+use App\Models\Appoinment;
 use App\Models\Office;
 use Livewire\Component;
 use WireUi\Traits\Actions;
@@ -15,18 +16,36 @@ class OfficeController extends Component
     public $officeEditModal = false;
     public $officeDeleteModal = false;
 
+    protected  $rules = [
+        'local' => 'required|unique:offices|min:10|max:15',
+        'address' => 'required',
+        'email' => 'required|email',
+        'phone' => 'required|min:15|numeric',
+        'mobil' => 'required|min:15|numeric',
 
-    protected $rules = ['local' => 'required', 'address' => 'required', 'email' => 'required', 'phone' => 'required', 'mobil' => 'required',];
+    ];
+
+    protected $messages = [
+        'local.required' => 'Nombre de la oficina/consultorio es requerido.',
+        'local.unique' => 'Ya extiste una oficina/consultorio con este nombre.',
+        'local.min' => 'El nombre de la oficina/consultorio debe tener al menos 10 caracteres',
+        'local.min' => 'El nombre de la oficina/consultorio debe tener 15 caracteres maximo',
+        'email.required' => 'El correo es requerido',
+        'phone.required' => 'El numero de telefono del consultorio es requerido, si no posee telefono privado, use su numero de contacto personal.',
+        'mobile.required' => 'El numero de telefono mobil del doctor es requerido',
+    ];
+
 
     public function openAddModal()
     {
+        $this->resetErrorBag(); // Restablecer los mensajes de error
         $this->officeAddModal = true;
     }
 
     public function openEditModal(Office $office)
     {
         //dd($office);
-
+        $this->resetErrorBag(); // Restablecer los mensajes de error
         $this->local = $office->local;
         $this->address = $office->address;
         $this->email = $office->email;
@@ -41,6 +60,7 @@ class OfficeController extends Component
 
     public function editOffice(Office $office)
     {
+        $this->resetErrorBag(); // Restablecer los mensajes de error
         $office->local =  $this->local;
         $office->address =  $this->address;
         $office->email =  $this->email;
@@ -56,7 +76,8 @@ class OfficeController extends Component
 
     public function addOffice()
     {
-        $data = $this->validate();
+        $this->resetErrorBag(); // Restablecer los mensajes de error
+        $data =  $this->validate($this->rules, $this->messages);
         $this->doctor_id = auth()->user()->id;
         $office = Office::create([
             'local' => $data['local'],
@@ -76,8 +97,6 @@ class OfficeController extends Component
             $this->reset();
             // session()->flash('success', 'Registro creado correctamente');
         }
-
-
     }
 
     public function openDeleteModal(Office $office)
@@ -92,6 +111,17 @@ class OfficeController extends Component
     public function deleteOffice()
     {
         $office = Office::find($this->office_id);
+
+        // Verificar si existen citas asociadas a la oficina
+        if (Appoinment::where('office_id', $office->id)->exists()) {
+            $this->officeDeleteModal = false;
+            $this->notification()->error(
+                $title = 'Error !!!',
+                $description = 'No puedes eliminar una oficina o consultorio si posee citas pendientes, por favor, termine sus entrevistas pendientes para poder hacer esto.'
+            );
+            return;
+        }
+
         $office->delete();
         $this->officeDeleteModal = false;
     }
