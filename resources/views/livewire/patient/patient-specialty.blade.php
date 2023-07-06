@@ -3,11 +3,11 @@
         <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-10">
             <div class="text-center">
                 <h1 class="text-4xl sm:text-6xl capitalize font-bold text-gray-800 dark:text-gray-200">
-                    {{ __('Our Specialties') }}
+                    {{ __('our specialties') }}
                 </h1>
 
                 <p class="mt-3 text-gray-600 dark:text-gray-400">
-                    {{ __('search for the specialty you need ') }}
+                    {{ __('search for the specialty you need') }}
                 </p>
 
                 <div class="mt-7 sm:mt-12 mx-auto max-w-xl relative">
@@ -18,10 +18,10 @@
                             <div class="flex-[1_0_0%]">
                                 <label for="hs-search-article-1"
                                     class="block text-sm text-gray-700 font-medium dark:text-white"><span
-                                        class="sr-only">Search a Specialty:</span></label>
-                                <input wire:model="search" placeholder="{{ 'search specialties' }}"
+                                        class="sr-only capitalize">{{__('search specialties')}}:</span></label>
+                                <input wire:model="search" placeholder="{{ __('search specialties') }}"
                                     name="hs-search-article-1" id="hs-search-article-1"
-                                    class="p-3 block w-full border-transparent rounded-md focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-400"
+                                    class="p-3 block w-full border-transparent rounded-md capitalize focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-400"
                                     placeholder="Search specialties">
                             </div>
                             <div class="flex-[0_0_auto]">

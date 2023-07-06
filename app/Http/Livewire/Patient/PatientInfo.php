@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Patient;
 
+use App\Models\Appoinment;
 use App\Models\File;
+use App\Models\Interview;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -33,21 +35,17 @@ class PatientInfo extends Component
         $desde = today();
         $hasta = now()->addDays(15);
         $anterior = now()->subDays(90);
-        $appointments = auth()->user()->appoinments()->whereBetween('date', [$desde, $hasta])->get();
+        $patient_id = auth()->user()->id;
+        $appointments =Appoinment::where('patient_id', $patient_id)->whereBetween('date',[$desde,$hasta])->orderBy('date', 'desc')->orderBy('hour', 'asc')->limit(5)->get();
+        $interviews =Interview::where('user_id',$patient_id)->whereBetween('date',[$anterior,$hasta])->orderBy('date', 'desc')->limit(3)->get();
 
-        $files = File::whereHas('interviews', function ($q) {
-            $q->where('user_id', '=', auth()->user()->id);
-        })->paginate(2);
+        $files = File::where('user_id','=',auth()->user()->id)->paginate(2);
 
         $this->resetPage();
         $medicines = auth()->user()->medicines()->withPivot('dosage', 'instruction')->paginate(5);
         //dd($medicines,auth()->user()->id);
 
         $interviews = auth()->user()->interviews()->whereBetween('date', [$anterior, $hasta])->paginate(2);
-        return view('livewire.patient.patient-info', ['data' => [
-            'appointments' => $appointments, 'interviews' => $interviews,
-            'files' => $files,
-            'medicines' => $medicines,
-        ]],  compact('appointments', 'interviews', 'medicines', 'files'));
+        return view('livewire.patient.patient-info', compact('appointments', 'interviews', 'medicines', 'files'));
     }
 }

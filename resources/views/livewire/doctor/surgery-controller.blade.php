@@ -112,12 +112,11 @@
         </div>
     </div>
 
-    <x-dialog />
 
     {{-- Modal Crear --}}
     <x-modal.card title="{{ __('add surgery') }}" blur wire:model="modal">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="col-span-1 sm:col-span-2">
+        <div class="grid grid-cols-1 sm:grid-cols-1 gap-4">
+            <div class="col-span-1 sm:col-span-2 justify-center">
                 <x-badge flat lg primary label="Doc: {{ auth()->user()->name }}" />
             </div>
 

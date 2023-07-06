@@ -23,6 +23,7 @@
 <body class="font-sans antialiased">
     <x-banner />
     <x-notifications />
+    <x-dialog />
     <div class="min-h-scree">
         <x-menu-doctor-nav/>
         <!-- Page Heading -->

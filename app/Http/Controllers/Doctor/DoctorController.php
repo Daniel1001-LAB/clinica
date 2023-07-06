@@ -26,7 +26,7 @@ class DoctorController extends Controller
         if ($isDoctor) {
             $find = 'doctor_id';
         } else {
-            $find = 'patient_id';
+            $find = 'user_id';
         }
 
 
@@ -37,8 +37,9 @@ class DoctorController extends Controller
         $latestInterview = $user->latestInterview;
 
         if ($latestInterview) {
-            $date = $latestInterview->date;
             $patientName = $latestInterview->user->name;
+            $date = $latestInterview->date;
+            // $patientName = $latestInterview->user->name;
             // Realizar acciones con la última entrevista, la fecha y el nombre del paciente
         } else {
             // No se encontraron entrevistas

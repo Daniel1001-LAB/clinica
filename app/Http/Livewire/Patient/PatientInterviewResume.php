@@ -12,7 +12,7 @@ class PatientInterviewResume extends Component
 
     public function mount(Interview $interview){
         $this->interview = $interview;
-        $this->patient = User::find($interview->patient_id);
+        $this->patient = User::find($interview->user_id);
     }
 
 

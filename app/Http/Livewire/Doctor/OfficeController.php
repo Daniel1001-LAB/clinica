@@ -127,7 +127,6 @@ class OfficeController extends Component
     }
 
 
-
     public function render()
     {
         $offices = Office::where('doctor_id', auth()->user()->id)->get();
@@ -135,4 +134,5 @@ class OfficeController extends Component
             'offices' => $offices
         ])->layout('layouts.doctor');
     }
+
 }

@@ -24,15 +24,17 @@
                                                 d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
                                         </svg>
 
+
                                         <div
                                             class="bg-green-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
-                                            <span class="flex items-center">TOTAL DE ENTREVISTAS:
+
+                                            <span href="{{ route('statistics.total-suspicions') }}" class="flex items-center">TOTAL DE ENTREVISTAS:
                                                 {{ $interviews->count() }}</span>
                                         </div>
                                     </div>
                                     <div class="ml-2 w-full flex-1">
                                         <div>
-                                            <div class="mt-3 text-3xl font-bold leading-8">
+                                            <div class="mt-3 text-2xl font-bold leading-8">
                                                 {{ $latestInterview->user->name }}</div>
                                             <div class="mt-1 text-base capitalize text-gray-600">
                                                 {{ $latestInterview->date }}</div>
@@ -64,7 +66,7 @@
                             </a>
                         @endif
                         <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
-                            href="#">
+                            href="{{ route('statistics.total-suspicions') }}">
                             <div class="p-5">
                                 <div class="flex justify-between">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-yellow-400"
@@ -80,7 +82,7 @@
                                 </div>
                                 <div class="ml-2 w-full flex-1">
                                     <div>
-                                        <div class="mt-3 text-3xl font-bold leading-8">
+                                        <div class="mt-3 text-2xl font-bold leading-8">
                                             {{ $mostCommonSuspicion['suspicion'] }}</div>
 
                                         <div class="mt-1 text-base capitalize text-gray-600">
@@ -90,7 +92,7 @@
                             </div>
                         </a>
                         <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
-                            href="{{ route('disases.index') }}">
+                        href="{{ route('statistics.total-pathologies') }}">
                             <div class="p-5">
                                 <div class="flex justify-between">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-pink-600" fill="none"
@@ -107,7 +109,7 @@
                                 </div>
                                 <div class="ml-2 w-full flex-1">
                                     <div>
-                                        <div class="mt-3 text-3xl capitalize font-bold leading-8">
+                                        <div class="mt-3 text-2xl capitalize font-bold leading-8">
                                             {{ $mostCommonDisase->name }}
                                         </div>
 
@@ -118,7 +120,7 @@
                             </div>
                         </a>
                         <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
-                            href="{{ route('surgeries.index') }}">
+                        href="{{ route('statistics.total-surgeries') }}">
                             <div class="p-5">
                                 <div class="flex justify-between">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-green-400"
@@ -133,7 +135,7 @@
                                 </div>
                                 <div class="ml-2 w-full flex-1">
                                     <div>
-                                        <div class="mt-3 text-3xl capitalize font-bold leading-8">
+                                        <div class="mt-3 text-2xl capitalize font-bold leading-8">
                                             {{ $mostCommonSurgery->name }}</div>
 
                                         <div class="mt-1 text-base capitalize text-gray-600">

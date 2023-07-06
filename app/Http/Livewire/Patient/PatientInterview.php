@@ -37,7 +37,7 @@ class PatientInterview extends Component
             'date' => $data['date'],
             'suspicion' => $data['suspicion'],
             'diagnosis' => $data['diagnosis'],
-            'patient_id' => $this->patient->id,
+            'user_id' => $this->patient->id,
             'doctor_id' => auth()->user()->id,
         ]);
 

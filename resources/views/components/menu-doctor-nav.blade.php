@@ -1,7 +1,14 @@
 @php
-    $navLinks = [['name' => 'Panel Principal', 'route' => route('doctor.index'), 'active' => request()->routeIs('doctor.index')], ['name' => 'Oficinas', 'route' => route('offices.index'), 'active' => request()->routeIs('offices.index')], ['name' => 'Dias de Trabajo', 'route' => route('workdays.index'), 'active' => request()->routeIs('workdays.index')], ['name' => 'Curriculum', 'route' => route('curriculum.index'), 'active' => request()->routeIs('curriculum.index')], ['name' => 'Enfermedades', 'route' => route('disases.index'), 'active' => request()->routeIs('disases.index')], ['name' => 'Cirugías', 'route' => route('surgeries.index'), 'active' => request()->routeIs('surgeries.index')]];
+    $navLinks = [
+        ['name' => 'Panel Principal', 'route' => route('doctor.index'), 'active' => request()->routeIs('doctor.index')],
+        ['name' => 'Oficinas', 'route' => route('offices.index'), 'active' => request()->routeIs('offices.index')],
+        ['name' => 'Dias de Trabajo', 'route' => route('workdays.index'), 'active' => request()->routeIs('workdays.index')],
+        ['name' => 'Curriculum', 'route' => route('curriculum.index'), 'active' => request()->routeIs('curriculum.index')],
+        ['name' => 'Enfermedades', 'route' => route('disases.index'), 'active' => request()->routeIs('disases.index')],
+        ['name' => 'Cirugías', 'route' => route('surgeries.index'), 'active' => request()->routeIs('surgeries.index')],
+        ['name' => 'Síntomas', 'route' => route('symptoms.index'), 'active' => request()->routeIs('symptoms.index')]];
 
-    $programLinks = [['name' => 'Programa LISEM', 'route' => route('lisem.index'), 'active' => request()->routeIs('lisme.index')], ['name' => 'Programa PAI', 'route' => route('pai.index'), 'active' => request()->routeIs('pai.index')], ['name' => 'Club Hipertensos', 'route' => route('hiper.index'), 'active' => request()->routeIs('hiper.index')]];
+    // $programLinks = [['name' => 'Programa LISEM', 'route' => route('lisem.index'), 'active' => request()->routeIs('lisme.index')], ['name' => 'Programa PAI', 'route' => route('pai.index'), 'active' => request()->routeIs('pai.index')], ['name' => 'Club Hipertensos', 'route' => route('hiper.index'), 'active' => request()->routeIs('hiper.index')]];
 
     // $allLinks = array_merge($navLinks, $programLinks);
 
@@ -26,16 +33,7 @@
                             {{ __($navLink['name']) }}
                         </x-nav-link>
                     @endforeach
-                    <div class="flex items-center">
-                        <x-dropdown>
-                            <x-slot name="trigger">
-                                <x-button flat label="Programas de Salud" primary />
-                            </x-slot>
-                            @foreach ($programLinks as $link)
-                                <x-dropdown.item :icon="$link['name'] === 'Programa LISEM' ? 'user-circle' : ($link['name'] === 'Programa PAI' ? 'face-smile' : 'home-modern')" label="{{ $link['name'] }}" href="{{ $link['route'] }}" :active="$link['active']" />
-                            @endforeach
-                        </x-dropdown>
-                    </div>
+
                 </div>
 
             </div>
@@ -228,11 +226,11 @@
                 </x-responsive-nav-link>
             @endforeach
 
-            @foreach ($programLinks as $navLink)
+            {{-- @foreach ($programLinks as $navLink)
                 <x-responsive-nav-link href="{{ $navLink['route'] }}" :active="$navLink['active']">
                     {{ __($navLink['name']) }}
                 </x-responsive-nav-link>
-            @endforeach
+            @endforeach --}}
 
 
         </div>

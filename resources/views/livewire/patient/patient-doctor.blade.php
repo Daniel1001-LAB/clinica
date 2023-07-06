@@ -20,8 +20,8 @@
                             <div class="flex-[1_0_0%]">
                                 <label for="hs-search-article-1"
                                     class="block text-sm text-gray-700 font-medium dark:text-white"><span
-                                        class="sr-only">Search a Doctor:</span></label>
-                                <input wire:model="search" placeholder="{{ 'find doctor' }}" name="hs-search-article-1"
+                                        class="sr-only">{{__('Search a Doctor')}}:</span></label>
+                                <input wire:model="search" placeholder="{{__('find doctor') }}" name="hs-search-article-1"
                                     id="hs-search-article-1"
                                     class="p-3 block w-full border-transparent rounded-md focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-400"
                                     placeholder="Search article">

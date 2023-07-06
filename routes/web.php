@@ -25,6 +25,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
@@ -212,3 +213,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('redirects', [HomeControlle
 Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
+
+Route::get('/enfermedades', function () {
+    return datatables(DB::table('pathologies'))
+    ->addColumn('btn','livewire.doctor.actions')
+    ->rawColumns(['btn'])
+    ->toJson();
+        })->name('pathologies.index');

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Livewire\Users\UsersController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,7 +19,7 @@ class Surgery extends Model
             ->orWhere('name', 'like', '%' . $search . '%');
     }
 
-    public function user()
+    public function users()
     {
         return $this->belongsToMany(User::class)->withPivot('year');
     }

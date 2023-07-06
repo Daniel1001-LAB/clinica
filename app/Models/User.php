@@ -140,7 +140,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function symptoms()
     {
-        return $this->belongsToMany(Symptom::class, 'symptom_user', 'patient_id')->withPivot('interview_id');
+        return $this->belongsToMany(Symptom::class, 'symptom_user', 'user_id')->withPivot('interview_id');
     }
 
     public function medicines()
@@ -150,7 +150,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function interviews()
     {
-        return $this->hasMany(Interview::class, 'patient_id');
+        return $this->hasMany(Interview::class, 'user_id');
     }
 
     public function files()
@@ -181,5 +181,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function pregnants()
     {
         return $this->hasMany(Pregnant::class);
+    }
+
+    public function pathologies(){
+        return $this->belongsToMany(Pathology::class)->withTimestamps();
     }
 }

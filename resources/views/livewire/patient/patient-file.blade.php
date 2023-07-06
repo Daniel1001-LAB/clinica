@@ -30,7 +30,7 @@
                             </div>
                             <div class="flex items-center ml-auto space-x-2">
                                 <x-button.circle wire:click="edit({{ $file->id }})" primary flat icon="pencil" />
-                                <x-button.circle wire:click="delete({{ $file->id }})" red flat icon="trash" />
+                                {{-- <x-button.circle wire:click="delete({{ $file->id }})" red flat icon="trash" /> --}}
                             </div>
                         </div>
                     </li>

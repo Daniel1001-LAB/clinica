@@ -6,9 +6,11 @@ use App\Models\Disase;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
+use WireUi\Traits\Actions;
 
 class DisaseController extends Component
 {
+    use Actions;
     use WithPagination;
     public $name, $symptoms;
     public $search;
@@ -20,7 +22,7 @@ class DisaseController extends Component
     public $sortField = 'name';
 
     protected  $rules = [
-        'name' => 'required|unique:disases|min:3',
+        'name' => 'required|unique:disases|min:10',
     ];
 
     protected $messages = [
@@ -56,21 +58,52 @@ class DisaseController extends Component
         $this->modalEdit = true;
     }
 
-    public function update(Disase $disase){
+    public function update(Disase $disase)
+    {
         $this->validate();
+
+        if ($disase->user()->exists()) {
+            $this->notification()->error(
+                $title = 'Error',
+                $description = 'No se puede editar una enfermedad que ya ha sido asignada a pacientes.'
+            );
+            return;
+        }
+
         $disase->name = mb_strtolower($this->name);
         $disase->slug = Str::slug($this->name);
         $disase->symptoms = mb_strtolower($this->symptoms);
         $disase->save();
+
         $this->reset(['name', 'symptoms']);
         $this->modalEdit = false;
-        $this->render();
+
+        $this->notification()->success(
+            $title = 'Enfermedad actualizada',
+            $description = 'La enfermedad se actualizó correctamente.'
+        );
     }
 
-    public function delete(Disase $disase){
+
+    public function delete(Disase $disase)
+    {
+        if ($disase->user()->exists()) {
+            $this->notification()->error(
+                $title = 'Error',
+                $description = 'No se puede eliminar una enfermedad asignada a pacientes.'
+            );
+            return;
+        }
+
+        // Proceder con la eliminación de la enfermedad
         $disase->delete();
-        $this->reset(['name', 'symptoms']);
+
+        $this->notification()->success(
+            $title = 'Enfermedad eliminada',
+            $description = 'La enfermedad se eliminó correctamente.'
+        );
     }
+
 
     public function updatingSearch()
     {

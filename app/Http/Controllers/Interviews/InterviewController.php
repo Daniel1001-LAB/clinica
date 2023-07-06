@@ -27,7 +27,7 @@ class InterviewController extends Controller
     public function detail(Interview $interview)
     {
 
-        $patient = User::find($interview->patient_id);
+        $patient = User::find($interview->user_id);
         $doctor = User::find($interview->doctor_id);
 
         return view('Interviews.detail', compact('interview', 'doctor', 'patient'));
@@ -35,7 +35,7 @@ class InterviewController extends Controller
 
     public function pdf(Interview $interview)
     {
-        $patient = User::find($interview->patient_id);
+        $patient = User::find($interview->user_id);
         $doctor = User::find($interview->doctor_id);
 
         // Obtener los medicamentos del paciente relacionados con la entrevista actual

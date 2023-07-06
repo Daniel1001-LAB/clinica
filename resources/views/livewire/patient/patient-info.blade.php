@@ -31,7 +31,7 @@
                     <i class="fa-regular fa-calendar-check fa-beat fa-2xl" style="color: #1b56bb;"></i>
                 </div>
                 <h6 class="mb-2 font-semibold leading-5 capitalize">{{ 'appointments' }}</h6>
-                @forelse ($data['appointments'] as $a)
+                @forelse ($appointments as $a)
                     <div class="flex justify-between">
                         <p class="mb-3 text-sm text-gray-900">
                             <span class="icon"><i class="fa-solid fa-user-doctor"></i></span>
@@ -88,7 +88,7 @@
                     <i class="fa-solid fa-clipboard-question fa-beat fa-2xl" style="color: #1b56bb;"></i>
                 </div>
                 <h6 class="mb-2 font-semibold leading-5 capitalize">{{ __('interviews') }}</h6>
-                @forelse ($data['interviews'] as $i)
+                @forelse ($interviews as $i)
                     <div class="flex justify-between">
                         <p class="mb-3 text-sm text-gray-900">
                             <span class="icon"><i class="fa-solid fa-user-doctor"></i></span>
@@ -123,7 +123,7 @@
                 @empty
                     <p class="mb-3 text-sm text-gray-900">{{ __('no interviews registered') }}</p>
                 @endforelse
-                {{ $data['interviews']->links() }}
+                {{ $interviews->links() }}
 
             </div>
         </div>
@@ -134,7 +134,7 @@
                 </div>
                 <h6 class="mb-2 font-semibold leading-5 capitalize">{{ __('your files') }}</h6>
                 <ul class="w-full divide-y divide-gray-200 dark:divide-gray-700">
-                    @forelse ($data['files'] as $file)
+                    @forelse ($files as $file)
                         <li class="pb-3 sm:pb-4 py-3 sm:py-4">
                             <div class="flex justify-start items-center">
                                 <div class="flex-shrink-0">
@@ -166,7 +166,7 @@
                         <p class="mb-3 text-sm text-gray-900">{{ __('no files registered') }}</p>
                     @endforelse
 
-                    {{ $data['files']->links() }}
+                    {{ $files->links() }}
 
             </div>
 
@@ -177,7 +177,7 @@
                     <i class="fa-solid fa-prescription-bottle fa-beat fa-2xl" style="color: #1b56bb;"></i>
                 </div>
                 <h6 class="mb-2 font-semibold leading-5 capitalize">{{ __('medicines') }}</h6>
-                @forelse ($data['medicines'] as $medicine)
+                @forelse ($medicines as $medicine)
                     <div class="flex justify-between">
                         <p class="mb-3 text-sm text-gray-900">
                             <span class="icon"><i class="fa-solid fa-user-doctor"></i></span>
@@ -213,7 +213,7 @@
                     <p class="mb-3 text-sm text-gray-900">{{ __('no medicines registered') }}</p>
                 @endforelse
 
-                {{ $data['medicines']->links() }}
+                {{ $medicines->links() }}
 
             </div>
 

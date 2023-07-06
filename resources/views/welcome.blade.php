@@ -219,40 +219,40 @@
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                     <div>
                         <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                            {{ __('For patients') }}</h2>
+                            {{ __('for patients') }}</h2>
                         <ul class="text-gray-600 dark:text-gray-400 font-medium">
                             <li class="mb-4">
-                                <a  class="hover:underline">{{ __('Career advise') }}</a>
+                                <a  class="hover:underline">{{ __('career advise') }}</a>
                             </li>
                             <li class="mb-4">
-                                <a  class="hover:underline">{{ __('Professional interviews') }}</a>
+                                <a  class="hover:underline">{{ __('professional interviews') }}</a>
                             </li>
                             <li class="mb-4">
-                                <a  class="hover:underline">{{ __('Control interviews') }}</a>
+                                <a  class="hover:underline">{{ __('control interviews') }}</a>
                             </li>
                             <li class="mb-4">
-                                <a  class="hover:underline">{{ __('Medical record') }}</a>
+                                <a  class="hover:underline">{{ __('medical record') }}</a>
                             </li>
                             <li class="mb-4">
-                                <a href="#home" class="hover:underline">{{ __('Unlimited access') }}</a>
+                                <a href="#home" class="hover:underline">{{ __('unlimited access') }}</a>
                             </li>
                         </ul>
                     </div>
                     <div>
                         <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                            {{ __('For Doctors') }}</h2>
+                            {{ __('for doctors') }}</h2>
                         <ul class="text-gray-600 dark:text-gray-400 font-medium">
                             <li class="mb-4">
-                                <a href="#beadoctor" class="hover:underline ">{{ __('Get started') }}</a>
+                                <a href="#beadoctor" class="hover:underline ">{{ __('get started') }}</a>
                             </li>
                             <li class="mb-4">
-                                <a href="#services" class="hover:underline">{{ __('Our services') }}</a>
+                                <a href="#services" class="hover:underline">{{ __('our services') }}</a>
                             </li>
                             <li class="mb-4">
-                                <a href="#services" class="hover:underline">{{ __('About us') }}</a>
+                                <a href="#services" class="hover:underline">{{ __('about us') }}</a>
                             </li>
                             <li class="mb-4">
-                                <a href="#contact" class="hover:underline">{{ __('Contact us') }}</a>
+                                <a href="#contact" class="hover:underline">{{ __('contact us') }}</a>
                             </li>
                         </ul>
                     </div>
@@ -260,11 +260,10 @@
                         <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
                         <ul class="text-gray-600 dark:text-gray-400 font-medium">
                             <li class="mb-4">
-                                <a href="{{ route('policy.show') }}" class="hover:underline">Privacy Policy</a>
+                                <a href="{{ route('policy.show') }}" class="hover:underline">{{__('Privacy Policy')}}</a>
                             </li>
                             <li>
-                                <a href="{{ route('terms.show') }}" class="hover:underline">Terms &amp;
-                                    Conditions</a>
+                                <a href="{{ route('terms.show') }}" class="hover:underline">{{__('Terms')}}</a>
                             </li>
                         </ul>
                     </div>
@@ -275,7 +274,7 @@
             <div class="sm:flex sm:items-center sm:justify-between">
                 <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a target="_blank"
                         href="https://www.facebook.com/edwindaniel.merinopaz" class="hover:underline">EMERINO™</a>.
-                    All Rights Reserved.
+                    Todos los derechos reservados.
                 </span>
                 <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
                     <a target="_blank" href="https://www.facebook.com/edwindaniel.merinopaz"

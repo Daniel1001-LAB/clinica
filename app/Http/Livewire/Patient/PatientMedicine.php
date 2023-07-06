@@ -37,7 +37,7 @@ class PatientMedicine extends Component
     public function mount(Interview $interview)
     {
         $this->interview = $interview;
-        $this->patient = User::find($interview->patient_id);
+        $this->patient = User::find($interview->user_id);
     }
 
     public function add()
@@ -55,7 +55,7 @@ class PatientMedicine extends Component
         }
 
         // Attach the medicine to the patient
-        $patient_id = $this->interview->patient_id;
+        $patient_id = $this->interview->user_id;
         $medicine->users()->attach($patient_id, [
             'dosage' => $data['dosage'],
             'instruction' => $data['instruction'],

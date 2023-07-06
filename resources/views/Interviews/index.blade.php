@@ -34,12 +34,12 @@
                         <ul
                             class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                             <li class="flex items-center py-3">
-                                <span>Status</span>
+                                <span>{{__('Status')}}</span>
                                 <span class="ml-auto"><span
                                         class="bg-blue-500 py-1 px-2 rounded text-white text-sm">{{ $user->status }}</span></span>
                             </li>
                             <li class="flex items-center py-3">
-                                <span>Member since</span>
+                                <span>{{__('Member since')}}</span>
                                 <span class="ml-auto">{{ $user->created_at->format('d-m-Y') }}</span>
                             </li>
                             @if ($user->gender == 'female')
@@ -77,7 +77,7 @@
                                 </svg>
 
                             </span>
-                            <span class="capitalize">{{ __('Appoinments history') }}</span>
+                            <span class="capitalize">{{ __('Appoinments History') }}</span>
                         </div>
                         <div class="grid grid-cols-1">
                             @livewire('patient.patient-appoinment', ['user' => $user->id])
@@ -230,7 +230,7 @@
                                                 d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
                                         </svg>
                                         <span
-                                            class="text-xl capitalize font-semibold my-2">{{ __('vaccination history') }}</span>
+                                            class="text-xl capitalize font-semibold my-2">{{ __('Vaccination History') }}</span>
 
                                     </div>
                                     @livewire('interview.interview-patient-vaccine', ['user' => $user->id])
@@ -245,7 +245,7 @@
                                         </svg>
 
                                         <span
-                                            class="text-xl capitalize font-semibold my-2">{{ __('history of allergies') }}</span>
+                                            class="text-xl capitalize font-semibold my-2">{{ __('History Of Allergies') }}</span>
 
                                     </div>
                                     @livewire('interview.interview-patient-allergy', ['user' => $user->id])
